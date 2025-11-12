@@ -1,0 +1,25 @@
+/* Untuk mode biasa dan dark mode */
+:root,
+[data-bs-theme="dark"] {
+    --bs-primary: #071F5C !important;
+    --bs-primary-rgb: 7, 31, 92 !important;
+}
+
+.nav-item .nav-link {
+    color: #FFFFFF !important;
+    font-weight: 400;
+}
+
+.nav-item .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* 0.2 = 20% opacity */
+    color: #FFFFFF !important;
+    border-radius: 5px;
+}
+
+.nav-item .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.3);
+    /* 0.3 = 30% opacity */
+    color: #FFFFFF !important;
+    border-radius: 5px;
+}

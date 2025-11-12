@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/main_pelapor', function () {
+    return view('layouts.main_pelapor');
+});
