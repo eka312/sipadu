@@ -14,13 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pelapor.index');
 });
 
 Route::get('/main_pelapor', function () {
     return view('layouts.main_pelapor');
 });
 
-Route::get('/index', function () {
-    return view('pelapor.index');
-});

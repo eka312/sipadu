@@ -41,23 +41,23 @@
                 <!-- Menu tengah -->
                 <ul class="navbar-nav gap-2">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+                        <a class="nav-link active" aria-current="page" href="/">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tentang Kami</a>
+                        <a class="nav-link" href="#tentangKami">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manfaat & Kelebihan</a>
+                        <a class="nav-link" href="#manfaat">Manfaat & Kelebihan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tata Cara</a>
+                        <a class="nav-link" href="#tataCara">Tata Cara</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Lapor</a>
+                        <a class="nav-link" href="#lapor">Lapor</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Status Kasus</a>
-                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#statusKasus">Status Kasus</a>
+                    </li> -->
                 </ul>
 
                 <!-- Tombol kanan -->
@@ -71,6 +71,7 @@
 
     <main>
         @yield('content')
+        
     </main>
 
 
@@ -118,8 +119,18 @@
                                 <path fill="#F7CD54"
                                     d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
                             </svg>
+                            Manfaat & Kelebihan
+                        </div>
+                        <div class="col">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                <path fill="#F7CD54"
+                                    d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                <path fill="#F7CD54"
+                                    d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                            </svg>
                             Tata Cara
                         </div>
+
                         <div class="col">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
                                 <path fill="#F7CD54"
@@ -129,7 +140,7 @@
                             </svg>
                             Lapor
                         </div>
-                        <div class="col">
+                        <!-- <div class="col">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
                                 <path fill="#F7CD54"
                                     d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
@@ -137,19 +148,18 @@
                                     d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
                             </svg>
                             Status Kasus
-                        </div>
+                        </div> -->
                     </ul>
 
                 </div>
                 <div class="col d-flex align-items-center">
                     <ul>
                         <h4>SMK PGRI WLINGI</h4>
-                        <div class="col">
+                        <div class="col mb-2">
                             <i class="fa-solid fa-location-dot fa-lg" style="color: #ffffff;"></i>
                             Jl. Jendral Sudirman No. 86 Beru, Wlingi, Blitar, Jawa Timur
                         </div>
-                        <p>Jl. Jendral Sudirman No. 86 Beru, Wlingi, Blitar, Jawa Timur</p>
-                        <div class="col">
+                        <div class="col mb-2">
                             <i class="fa-solid fa-phone fa-lg" style="color: #ffffff;"></i>
                             (0342) 691224
                         </div>
