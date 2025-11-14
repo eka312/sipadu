@@ -4,16 +4,16 @@
 
 @section('content')
 
-<div class="container ">
+<div class="container">
     <!-- section hero -->
-    <div class="row my-5">
-        <div class="col">
+    <div class="row py-5 align-items-center" id="hero">
+        <div class="col col-12 col-md-6 order-0 order-md-0">
             <video width="100%" height="auto" autoplay loop muted>
                 <source src="{{ asset('dist/assets/img/7019985_Agent_Answer_1280x720.mp4') }}" type="video/mp4">
             </video>
         </div>
-        <div class="col">
-            <h3 class="text-primary" style="font-weight:650;">Laporkan, Kami Dengar dan Tindak Lanjutkan!</h3>
+        <div class="col col-12 col-md-6 order-1 order-md-1">
+            <h3 class="text-primary" style="font-weight:700;">Laporkan, Kami Dengar dan Tindak Lanjutkan!</h3>
             <div class="text-muted my-3">
                 SIPADU membantu siswa dan pihak sekolah menyelesaikan setiap permasalahan dengan mudah, aman, dan
                 rahasia. Melalui sistem yang terintegrasi, setiap laporan atau kendala dapat ditangani dengan cepat dan
@@ -31,7 +31,7 @@
                                     d="m7.4 10.054l5.6 1.527V5.619L7.4 7.146zm-2 .764a1 1 0 0 0 .737.965l7.6 2.073A1 1 0 0 0 15 12.89V4.309a1 1 0 0 0-1.263-.965l-7.6 2.073a1 1 0 0 0-.737.965z"
                                     clip-rule="evenodd" />
                                 <path
-                                    d="M7.016 10.8a1 1 0 0 1-1 1h-2.76a.56.56 0 0 1-.405-.176c-1.593-1.7-1.6-4.36.002-6.052a.55.55 0 0 1 .4-.172h2.763a1 1 0 0 1 1 1z" />
+                                    d="M7.016 10.8a1 1 0 0 1-1 1h-2.76a.56.56 0 0 1-.205-.176c-1.593-1.7-1.6-4.36.002-6.052a.55.55 0 0 1 .4-.172h2.763a1 1 0 0 1 1 1z" />
                                 <path fill-rule="evenodd"
                                     d="M5.016 9.8V7.4H3.969a2.43 2.43 0 0 0 .004 2.4zm1 2a1 1 0 0 0 1-1V6.4a1 1 0 0 0-1-1H3.253a.55.55 0 0 0-.4.172c-1.602 1.691-1.595 4.353-.002 6.052a.56.56 0 0 0 .405.176z"
                                     clip-rule="evenodd" />
@@ -56,21 +56,20 @@
                 </div>
             </div>
         </div>
-        <!-- + modal pilihan login -->
     </div>
     <!-- end section hero -->
 
 
 
     <!-- section fitur -->
-    <div class="fitur my-5 text-center" id="fitur">
+    <div class="fitur py-5 text-center" id="fitur">
         <ul>
             <h3 class="text-capitalize mb-5" style="color:var(--bs-primary);font-weight:650;">
                 fitur - fitur yang tersedia di SIPADU
             </h3>
-            <div class="row">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
                 <!-- tengtang kami -->
-                <div class="col">
+                <div class="col ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 256 256">
                         <g fill="#071F5C">
                             <path
@@ -122,7 +121,7 @@
                     </svg>
                     <h5 class="text-primary" style="font-weight: 700;">Tata Cara</h5>
                     <div class="text-muted">
-                        Sampaikan laporan pelanggaran siswa dengan cepat dan rahasia.
+                        Pelajari langkah mudah dalam menyampaikan laporan di SIPADU.
                     </div>
                 </div>
                 <!--end Tata Cara -->
@@ -186,15 +185,349 @@
 
 
     <!-- tentang kami -->
-    <div class="row d-flex align-items-center my-5">
-        <div class="col">
-            <div class="text-warning" style="font-weight: 800;font-size:2.0rem; ">TENTANG KAMI</div>
+    <div class="row py-5 d-flex justify-content-center " id="aboutus">
+        <div class="col d-flex justify-content-center">
+            <ul>
+                <div class="text-warning" style="font-weight: 800;font-size:2.5rem; ">TENTANG KAMI</div>
+                <div class="text-primary fw-bold fs-4 pb-3 " style="font-family: Roboto;">
+                    Mengapa SIPADU <br> Dihadirkan?
+                </div>
+                <div class="btn btn-primary">
+                    <div class="col p-1">
+                        Pelajari Lebih Lanjut
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="20" viewBox="0 0 16 9">
+                            <path fill="#fff" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                            <path fill="#fff" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                        </svg>
+
+                    </div>
+                </div>
+            </ul>
+
         </div>
-        <div class="col">
-            Column
+        <div class="col ">
+            <ul>
+                <div class="poin-list">
+                    <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
+                        Apa itu SIPADU?
+                    </h5>
+                    <div class="text-muted w-75">
+                        SIPADU (Sistem Pengaduan Terpadu) adalah platform berbasis web yang digunakan untuk mencatat dan menindaklanjuti laporan pelanggaran siswa secara cepat dan terorganisir.
+                    </div>
+                </div>
+                <div class="poin-list pt-3">
+                    <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
+                        Tujuan Utama
+                    </h5>
+                    <div class="text-muted w-75">
+                        Membantu sekolah dalam mengelola laporan pelanggaran dengan transparan, efektif, dan menjaga kerahasiaan identitas pelapor.
+                    </div>
+                </div>
+                <div class="poin-list pt-3">
+                    <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
+                        Kerahasiaan Terjamin
+                    </h5>
+                    <div class="text-muted w-75">
+                        Setiap laporan yang masuk akan disimpan dengan aman. Identitas pelapor tidak akan dipublikasikan atau dibagikan tanpa izin.
+                    </div>
+                </div>
+                <div class="poin-list pt-3">
+                    <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
+                        Proses Terintegrasi
+                    </h5>
+                    <div class="text-muted w-75">
+                        Setiap laporan yang masuk akan disimpan dengan aman. Identitas pelapor tidak akan dipublikasikan atau dibagikan tanpa izin.
+                    </div>
+                </div>
+                <div class="poin-list pt-3">
+                    <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
+                        Manfaat Sistem
+                    </h5>
+                    <div class="text-muted w-75">
+                        Setiap laporan yang masuk akan disimpan dengan aman. Identitas pelapor tidak akan dipublikasikan atau dibagikan tanpa izin.
+                    </div>
+                </div>
+            </ul>
         </div>
     </div>
     <!-- end tentang kami -->
+
+
+
+    <!-- manfaat & kelebihan -->
+    <div class="py-5" id="manfaat">
+        <div class="title-section d-flex justify-content-center text-center mb-4">
+            <ul>
+                <h3 class="text-capitalize" style="color:var(--bs-primary);font-weight:650;">
+                    manfaat & kelebihan SIPADU
+                </h3>
+                <div class="text-muted w-75 mx-auto">
+                    SIPADU hadir untuk memudahkan proses pelaporan dan pembinaan siswa dengan sistem yang cepat, aman, dan terintegrasi.
+                </div>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col">
+                <ul>
+                    <div class="poin-list mb-5">
+                        <div class="icon btn btn-primary mb-2 rounded-1 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 1792 1792" class="my-1">
+                                <path fill="#fff" d="M1764 11q33 24 27 64l-256 1536q-5 29-32 45q-14 8-31 8q-11 0-24-5l-453-185l-242 295q-18 23-49 23q-13 0-22-4q-19-7-30.5-23.5T640 1728v-349l864-1059l-1069 925l-395-162q-37-14-40-55q-2-40 32-59L1696 9q15-9 32-9q20 0 36 11" />
+                            </svg>
+                        </div>
+                        <div class="text-primary" style="font-weight: 700;">
+                            Pelaporan Lebih Cepat
+                        </div>
+                        <div class="text-muted">
+                            Laporan dapat dikirim dan diproses secara
+                            real-time tanpa perlu prosedur panjang.
+                        </div>
+                    </div>
+                    <div class="poin-list mb-5">
+                        <div class="icon btn btn-primary mb-2 rounded-1 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" class="my-1">
+                                <path fill="#fff" d="M6 20h12V10H6zm6-7c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2" opacity="0.3" />
+                                <path fill="#fff" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2M9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9zm9 14H6V10h12zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2s-2 .9-2 2s.9 2 2 2" />
+                            </svg>
+
+                        </div>
+                        <div class="text-primary" style="font-weight: 700;">
+                            Kerahasiaan Terjamin
+                        </div>
+                        <div class="text-muted">
+                            Identitas pelapor dijaga sepenuhnya agar
+                            proses tetap aman dan terpercaya.
+                        </div>
+                    </div>
+                    <div class="poin-list mb-5">
+                        <div class="icon btn btn-primary mb-2 rounded-1 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" class="my-1">
+                                <g fill="#fff">
+                                    <path d="M5 9V7h2v2zm4 0h10V7H9zm-4 6v2h2v-2zm14 2H9v-2h10z" />
+                                    <path fill-rule="evenodd" d="M1 6a3 3 0 0 1 3-3h16a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3zm3-1h16a1 1 0 0 1 1 1v5H3V6a1 1 0 0 1 1-1m-1 8v5a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-5z" clip-rule="evenodd" />
+                                </g>
+                            </svg>
+
+                        </div>
+                        <div class="text-primary" style="font-weight: 700;">
+                            Data Tersimpan Rapi
+                        </div>
+                        <div class="text-muted">
+                            Semua laporan terdokumentasi secara
+                            digital, mudah diakses kapan pun dibutuhkan.
+
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+                <img src="{{asset('dist/assets/img/gambar1.jpg')}}" alt="gambar manfaat & kelebihan" class="img-fluid" style="width: 22rem;">
+            </div>
+            <div class="col">
+                <ul>
+                    <div class="poin-list mb-5">
+                        <div class="icon btn btn-primary mb-2 rounded-1 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" class="my-1">
+                                <g fill="none">
+                                    <path fill="#fff" fill-opacity="0.5" d="M13.4 2h-2.8A1.6 1.6 0 0 0 9 3.6V22h6V3.6A1.6 1.6 0 0 0 13.4 2" />
+                                    <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M2 22h20M9 8.6A1.6 1.6 0 0 0 7.4 7H4.6A1.6 1.6 0 0 0 3 8.6V22m6 0V3.6A1.6 1.6 0 0 1 10.6 2h2.8A1.6 1.6 0 0 1 15 3.6V22m6 0v-8.4a1.6 1.6 0 0 0-1.6-1.6h-2.8a1.6 1.6 0 0 0-1.6 1.6" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="text-primary" style="font-weight: 700;">
+                            Monitoring Transparan
+                        </div>
+                        <div class="text-muted">
+                            Pihak pelapor dapat memantau status
+                            kasus dan tindak lanjutnya secara jelas.
+
+                        </div>
+                    </div>
+                    <div class="poin-list mb-5">
+                        <div class="icon btn btn-primary mb-2 rounded-1 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256" class="my-1">
+                                <g fill="#fff">
+                                    <path d="m200 152l-40 40l-64-16l-56-40l32.68-65.37L128 56l55.32 14.63l.28 1.37H144l-45.66 44.29a8 8 0 0 0 1.38 12.42C117.23 139.9 141 139.13 160 120Z" opacity="0.4" />
+                                    <path d="m254.3 107.91l-25.52-51.06a16 16 0 0 0-21.47-7.15l-24.87 12.43l-52.39-13.86a8.14 8.14 0 0 0-4.1 0L73.56 62.13L48.69 49.7a16 16 0 0 0-21.47 7.15L1.7 107.9a16 16 0 0 0 7.15 21.47l27 13.51l55.49 39.63a8.1 8.1 0 0 0 2.71 1.25l64 16a8 8 0 0 0 7.6-2.1l55.07-55.08l26.42-13.21a16 16 0 0 0 7.15-21.46Zm-54.89 33.37L165 113.72a8 8 0 0 0-10.68.61C136.51 132.27 116.66 130 104 122l43.24-42h31.81l27.21 54.41ZM41.53 64L62 74.22l-25.57 51.05L16 115.06Zm116 119.13l-58.11-14.52l-49.2-35.14l28-56L128 64.28l9.8 2.59l-45 43.68l-.08.09a16 16 0 0 0 2.72 24.81c20.56 13.13 45.37 11 64.91-5L188 152.66Zm62-57.87l-25.52-51L214.47 64L240 115.06Zm-87.75 92.67a8 8 0 0 1-7.75 6.06a8 8 0 0 1-1.95-.24l-41.67-10.42a7.9 7.9 0 0 1-2.71-1.25l-26.35-18.82a8 8 0 0 1 9.3-13l25.11 17.94L126 208.24a8 8 0 0 1 5.82 9.7Z" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="text-primary" style="font-weight: 700;">
+                            Kolaborasi Efektif
+                        </div>
+                        <div class="text-muted">
+                            Menghubungkan siswa, guru, dan pihak
+                            sekolah dalam satu sistem terpadu.
+                        </div>
+                    </div>
+                    <div class="poin-list mb-5">
+                        <div class="icon btn btn-primary mb-2 rounded-1 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 640 512" class="my-1">
+                                <path fill="#fff" d="M337.8 5.4c-10.8-7.2-24.8-7.2-35.6 0L166.3 96H48c-26.5 0-48 21.5-48 48v320c0 26.5 21.5 48 48 48h208v-96c0-35.3 28.7-64 64-64s64 28.7 64 64v96h208c26.5 0 48-21.5 48-48V144c0-26.5-21.5-48-48-48H473.7zM96 192h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16v-64c0-8.8 7.2-16 16-16m400 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16zM96 320h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16v-64c0-8.8 7.2-16 16-16m400 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16zM232 176a88 88 0 1 1 176 0a88 88 0 1 1-176 0m88-48c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-16v-16c0-8.8-7.2-16-16-16" />
+                            </svg>
+                        </div>
+                        <div class="text-primary" style="font-weight: 700;">
+                            Mendukung Pembinaan
+                            Sekolah
+                        </div>
+                        <div class="text-muted">
+                            Membantu menciptakan lingkungan
+                            belajar yang lebih tertib dan disiplin.
+
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!-- end manfaat & kelebihan -->
+
+
+    <!-- tata cara -->
+    <div class="py-5" id="tata-cara">
+        <div class="title-section d-flex justify-content-center text-center mb-4">
+            <ul>
+                <h3 class="text-capitalize" style="color:var(--bs-primary);font-weight:650;">
+                    tata cara penggunaan SIPADU
+                </h3>
+                <div class="text-muted w-75 mx-auto">
+                    Ikuti langkah mudah berikut untuk membuat laporan melalui sistem SIPADU dengan cepat, aman, dan terarah.
+                </div>
+            </ul>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-5">
+            <div class="col">
+                <div class="card bg-primary text-white" style="width: 20rem; height: 12rem;">
+                    <div class="card-body">
+                        <btn class="card-title text-dark bg-white rounded-circle px-3 py-2 fs-5" style="font-weight: 800;">1</btn>
+                        <h5 class="card-subtitle mb-1 mt-4" style="font-family: 'Poetsen One', sans-serif;">Masuk ke Halaman SIPADU</h5>
+                        <p class="card-text" style="font-weight: 200;">
+                            Akses situs resmi SIPADU
+                            sekolah melalui browser di
+                            perangkat kamu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-primary text-white" style="width: 20rem; height: 12rem;">
+                    <div class="card-body">
+                        <btn class="card-title text-dark bg-white rounded-circle px-3 py-2 fs-5" style="font-weight: 800;">2</btn>
+                        <h5 class="card-subtitle mb-1 mt-4" style="font-family: 'Poetsen One', sans-serif;">Login atau Isi Identitas</h5>
+                        <p class="card-text" style="font-weight: 200;">
+                            Masukkan data pelapor sesuai
+                            petunjuk. Identitas kamu akan
+                            dijaga dengan aman.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-primary text-white" style="width: 20rem; height: 12rem;">
+                    <div class="card-body">
+                        <btn class="card-title text-dark bg-white rounded-circle px-3 py-2 fs-5" style="font-weight: 800;">3</btn>
+                        <h5 class="card-subtitle mb-1 mt-4" style="font-family: 'Poetsen One', sans-serif;">Isi Formulir Laporan</h5>
+                        <p class="card-text" style="font-weight: 200;">
+                            Tuliskan permasalahan yang
+                            ingin dilaporkan secara jelas
+                            dan ringkas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-primary text-white" style="width: 20rem; height: 12rem;">
+                    <div class="card-body">
+                        <btn class="card-title text-dark bg-white rounded-circle px-3 py-2 fs-5" style="font-weight: 800;">4</btn>
+                        <h5 class="card-subtitle mb-1 mt-4" style="font-family: 'Poetsen One', sans-serif;">Kirim Laporan</h5>
+                        <p class="card-text" style="font-weight: 200;">
+                            Setelah semua data lengkap,
+                            tekan tombol “Kirim Laporan”
+                            untuk mengirim ke sistem.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-primary text-white" style="width: 20rem; height: 12rem;">
+                    <div class="card-body">
+                        <btn class="card-title text-dark bg-white rounded-circle px-3 py-2 fs-5" style="font-weight: 800;">5</btn>
+                        <h5 class="card-subtitle mb-1 mt-4" style="font-family: 'Poetsen One', sans-serif;">Pantau Status Kasus</h5>
+                        <p class="card-text" style="font-weight: 200;">
+                            Lihat perkembangan laporan
+                            kamu melalui fitur Status Kasus
+                            di dashboard.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-primary text-white" style="width: 20rem; height: 12rem;">
+                    <div class="card-body">
+                        <btn class="card-title text-dark bg-white rounded-circle px-3 py-2 fs-5" style="font-weight: 800;">6</btn>
+                        <h5 class="card-subtitle mb-1 mt-4" style="font-family: 'Poetsen One', sans-serif;">Terima Tindak Lanjut</h5>
+                        <p class="card-text" style="font-weight: 200;">
+                            Pihak sekolah akan
+                            menindaklanjuti laporan dan
+                            memberikan hasil secara
+                            transparan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end tata cara -->
+
+    <!-- login pelapor -->
+    <div class="py-5 text-center" id="login-pelapor">
+        <h2 class="text-primary fw-bold" style="font-family: 'Roboto';">
+            Pilih Jenis Pelapor
+        </h2>
+        <p class="text-muted mb-4" style="font-size: 1.1rem;">
+            Masuk ke SIPADU sesuai peran kamu
+        </p>
+
+        <div class="row justify-content-center gap-4">
+
+            <!-- Card Pelapor Siswa -->
+            <div class="col-md-4">
+                <div class="card shadow p-3 border-0 p-3 h-100">
+                    <div class="text-center">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="#071F5C">
+                            <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5s-5 2.239-5 5s2.239 5 5 5zm0 2c-3.865 0-7 2.239-7 5v1h14v-1c0-2.761-3.135-5-7-5z" />
+                        </svg>
+                    </div>
+                    <h4 class="mt-3 fw-bold text-primary">Pelapor Siswa</h4>
+                    <p class="text-muted">
+                        Khusus untuk siswa yang ingin melaporkan masalah, kendala, atau memberi saran.
+                    </p>
+                    <a href="/login-siswa" class="btn btn-primary w-100">Masuk sebagai Siswa</a>
+                </div>
+            </div>
+
+            <!-- Card Pelapor Guru -->
+            <div class="col-md-4">
+                <div class="card shadow p-3 border-0 p-3 h-100">
+                    <div class="text-center">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="#071F5C">
+                            <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5s-5 2.239-5 5s2.239 5 5 5zm0 2c-3.865 0-7 2.239-7 5v1h14v-1c0-2.761-3.135-5-7-5z" />
+                        </svg>
+                    </div>
+                    <h4 class="mt-3 fw-bold text-primary">Pelapor Guru</h4>
+                    <p class="text-muted">
+                        Untuk guru atau staf yang ingin melaporkan kejadian atau kebutuhan siswa.
+                    </p>
+                    <a href="/login-guru" class="btn btn-primary w-100">Masuk sebagai Guru</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end login pelapor -->
+
 </div>
 
 
