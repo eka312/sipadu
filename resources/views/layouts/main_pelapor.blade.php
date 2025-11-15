@@ -19,7 +19,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Poetsen+One&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Poetsen+One&display=swap"
+        rel="stylesheet">
 
 </head>
 
@@ -44,29 +46,49 @@
             <div class="collapse navbar-collapse text-capitalize " id="navbarNav">
                 <!-- Menu tengah -->
                 <ul class="navbar-nav gap-2">
+
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Beranda</a>
+                        <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Beranda</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#aboutus">Tentang Kami</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#manfaat">Manfaat & Kelebihan</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#tata-cara">Tata Cara</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#login-pelapor">Lapor</a>
+                        <!-- @auth
+                            {{-- Kalau sudah login arahkan ke halaman lapor --}}
+                            <a class="nav-link {{ Request::is('lapor') ? 'active' : '' }}" href="/lapor">Lapor</a>
+                        @else
+                            {{-- Kalau belum login scroll saja --}}
+                            <a class="nav-link" href="#login-pelapor">Lapor</a>
+                        @endauth -->
+                        {{-- Kalau sudah login arahkan ke halaman lapor --}}
+                            <a class="nav-link {{ Request::is('lapor') ? 'active' : '' }}" href="/lapor">Lapor</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#statusKasus">Status Kasus</a>
-                    </li> -->
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('statusKasus') ? 'active' : '' }}" href="/statusKasus">Status
+                                Kasus</a>
+                        </li>
+                    @endauth
+
+
                 </ul>
+
 
                 <!-- Tombol kanan -->
                 <div class="d-flex ms-auto">
-                    <a class="btn btn-light text-primary px-3" style="font-weight: 400;" href="#">Login Admin</a>
+                    <a class="btn btn-light text-primary px-3" style="font-weight: 400;" href="/login_admin">Login
+                        Admin</a>
                 </div>
             </div>
         </div>
@@ -144,15 +166,15 @@
                                 </svg>
                                 Lapor
                             </div>
-                            <!-- <div class="col">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                <path fill="#F7CD54"
-                                    d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                <path fill="#F7CD54"
-                                    d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                            </svg>
-                            Status Kasus
-                        </div> -->
+                            <div class="col">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                    <path fill="#F7CD54"
+                                        d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                    <path fill="#F7CD54"
+                                        d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                </svg>
+                                Status Kasus
+                            </div>
                         </ul>
 
                     </div>
@@ -176,7 +198,7 @@
                 </div>
                 <hr class="text-white" style="width: 100%;">
                 <span class="navbar-text d-flex justify-content-center text-white">
-                    &copy; 2024 SIPADU. All rights reserved.
+                    2025 &copy; SIPADU - dikelola oleh SMK PGRI WLINGI
                 </span>
             </ul>
         </div>
@@ -234,9 +256,8 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>
