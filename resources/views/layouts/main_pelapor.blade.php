@@ -72,13 +72,13 @@
                             <a class="nav-link" href="#login-pelapor">Lapor</a>
                         @endauth -->
                         {{-- Kalau sudah login arahkan ke halaman lapor --}}
-                            <a class="nav-link {{ Request::is('lapor') ? 'active' : '' }}" href="/lapor">Lapor</a>
+                        <a class="nav-link {{ Request::is('lapor') ? 'active' : '' }}" href="/lapor">Lapor</a>
                     </li>
                     @auth
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('statusKasus') ? 'active' : '' }}" href="/statusKasus">Status
-                                Kasus</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('statusKasus') ? 'active' : '' }}" href="/statusKasus">Status
+                            Kasus</a>
+                    </li>
                     @endauth
 
 
@@ -118,62 +118,78 @@
                         </p>
                     </div>
                     <div class="col d-flex align-items-center">
-                        <ul>
+                        <ul class="footer-menu">
                             <h4>Menu Utama</h4>
                             <div class="col">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                    <path fill="#F7CD54"
-                                        d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                    <path fill="#F7CD54"
-                                        d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                </svg>
-                                Beranda
-                            </div>
-                            <div class="col">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                    <path fill="#F7CD54"
-                                        d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                    <path fill="#F7CD54"
-                                        d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                </svg>
-                                Tentang Kami
-                            </div>
-                            <div class="col">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                    <path fill="#F7CD54"
-                                        d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                    <path fill="#F7CD54"
-                                        d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                </svg>
-                                Manfaat & Kelebihan
-                            </div>
-                            <div class="col">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                    <path fill="#F7CD54"
-                                        d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                    <path fill="#F7CD54"
-                                        d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                </svg>
-                                Tata Cara
+                                <a href="/">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                        <path fill="#F7CD54"
+                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54"
+                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                    </svg>
+                                    Beranda
+                                </a>
                             </div>
 
                             <div class="col">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                    <path fill="#F7CD54"
-                                        d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                    <path fill="#F7CD54"
-                                        d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                </svg>
-                                Lapor
+                                <a class="col" href="#aboutus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                        <path fill="#F7CD54"
+                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54"
+                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                    </svg>
+                                    Tentang Kami
+                                </a>
                             </div>
+
                             <div class="col">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                    <path fill="#F7CD54"
-                                        d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                    <path fill="#F7CD54"
-                                        d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                </svg>
-                                Status Kasus
+                                <a class="col" href="#manfaat">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                        <path fill="#F7CD54"
+                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54"
+                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                    </svg>
+                                    Manfaat & Kelebihan
+                                </a>
+                            </div>
+
+                            <div class="col">
+                                <a class="col" href="#tata-cara">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                        <path fill="#F7CD54"
+                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54"
+                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                    </svg>
+                                    Tata Cara
+                                </a>
+                            </div>
+
+                            <div class="col">
+                                <a class="col" href="/lapor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                        <path fill="#F7CD54"
+                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54"
+                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                    </svg>
+                                    Lapor
+                                </a>
+                            </div>
+
+                            <div class="col">
+                                <a class="col" href="/status_kasus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                        <path fill="#F7CD54"
+                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54"
+                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                    </svg>
+                                    Status Kasus
+                                </a>
                             </div>
                         </ul>
 
@@ -257,7 +273,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-        </script>
+    </script>
 </body>
 
 </html>

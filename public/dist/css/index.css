@@ -77,3 +77,9 @@ html {
     background: #0a2c80;
 }
 
+
+.footer-menu a {
+    text-decoration: none;   /* hilang underline */
+    color: inherit;          /* ikut warna parent */
+    display: block;          /* biar full area bisa diklik */
+}
