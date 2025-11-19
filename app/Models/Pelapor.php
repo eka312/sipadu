@@ -11,4 +11,14 @@ class Pelapor extends Model
     protected $table = 'pelapor';
     protected $primaryKey = 'id_pelapor';
     protected $guarded = [];
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class, 'id_guru', 'id_guru');
+    }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'id_siswa', 'id_siswa');
+    }
 }

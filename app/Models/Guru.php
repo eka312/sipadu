@@ -11,15 +11,22 @@ class Guru extends Model
     protected $table = 'guru';
     protected $primaryKey = 'id_guru';
     protected $guarded = [];
+
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');
+    }
+
     
-    // public function laptop()
+    
+    // public function guru()
     // {
-    //     return $this->belongsTo(laptop::class, 'id_laptop', 'id_laptop');
+    //     return $this->belongsTo(guru::class, 'id_guru', 'id_guru');
     // }
 
-    // public function suplayer()
+    // public function pelapor()
     // {
-    //     return $this->belongsTo(suplayer::class, 'id_suplayer', 'id_suplayer');
+    //     return $this->belongsTo(pelapor::class, 'id_pelapor', 'id_pelapor');
     // }
 
     // protected static function boot()
