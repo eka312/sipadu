@@ -41,5 +41,10 @@ Route::get('/login_admin', function () {
     return view('admin.login_admin');
 });
 
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+
 
 
