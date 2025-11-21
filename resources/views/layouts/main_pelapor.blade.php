@@ -10,7 +10,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- link css -->
-    <link rel="stylesheet" href="{{ asset('dist/css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
     <!-- link font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -32,7 +32,7 @@
         <div class="container">
             <!-- Logo kiri -->
             <a class="navbar-brand" href="/">
-                <img src="{{ asset('dist/assets/img/logo_sipadu.png')}}" alt="Logo" width="80" height="40"
+                <img src="{{ asset('assets/img/logo_sipadu.png')}}" alt="Logo" width="80" height="40"
                     style="object-fit: contain;">
             </a>
 
@@ -107,7 +107,7 @@
             <ul>
                 <div class="row gap-3">
                     <div class="col">
-                        <img src="{{ asset('dist/assets/img/logo_sipadu.png')}}" alt="Logo" width="240" height="180"
+                        <img src="{{ asset('assets/img/logo_sipadu.png')}}" alt="Logo" width="240" height="180"
                             style="object-fit: contain;">
                         <h4>SIPADU (Sistem Pengaduan Terpadu)</h4>
                         <p>
@@ -240,12 +240,12 @@
 
     <!-- Tombol Scroll Atas -->
     <button id="btnTop" class="scroll-btn">
-        ↑
+        <i class="fa-solid fa-arrow-up fa-sm" style="color: #ffffff;"></i>
     </button>
 
     <!-- Tombol Scroll Bawah -->
     <button id="btnBottom" class="scroll-btn scroll-down">
-        ↓
+        <i class="fa-solid fa-arrow-down fa-sm" style="color: #ffffff;"></i>
     </button>
 
     <script>

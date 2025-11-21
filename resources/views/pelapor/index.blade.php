@@ -9,7 +9,7 @@
         <div class="row py-5 align-items-center" id="hero">
             <div class="col col-12 col-md-6 order-0 order-md-0">
                 <video width="100%" height="auto" autoplay loop muted>
-                    <source src="{{ asset('dist/assets/img/7019985_Agent_Answer_1280x720.mp4') }}" type="video/mp4">
+                    <source src="{{ asset('assets/img/7019985_Agent_Answer_1280x720.mp4') }}" type="video/mp4">
                 </video>
             </div>
             <div class="col col-12 col-md-6 order-1 order-md-1">
@@ -339,7 +339,7 @@
                     </ul>
                 </div>
                 <div class="col d-flex align-items-center justify-content-center">
-                    <img src="{{asset('dist/assets/img/gambar1.jpg')}}" alt="gambar manfaat & kelebihan" class="img-fluid"
+                    <img src="{{asset('assets/img/gambar1.jpg')}}" alt="gambar manfaat & kelebihan" class="img-fluid"
                         style="width: 22rem;">
                 </div>
                 <div class="col">

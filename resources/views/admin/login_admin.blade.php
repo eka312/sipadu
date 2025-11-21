@@ -5,7 +5,7 @@
 @section('content')
     <div class="card shadow-lg border-0 rounded-lg mt-5 card-custom">
         <div class=" d-flex justify-content-center">
-            <img src="{{ asset('dist/assets/img/logo_sipadu.png') }}" alt="" style="width:14rem; opacity:100%;">
+            <img src="{{ asset('assets/img/logo_sipadu.png') }}" alt="" style="width:14rem; opacity:100%;">
         </div>
         <div class="card-body">
             <form>

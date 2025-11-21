@@ -39,7 +39,7 @@
         }
 
         .bg-login-siswa {
-            background-image: url('{{ asset("dist/assets/img/bg-login2.jpg") }}');
+            background-image: url('{{ asset("assets/img/bg-login2.jpg") }}');
             background-size: cover;
             /* Biar gambarnya nutup full */
             background-position: center;
@@ -88,7 +88,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="{{asset('js/scripts.js')}}"></script>
 </body>
 
 </html>

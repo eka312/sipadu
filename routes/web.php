@@ -20,6 +20,10 @@ Route::get('/', function () {
 // Route::get('/main_pelapor', function () {
 //     return view('layouts.main_pelapor');
 // });
+// Route::get('/main_admin', function () {
+//     return view('layouts.main_admin');
+// });
+
 
 Route::get('/lapor', function () {
     return view('pelapor.lapor');
@@ -44,6 +48,8 @@ Route::get('/login_admin', function () {
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
+
+
 
 
 
