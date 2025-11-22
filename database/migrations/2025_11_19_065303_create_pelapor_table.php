@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('pelapor', function (Blueprint $table) {
             $table->increments('id_pelapor');
-            $table->integer('id_siswa');
-            $table->integer('id_guru');
-            $table->string('nama_pelapor');
-
+            $table->integer('id_siswa')->nullable();
+            $table->integer('id_guru')->nullable();
             $table->timestamps();
         });
     }

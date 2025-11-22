@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kasus;
 use App\Models\Laporan;
+use App\Models\Pelapor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -12,7 +15,11 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $laporan = laporan::all();
+        $kasus = Kasus::all();
+        $user = User::all();
+        $pelapor = Pelapor::all();
+        return view('admin.laporan', compact('pelapor', 'laporan', 'kasus', 'user'));
     }
 
     /**

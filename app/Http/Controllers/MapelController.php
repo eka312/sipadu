@@ -12,7 +12,9 @@ class MapelController extends Controller
      */
     public function index()
     {
-        //
+        $mapel = Mapel::All();
+
+        return view('admin.mapel', compact('mapel'));
     }
 
     /**

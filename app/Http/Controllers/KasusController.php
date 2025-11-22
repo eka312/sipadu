@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kasus;
+
 use Illuminate\Http\Request;
 
 class KasusController extends Controller
@@ -11,7 +13,9 @@ class KasusController extends Controller
      */
     public function index()
     {
-        //
+       
+        $kasus = Kasus::all();
+        return view('admin.kasus', compact('kasus'));
     }
 
     /**

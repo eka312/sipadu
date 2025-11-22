@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->increments('id_laporan');
-            $table->integer('id_kasus');
-            $table->integer('id_user');
-            $table->integer('id_pelapor');
+            $table->integer('id_kasus')->nullable();
+            $table->integer('id_user')->nullable();
+            $table->integer('id_pelapor')->nullable();
             $table->longText('file_bukti');
             $table->longText('deskripsi');
             $table->string('lokasi');

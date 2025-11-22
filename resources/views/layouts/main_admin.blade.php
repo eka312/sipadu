@@ -29,14 +29,55 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav mt-4">
-                        <a class="nav-link" href="/dashboard">
-                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                        <!-- Dashboard -->
+                        <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="/dashboard">
+                            <i class="fas fa-home sb-nav-link-icon"></i>
                             Dashboard
                         </a>
-                        <a class="nav-link" href="/guru">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+
+                        <!-- User Data -->
+                        <!-- <a class="nav-link {{ Request::is('guru') ? 'active' : '' }}" href="/guru">
+                            <i class="fas fa-user-tie sb-nav-link-icon"></i>
                             Data Guru
                         </a>
+
+                        <a class="nav-link {{ Request::is('siswa') ? 'active' : '' }}" href="/siswa">
+                            <i class="fas fa-user-graduate sb-nav-link-icon"></i>
+                            Data Siswa
+                        </a> -->
+
+                        <a class="nav-link {{ Request::is('pelapor') ? 'active' : '' }}" href="/pelapor">
+                            <i class="fas fa-users sb-nav-link-icon"></i>
+                            Data Pelapor
+                        </a>
+
+                        <!-- Academic -->
+                        <!-- <a class="nav-link {{ Request::is('kelas') ? 'active' : '' }}" href="/kelas">
+                            <i class="fas fa-school sb-nav-link-icon"></i>
+                            Data Kelas
+                        </a>
+
+                        <a class="nav-link {{ Request::is('mapel') ? 'active' : '' }}" href="/mapel">
+                            <i class="fas fa-book sb-nav-link-icon"></i>
+                            Data Mapel
+                        </a> -->
+
+                        <!-- Core App -->
+                        <a class="nav-link {{ Request::is('kasus') ? 'active' : '' }}" href="/kasus">
+                            <i class="fas fa-exclamation-circle sb-nav-link-icon"></i>
+                            Data Jenis Kasus
+                        </a>
+
+                        <a class="nav-link {{ Request::is('laporan') ? 'active' : '' }}" href="/laporan">
+                            <i class="fas fa-file-alt sb-nav-link-icon"></i>
+                            Data Laporan
+                        </a>
+
+                        <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="/admin">
+                            <i class="fas fa-file-alt sb-nav-link-icon"></i>
+                            Data Admin
+                        </a>
+
                     </div>
                 </div>
             </nav>
@@ -48,12 +89,14 @@
 
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
     <script src="{{asset('js/scripts.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="{{asset('assets/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('assets/demo/chart-bar-demo.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
     <script src="{{asset('js/datatables-simple-demo.js')}}"></script>
 </body>
 

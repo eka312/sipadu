@@ -1,3 +1,25 @@
+:root {
+    --bs-primary: #071F5C !important;
+    --bs-primary-rgb: 7, 31, 92 !important;
+    --bs-warning: #F7CD54 !important;
+    --bs-warning-rgb: 247, 205, 84 !important;
+    /* Untuk text-warning (Bootstrap 5.3 ke atas) */
+    --bs-warning-text: #664d03 !important;
+
+    /* Untuk bg-warning-subtle dan border-subtle */
+    --bs-warning-bg-subtle: #fff3cd !important;
+    --bs-warning-border-subtle: #ffeeba !important;
+
+}
+.btn-primary {
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-hover-bg: color-mix(in srgb, var(--bs-primary) 90%, white);
+    --bs-btn-hover-border-color: color-mix(in srgb, var(--bs-primary) 85%, white);
+    --bs-btn-active-bg: color-mix(in srgb, var(--bs-primary) 80%, black);
+    --bs-btn-active-border-color: color-mix(in srgb, var(--bs-primary) 75%, black);
+}
+
 .bg-content{
     background-color: #f8f9ff;
 }

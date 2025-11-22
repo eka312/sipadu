@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Mapel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class GuruController extends Controller
 {
@@ -12,54 +14,61 @@ class GuruController extends Controller
      */
     public function index()
     {
-        //
+        $guru = Guru::all();
+        $mapel = Mapel::all();
+        return view('admin.guru', compact('guru', 'mapel'));
+;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'id_mapel' => 'required',
+    //         'nama_guru' => 'required',
+    //         'email' => 'required|email|unique:guru',
+    //         'password' => 'required|min:5',
+    //         'no_identitas' => 'required'
+    //     ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    //     Guru::create([
+    //         'id_mapel' => $request->id_mapel,
+    //         'nama_guru' => $request->nama_guru,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //         'no_identitas' => $request->no_identitas,
+    //     ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Guru $guru)
-    {
-        //
-    }
+    //     return redirect()->back()->with('success', 'Guru berhasil ditambahkan!');
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Guru $guru)
-    {
-        //
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'id_mapel' => 'required',
+    //         'nama_guru' => 'required',
+    //         'email' => "required|email|unique:guru,email,$id,id_guru",
+    //         'no_identitas' => 'required'
+    //     ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Guru $guru)
-    {
-        //
-    }
+    //     $data = [
+    //         'id_mapel' => $request->id_mapel,
+    //         'nama_guru' => $request->nama_guru,
+    //         'email' => $request->email,
+    //         'no_identitas' => $request->no_identitas,
+    //     ];
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Guru $guru)
-    {
-        //
-    }
+    //     if ($request->password) {
+    //         $data['password'] = Hash::make($request->password);
+    //     }
+
+    //     Guru::where('id_guru', $id)->update($data);
+
+    //     return redirect()->back()->with('success', 'Data guru berhasil diupdate!');
+    // }
+
+    // public function destroy($id)
+    // {
+    //     Guru::where('id_guru', $id)->delete();
+    //     return redirect()->back()->with('success', 'Data guru berhasil dihapus!');
+    // }
 }

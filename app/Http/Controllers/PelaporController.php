@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Pelapor;
+use App\Models\Siswa;
+
 use Illuminate\Http\Request;
 
 class PelaporController extends Controller
@@ -12,7 +15,11 @@ class PelaporController extends Controller
      */
     public function index()
     {
-        //
+        $pelapor =Pelapor::all();
+        $guru = Guru::all();
+        $siswa = Siswa::all();
+        return view('admin.pelapor', compact('pelapor','guru', 'siswa'));
+        
     }
 
     /**
