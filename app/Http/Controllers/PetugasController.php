@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kasus;
-use App\Models\Laporan;
-use App\Models\Pelapor;
-use App\Models\User;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
 
-class LaporanController extends Controller
+class PetugasController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $laporan = Laporan::all();
-        $kasus = Kasus::all();
-        $petugas = User::all();
-        $pelapor = Pelapor::all();
-        return view('admin.laporan', compact('pelapor', 'laporan', 'kasus', 'petugas'));
+        //
     }
 
     /**
@@ -41,7 +34,7 @@ class LaporanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Laporan $laporan)
+    public function show(Petugas $petugas)
     {
         //
     }
@@ -49,7 +42,7 @@ class LaporanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Laporan $laporan)
+    public function edit(Petugas $petugas)
     {
         //
     }
@@ -57,25 +50,15 @@ class LaporanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Petugas $petugas)
     {
-        
-
-        Laporan::where('id_laporan', $id)
-        ->update([
-            'id_user' => $request->id_user,
-            'status' => $request->status,
-        ]);
-
-        return redirect('/laporan');
+        //
     }
-
-
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Laporan $laporan)
+    public function destroy(Petugas $petugas)
     {
         //
     }

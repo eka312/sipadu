@@ -31,7 +31,10 @@ class KasusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kasus = Kasus::create([   
+            'jenis_kasus' => $request->jenis_kasus,
+        ]);
+        return redirect('/kasus');
     }
 
     /**
@@ -47,7 +50,9 @@ class KasusController extends Controller
      */
     public function edit(string $id)
     {
-        //
+         // untuk mengambil data kasus berdasarkan kolom id_kasus
+         $kasus = Kasus::where('id_kasus', $id)->first();
+         return view('admin.kasus',compact('kasus'));
     }
 
     /**
@@ -55,7 +60,11 @@ class KasusController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Kasus::where('id_kasus', $id)
+        ->update([
+            'jenis_kasus' => $request->jenis_kasus,
+        ]);
+        return redirect('/kasus');
     }
 
     /**
@@ -63,6 +72,9 @@ class KasusController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $delete = Kasus::where('id_kasus', $id)->delete();
+        
+        //setelah terhapus akan dialihkan ke hal data kasus
+        return redirect('/kasus');
     }
 }

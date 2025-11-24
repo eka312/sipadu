@@ -79,3 +79,32 @@
 .bg-info-soft {
     background-color: #e8f9ff;
 }
+
+@media (max-width: 992px) {
+    #layoutSidenav_nav {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        height: 100%;
+        z-index: 1050;
+        transition: left 0.3s ease;
+    }
+
+    #layoutSidenav_nav.active {
+        left: 0;
+    }
+
+    #layoutSidenav_content {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    #layoutSidenav_nav {
+        width: 250px;
+    }
+
+    #layoutSidenav_content {
+        margin-left: 250px;
+    }
+}

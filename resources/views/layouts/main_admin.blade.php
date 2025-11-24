@@ -73,9 +73,9 @@
                             Data Laporan
                         </a>
 
-                        <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="/admin">
+                        <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="/petugas">
                             <i class="fas fa-file-alt sb-nav-link-icon"></i>
-                            Data Admin
+                            Data Petugas
                         </a>
 
                     </div>

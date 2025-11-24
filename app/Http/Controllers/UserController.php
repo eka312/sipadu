@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,7 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $petugas = User::all();
+        return view('admin.petugas', compact('petugas'));
     }
 
     /**
@@ -27,7 +29,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $petugas = User::create([   
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'nama_petugas' => $request->nama_petugas,
+            'jabatan' => $request->jabatan,
+        ]);
+        return redirect('/petugas');
     }
 
     /**
@@ -51,14 +59,31 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+            'email' => $request->email,
+            'nama_petugas' => $request->nama_petugas,
+            'jabatan' => $request->jabatan,
+        ];
+    
+        // Hanya update password kalau user mengisi
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+    
+        User::where('id_user', $id)->update($data);
+    
+        return redirect('/petugas');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $delete = User::where('id_user', $id)->delete();
+        
+        //setelah terhapus akan dialihkan ke hal data petugas
+        return redirect('/petugas');
     }
 }
