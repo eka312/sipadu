@@ -24,6 +24,8 @@
 
 
 
+
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -78,6 +80,40 @@
                             Data Petugas
                         </a>
 
+                    </div>
+
+
+                </div>
+                <div class="sb-sidenav-footer p-0">
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2"
+                        style="
+            background: rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(6px);
+        ">
+
+                        <!-- Kiri: Avatar + Email -->
+                        <div class="d-flex align-items-center">
+                            <!-- Avatar -->
+                            <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=0D6EFD&color=fff"
+                                class="rounded-circle"
+                                style="width: 35px; height: 35px; border: 2px solid rgba(255,255,255,0.2);">
+
+                            <!-- Email -->
+                            <span class="ms-2 text-white" style="font-size: 0.85rem; font-weight: 500;">
+                                {{ Auth::user()->email }}
+                            </span>
+                        </div>
+
+                        <!-- Kanan: Logout icon -->
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="text-white"
+                            style="font-size: 1rem;">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="GET" class="d-none"></form>
                     </div>
                 </div>
             </nav>

@@ -31,9 +31,11 @@ use Illuminate\Support\Facades\Route;
 
 // milik pelapor
 
+
 Route::get('/', function () {
     return view('pelapor.index');
 });
+
 
 Route::get('/lapor', [LaporController::class, 'create'])->name('lapor.create');
 
@@ -61,89 +63,82 @@ Route::get('/login_admin', function () {
     return view('admin.login_admin');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
+Route::controller(AuthController::class)->group(function () {
+    // Routing halaman login
+    Route::get('/login', 'index')->name('login');
 
-// Route::get('/guru', function () {
-//     return view('admin.guru');
-// });
+    // Routing proses login
+    Route::post('/login', 'login')->name('login.process');
 
-
-
-Route::controller(GuruController::class)->group(function () {
-    Route::get('/guru', 'index');
-    Route::post('/guru', 'store'); // tambah
-    Route::post('/guru/{id}', 'update'); // edit
-    Route::delete('/guru/{id}', 'destroy'); // hapus
+    // Routing proses logout
+    Route::get('/logout', 'logout')->name('logout');
 });
 
 
-Route::get('/siswa', function () {
-    return view('admin.siswa');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
+
+
+    Route::controller(GuruController::class)->group(function () {
+        Route::get('/guru', 'index');
+        Route::post('/guru', 'store'); // tambah
+        Route::post('/guru/{id}', 'update'); // edit
+        Route::delete('/guru/{id}', 'destroy'); // hapus
+    });
+
+
+    Route::get('/siswa', function () {
+        return view('admin.siswa');
+    });
+
+    Route::get('/pelapor', [PelaporController::class, 'index']);
+
+    Route::get('/kelas', function () {
+        return view('admin.kelas');
+    });
+
+    Route::get('/mapel', function () {
+        return view('admin.mapel');
+    });
+
+
+    Route::controller(KasusController::class)->group(function () {
+
+        Route::get('/kasus', 'index');
+
+        Route::post('/kasus', 'store')->name('kasus.store');
+
+        Route::put('/kasus/{id}', 'update')->name('kasus.update');
+
+        Route::delete('/kasus/{id}', 'destroy')->name('kasus.delete');
+    });
+
+
+
+
+
+
+    Route::controller(LaporanController::class)->group(function () {
+
+        Route::get('/laporan', 'index');
+
+        Route::put('/laporan/{id}', 'update')->name('laporan.update');
+    });
+
+
+    Route::controller(UserController::class)->group(function () {
+        // Routing halaman data petugas
+        Route::get('/petugas', 'index');
+
+        // Routing tambah petugas
+        Route::post('/petugas', 'store')->name('petugas.store');
+
+        // Routing ubah petugas
+        Route::post('/petugas/{id}', 'update')->name('petugas.update');
+
+        // Routing hapus petugas
+        Route::delete('/petugas/{id}', 'destroy')->name('petugas.delete');
+    });
 });
-
-Route::get('/pelapor', [PelaporController::class, 'index']);
-
-Route::get('/kelas', function () {
-    return view('admin.kelas');
-});
-
-Route::get('/mapel', function () {
-    return view('admin.mapel');
-});
-
-
-Route::controller(KasusController::class)->group(function () {
-
-    Route::get('/kasus', 'index');
-
-    Route::post('/kasus', 'store')->name('kasus.store');
-
-    Route::put('/kasus/{id}', 'update')->name('kasus.update');
-
-    Route::delete('/kasus/{id}', 'destroy')->name('kasus.delete');
-});
-
-
-// Route::controller(AuthController::class)->group(function () {
-//     // Routing halaman login
-//     Route::get('/login', 'index')->name('login');
-
-//     // Routing proses login
-//     Route::post('/login', 'login')->name('login.process');
-
-//     // Routing proses logout
-//     Route::get('/logout', 'logout')->name('logout');
-// });
-
-
-
-Route::controller(LaporanController::class)->group(function () {
-
-    Route::get('/laporan', 'index');
-
-    Route::put('/laporan/{id}', 'update')->name('laporan.update');
-});
-
-
-Route::controller(UserController::class)->group(function () {
-    // Routing halaman data petugas
-    Route::get('/petugas', 'index');
-
-    // Routing tambah petugas
-    Route::post('/petugas', 'store')->name('petugas.store');
-
-    // Routing ubah petugas
-    Route::post('/petugas/{id}', 'update')->name('petugas.update');
-
-    // Routing hapus petugas
-    Route::delete('/petugas/{id}', 'destroy')->name('petugas.delete');
-});
-
-
-
-
-
-
-
