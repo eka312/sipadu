@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Guru extends Model
+class Guru extends Authenticatable
 {
-    use HasFactory;
+    use Notifiable;
     protected $table = 'guru';
     protected $primaryKey = 'id_guru';
     protected $guarded = [];
@@ -19,28 +19,8 @@ class Guru extends Model
 
     
     
-    // public function guru()
-    // {
-    //     return $this->belongsTo(guru::class, 'id_guru', 'id_guru');
-    // }
-
-    // public function pelapor()
-    // {
-    //     return $this->belongsTo(pelapor::class, 'id_pelapor', 'id_pelapor');
-    // }
-
-    // protected static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::creating(function ($projek) {
-    //         $projek->slug = Str::slug($projek->judul);
-    //     });
-
-    //     static::updating(function ($projek) {
-    //         $projek->slug = Str::slug($projek->judul);
-    //     });
-    // }
-
+   
     
 }
+
+

@@ -23,6 +23,36 @@
         href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Poetsen+One&display=swap"
         rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+
+    <style>
+        .user-name {
+            max-width: 120px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Dropdown dark mode */
+        .dropdown-menu-dark {
+            background-color: #ffffff;
+            color: #071F5C;
+            border: 1px solid rgb(142, 142, 143);
+            box-shadow: rgba(114, 113, 113, 0.55) 0px 0px 5px;
+        }
+
+        .dropdown-menu-dark .dropdown-item {
+            color: #071F5C;
+        }
+
+        .dropdown-menu-dark .dropdown-item:hover {
+            background-color: rgba(196, 197, 200, 0.52);
+            color: white;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -63,33 +93,95 @@
                         <a class="nav-link" href="#tata-cara">Tata Cara</a>
                     </li>
 
+                    @auth('siswa')
                     <li class="nav-item">
-                        <!-- @auth
-                            {{-- Kalau sudah login arahkan ke halaman lapor --}}
-                            <a class="nav-link {{ Request::is('lapor') ? 'active' : '' }}" href="/lapor">Lapor</a>
-                        @else
-                            {{-- Kalau belum login scroll saja --}}
-                            <a class="nav-link" href="#login-pelapor">Lapor</a>
-                        @endauth -->
-                        {{-- Kalau sudah login arahkan ke halaman lapor --}}
-                        <a class="nav-link {{ Request::is('lapor') ? 'active' : '' }}" href="/lapor">Lapor</a>
+                        <a class="nav-link {{ Request::is('siswa/lapor') ? 'active' : '' }}" href="{{ route('lapor.siswa.create') }}">Lapor</a>
                     </li>
-                    @auth
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('statusKasus') ? 'active' : '' }}" href="/statusKasus">Status
-                            Kasus</a>
+                        <a class="nav-link {{ Request::is('siswa/status_kasus') ? 'active' : '' }}" href="{{ route('status.siswa') }}">Status Kasus</a>
                     </li>
                     @endauth
 
+                    @auth('guru')
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('guru/lapor') ? 'active' : '' }}" href="{{ route('lapor.guru.create') }}">Lapor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('guru/status_kasus') ? 'active' : '' }}" href="{{ route('status.guru') }}">Status Kasus</a>
+                    </li>
+                    @endauth
+
+                    @if(!Auth::guard('siswa')->check() && !Auth::guard('guru')->check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="#login-pelapor">Lapor</a>
+                    </li>
+                    @endif
 
                 </ul>
 
 
                 <!-- Tombol kanan -->
-                <div class="d-flex ms-auto">
-                    <a class="btn btn-light text-primary px-3" style="font-weight: 400;" href="/login_admin">Login
-                        Admin</a>
+                <div class="d-flex ms-auto gap-3">
+
+
+                    <!-- Jika siswa login  -->
+                    @auth('siswa')
+                    <div class="dropdown">
+                        <button class="btn btn-light text-primary dropdown-toggle" data-bs-toggle="dropdown">
+                            <span class="user-name">
+                                {{ explode(' ', Auth::guard('siswa')->user()->nama_siswa)[0] }}
+                            </span>
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                            <li>
+                                <form action="{{ route('logout.siswa') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    @endauth
+
+
+
+                    <!-- Jika guru login  -->
+                    @auth('guru')
+                    <div class="dropdown">
+                        <button class="btn btn-light text-primary dropdown-toggle" data-bs-toggle="dropdown">
+                            <span class="user-name">
+                                {{ explode(' ', Auth::guard('guru')->user()->nama_guru)[0] }}
+                            </span>
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                            <li>
+                                <form action="{{ route('logout.guru') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    @endauth
+
+
+
+                    <!-- Jika belum login  -->
+                    @if(!Auth::guard('siswa')->check() && !Auth::guard('guru')->check())
+                    <a class="btn btn-light text-primary px-3" href="/login_admin">
+                        Login Admin
+                    </a>
+                    @endif
+
                 </div>
+
+
             </div>
         </div>
     </nav>
@@ -169,34 +261,38 @@
                             </div>
 
                             <div class="col">
-                                @auth
-                                <!-- Sudah login → langsung ke halaman lapor -->
-                                <a class="col" href="/lapor">
+                                @auth('siswa')
+                                <a class="col" href="{{ route('lapor.siswa.create') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                        <path fill="#F7CD54"
-                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                        <path fill="#F7CD54"
-                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                        <path fill="#F7CD54" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                    </svg>
+                                    Lapor
+                                </a>
+                                @elseif(Auth::guard('guru')->check())
+                                <a class="col" href="{{ route('lapor.guru.create') }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                        <path fill="#F7CD54" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
                                     </svg>
                                     Lapor
                                 </a>
                                 @else
-                                <!-- Belum login → scroll ke bagian login -->
                                 <a class="col" href="#login-pelapor">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                        <path fill="#F7CD54"
-                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                        <path fill="#F7CD54"
-                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                        <path fill="#F7CD54" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
                                     </svg>
                                     Lapor
                                 </a>
                                 @endauth
                             </div>
 
-                            @auth
+
+
                             <div class="col">
-                                <a class="col" href="/statusKasus">
+                                @auth('siswa')
+                                <a class="col" href="{{ route('status.siswa') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
                                         <path fill="#F7CD54"
                                             d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
@@ -205,8 +301,19 @@
                                     </svg>
                                     Status Kasus
                                 </a>
+                                @elseif(Auth::guard('guru')->check())
+                                <a class="col" href="{{ route('status.guru') }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                        <path fill="#F7CD54"
+                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                        <path fill="#F7CD54"
+                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                    </svg>
+                                    Status Kasus
+                                </a>
+                                @endauth
                             </div>
-                            @endauth
+
 
                         </ul>
 
@@ -291,6 +398,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
+    <script src="{{asset('js/scripts.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="{{asset('js/datatables-simple-demo.js')}}"></script>
 </body>
 
 </html>

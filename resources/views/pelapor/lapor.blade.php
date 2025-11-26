@@ -7,7 +7,8 @@
 <div class="container py-5">
     <div class="card bg-white shadow-sm">
         <div class="card-body">
-            <form action="{{ route('lapor.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ auth('siswa')->check() ? route('lapor.siswa.store') : route('lapor.guru.store') }}"
+                method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3 row">

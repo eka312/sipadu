@@ -18,6 +18,7 @@ return [
         'passwords' => 'users',
     ],
 
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -40,6 +41,20 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        //GUARD UNTUK SISWA
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswa',
+        ],
+
+
+        'guru' => [
+            'driver' => 'session',
+            'provider' => 'guru',
+        ],
+
+
     ],
 
     /*
@@ -69,6 +84,19 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        //PROVIDER SISWA
+        'siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
+        ],
+
+
+        'guru' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Guru::class,
+        ],
+
     ],
 
     /*

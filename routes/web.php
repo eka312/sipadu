@@ -37,14 +37,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/lapor', [LaporController::class, 'create'])->name('lapor.create');
 
-// Simpan laporan
-Route::post('/lapor', [LaporController::class, 'store'])->name('lapor.store');
-
-Route::get('/status_kasus', function () {
-    return view('pelapor.status_kasus');
-});
 
 Route::get('/login_guru', function () {
     return view('pelapor.login_guru');
@@ -55,6 +48,39 @@ Route::get('/login_siswa', function () {
 });
 
 
+Route::controller(AuthController::class)->group(function () {
+    // Routing halaman login admin
+    Route::get('/login', 'index')->name('login');
+
+    // Routing proses login admin
+    Route::post('/login', 'login')->name('login.process');
+
+    // Routing proses logout
+    Route::get('/logout', 'logout')->name('logout');
+
+
+    // routing halaman login siswa
+    Route::post('/login_siswa', 'login_siswa')->name('login.siswa');
+
+    Route::post('/logout_siswa', 'logout_siswa')->name('logout.siswa');
+
+
+    // routing halaman login guru
+    Route::post('/login_guru', 'login_guru')->name('login.guru');
+    Route::post('/logout_guru', 'logout_guru')->name('logout.guru');
+});
+
+Route::middleware('auth:siswa')->prefix('siswa')->group(function () {
+    Route::get('/lapor', [LaporController::class, 'create'])->name('lapor.siswa.create');
+    Route::post('/lapor', [LaporController::class, 'store'])->name('lapor.siswa.store');
+    Route::get('/status_kasus', [LaporController::class, 'statusSiswa'])->name('status.siswa');
+});
+
+Route::middleware('auth:guru')->prefix('guru')->group(function () {
+    Route::get('/lapor', [LaporController::class, 'create'])->name('lapor.guru.create');
+    Route::post('/lapor', [LaporController::class, 'store'])->name('lapor.guru.store');
+    Route::get('/status_kasus', [LaporController::class, 'statusGuru'])->name('status.guru');
+});
 
 
 
@@ -63,19 +89,10 @@ Route::get('/login_admin', function () {
     return view('admin.login_admin');
 });
 
-Route::controller(AuthController::class)->group(function () {
-    // Routing halaman login
-    Route::get('/login', 'index')->name('login');
-
-    // Routing proses login
-    Route::post('/login', 'login')->name('login.process');
-
-    // Routing proses logout
-    Route::get('/logout', 'logout')->name('logout');
-});
 
 
-Route::middleware('auth')->group(function () {
+
+Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     });

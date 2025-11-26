@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid px-4">
 
-    {{-- Page Title --}}
+    <!-- Page Title --> 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <h3 class="fw-bold mb-0">Data Laporan</h3>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    {{-- Card Table --}}
+    <!-- Card Table --> 
     <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white">
             <i class="fas fa-book me-2"></i> Daftar Laporan
@@ -45,7 +45,11 @@
                         <td>{{ $l->user->nama_petugas ?? '-' }}</td>
                         <td>
                             @if($l->file_bukti)
-                            <a href="{{ asset('storage/' . $l->file_bukti) }}" target="_blank">Lihat</a>
+                            <button class="btn btn-info btn-sm text-white"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalBukti{{ $l->id_laporan }}">
+                                Lihat
+                            </button>
                             @else
                             -
                             @endif
@@ -96,7 +100,7 @@
                                                 <div class="mb-4 row">
                                                     <label for="status" class="col-sm-2 col-form-label">Nama Petugas</label>
                                                     <div class="col-sm-10">
-                                                        <select name="id_user"  class="form-select" aria-label="Default select example">
+                                                        <select name="id_user" class="form-select" aria-label="Default select example">
                                                             @foreach ($petugas as $p)
                                                             <option @if($p->id_user==$l->id_user) selected @endif value="{{$p->id_user}}">{{$p->nama_petugas}}</option>
                                                             @endforeach
@@ -109,6 +113,44 @@
                                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                                 </div>
                                             </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal Preview Bukti -->
+                            <div class="modal fade" id="modalBukti{{ $l->id_laporan }}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Bukti Laporan</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <div class="modal-body text-center">
+
+                                            @php
+                                            $ext = pathinfo($l->file_bukti, PATHINFO_EXTENSION);
+                                            @endphp
+
+                                            @if(in_array($ext, ['jpg','jpeg','png']))
+                                            <img src="{{ asset('storage/' . $l->file_bukti) }}" class="img-fluid rounded">
+
+                                            @elseif($ext === 'pdf')
+                                            <iframe src="{{ asset('storage/' . $l->file_bukti) }}"
+                                                width="100%" height="500px">
+                                            </iframe>
+
+                                            @else
+                                            <p class="text-danger">File tidak dapat ditampilkan.</p>
+                                            @endif
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                         </div>
 
                                     </div>
