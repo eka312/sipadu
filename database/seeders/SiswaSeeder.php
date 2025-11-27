@@ -16,12 +16,14 @@ class SiswaSeeder extends Seeder
     {
         DB::table('siswa')->insert([
             [
+                'id_kelas' => 1,
                 'nis' => '12124',
                 'nama_siswa' => 'Budi Santoso',
                 'tanggal_lahir' => '2007-05-12',
                 'password' => Hash::make('20070512'),
             ],
             [
+                'id_kelas' => 1,
                 'nis' => '12125',
                 'nama_siswa' => 'Ani Lestari',
                 'tanggal_lahir' => '2008-01-23',

@@ -108,3 +108,20 @@
         margin-left: 250px;
     }
 }
+
+@media (max-width: 768px) {
+    .sb-sidenav .menu-text {
+        display: none;
+    }
+
+    .sb-sidenav .sb-nav-link-icon {
+        font-size: 1.4rem;
+        margin-right: 0 !important;
+    }
+
+    .sb-sidenav .nav-link {
+        justify-content: center;
+        text-align: center;
+        padding: 1rem 0;
+    }
+}

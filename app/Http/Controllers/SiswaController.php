@@ -15,29 +15,19 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $suplayer = suplayer::All();
+        $siswa = Siswa::All();
 
-        return view('suplayer.data_suplayer', compact('suplayer'));
+        return view('siswa.data_siswa', compact('siswa'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('suplayer.tambah_suplayer');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $suplayer = suplayer::create([
-            'nama_suplayer' => $request->nama_suplayer,
-            'alamat_suplayer' => $request->alamat_suplayer,
+        $siswa = Siswa::create([
+            'nama_siswa' => $request->nama_siswa,
+            'alamat_siswa' => $request->alamat_siswa,
         ]);
-        return redirect('/data_suplayer');
+        return redirect('/data_siswa');
     }
 
     /**
@@ -53,9 +43,9 @@ class SiswaController extends Controller
      */
     public function edit(string $id)
     {
-        // untuk mengambil data suplayer berdasarkan kolom id_suplayer
-        $suplayer = suplayer::where('id_suplayer', $id)->first();
-        return view('suplayer.ubah_suplayer', compact('suplayer'));
+        // untuk mengambil data siswa berdasarkan kolom id_siswa
+        $siswa = Siswa::where('id_siswa', $id)->first();
+        return view('siswa.ubah_siswa', compact('siswa'));
     }
 
     /**
@@ -63,12 +53,12 @@ class SiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        suplayer::where('id_suplayer', $id)
+        Siswa::where('id_siswa', $id)
             ->update([
-                'nama_suplayer' => $request->nama_suplayer,
-                'alamat_suplayer' => $request->alamat_suplayer,
+                'nama_siswa' => $request->nama_siswa,
+                'alamat_siswa' => $request->alamat_siswa,
             ]);
-        return redirect('/data_suplayer');
+        return redirect('/data_siswa');
     }
 
     /**
@@ -76,10 +66,10 @@ class SiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        $delete = suplayer::where('id_suplayer', $id)->delete();
+        $delete = Siswa::where('id_siswa', $id)->delete();
 
-        //setelah terhapus akan dialihkan ke hal data suplayer
-        return redirect('/data_suplayer');
+        //setelah terhapus akan dialihkan ke hal data siswa
+        return redirect('/data_siswa');
     }
 
 }

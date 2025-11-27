@@ -20,55 +20,55 @@ class GuruController extends Controller
 ;
     }
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'id_mapel' => 'required',
-    //         'nama_guru' => 'required',
-    //         'email' => 'required|email|unique:guru',
-    //         'password' => 'required|min:5',
-    //         'no_identitas' => 'required'
-    //     ]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'id_mapel' => 'required',
+            'nama_guru' => 'required',
+            'email' => 'required|email|unique:guru',
+            'password' => 'required|min:8',
+            'no_identitas' => 'required'
+        ]);
 
-    //     Guru::create([
-    //         'id_mapel' => $request->id_mapel,
-    //         'nama_guru' => $request->nama_guru,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //         'no_identitas' => $request->no_identitas,
-    //     ]);
+        Guru::create([
+            'id_mapel' => $request->id_mapel,
+            'nama_guru' => $request->nama_guru,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'no_identitas' => $request->no_identitas,
+        ]);
 
-    //     return redirect()->back()->with('success', 'Guru berhasil ditambahkan!');
-    // }
+        return redirect()->back()->with('success', 'Guru berhasil ditambahkan!');
+    }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'id_mapel' => 'required',
-    //         'nama_guru' => 'required',
-    //         'email' => "required|email|unique:guru,email,$id,id_guru",
-    //         'no_identitas' => 'required'
-    //     ]);
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'id_mapel' => 'required',
+            'nama_guru' => 'required',
+            'email' => "required|email|unique:guru,email,$id,id_guru",
+            'no_identitas' => 'required'
+        ]);
 
-    //     $data = [
-    //         'id_mapel' => $request->id_mapel,
-    //         'nama_guru' => $request->nama_guru,
-    //         'email' => $request->email,
-    //         'no_identitas' => $request->no_identitas,
-    //     ];
+        $data = [
+            'id_mapel' => $request->id_mapel,
+            'nama_guru' => $request->nama_guru,
+            'email' => $request->email,
+            'no_identitas' => $request->no_identitas,
+        ];
 
-    //     if ($request->password) {
-    //         $data['password'] = Hash::make($request->password);
-    //     }
+        if ($request->password) {
+            $data['password'] = Hash::make($request->password);
+        }
 
-    //     Guru::where('id_guru', $id)->update($data);
+        Guru::where('id_guru', $id)->update($data);
 
-    //     return redirect()->back()->with('success', 'Data guru berhasil diupdate!');
-    // }
+        return redirect()->back()->with('success', 'Data guru berhasil diupdate!');
+    }
 
-    // public function destroy($id)
-    // {
-    //     Guru::where('id_guru', $id)->delete();
-    //     return redirect()->back()->with('success', 'Data guru berhasil dihapus!');
-    // }
+    public function destroy($id)
+    {
+        Guru::where('id_guru', $id)->delete();
+        return redirect()->back()->with('success', 'Data guru berhasil dihapus!');
+    }
 }

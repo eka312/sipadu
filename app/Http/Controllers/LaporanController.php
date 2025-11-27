@@ -23,60 +23,31 @@ class LaporanController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Laporan $laporan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Laporan $laporan)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        
+
 
         Laporan::where('id_laporan', $id)
-        ->update([
-            'id_user' => $request->id_user,
-            'status' => $request->status,
-        ]);
+            ->update([
+                'id_user' => $request->id_user,
+                'status' => $request->status,
+            ]);
 
         return redirect('/laporan');
     }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Laporan $laporan)
+    public function dashboard()
     {
-        //
+        $jumlahLaporan = Laporan::count();
+        $menunggu = Laporan::where('status', 'menunggu')->count();
+        $diproses = Laporan::where('status', 'diproses')->count();
+        $selesai = Laporan::where('status', 'selesai')->count();
+        $laporanTerbaru = Laporan::orderBy('created_at', 'desc')->take(5)->get();
+        $laporanDiproses = Laporan::where('status', 'diproses')->orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('admin.dashboard', compact('jumlahLaporan', 'menunggu', 'diproses', 'selesai','laporanTerbaru', 'laporanDiproses'));
     }
+
 }

@@ -23,22 +23,21 @@
     </nav>
 
 
-
-
-
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav-dark sidebar" id="sidenavAccordion">
+
                 <div class="sb-sidenav-menu">
                     <div class="nav mt-4">
                         <!-- Dashboard -->
+                        
                         <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="/dashboard">
                             <i class="fas fa-home sb-nav-link-icon"></i>
-                            Dashboard
+                            <span class="menu-text">Dashboard</span>
                         </a>
 
                         <!-- User Data -->
-                        <!-- <a class="nav-link {{ Request::is('guru') ? 'active' : '' }}" href="/guru">
+                        <a class="nav-link {{ Request::is('guru') ? 'active' : '' }}" href="/guru">
                             <i class="fas fa-user-tie sb-nav-link-icon"></i>
                             Data Guru
                         </a>
@@ -46,7 +45,7 @@
                         <a class="nav-link {{ Request::is('siswa') ? 'active' : '' }}" href="/siswa">
                             <i class="fas fa-user-graduate sb-nav-link-icon"></i>
                             Data Siswa
-                        </a> -->
+                        </a>
 
                         <a class="nav-link {{ Request::is('pelapor') ? 'active' : '' }}" href="/pelapor">
                             <i class="fas fa-users sb-nav-link-icon"></i>
@@ -54,7 +53,7 @@
                         </a>
 
                         <!-- Academic -->
-                        <!-- <a class="nav-link {{ Request::is('kelas') ? 'active' : '' }}" href="/kelas">
+                        <a class="nav-link {{ Request::is('kelas') ? 'active' : '' }}" href="/kelas">
                             <i class="fas fa-school sb-nav-link-icon"></i>
                             Data Kelas
                         </a>
@@ -62,7 +61,7 @@
                         <a class="nav-link {{ Request::is('mapel') ? 'active' : '' }}" href="/mapel">
                             <i class="fas fa-book sb-nav-link-icon"></i>
                             Data Mapel
-                        </a> -->
+                        </a>
 
                         <!-- Core App -->
                         <a class="nav-link {{ Request::is('kasus') ? 'active' : '' }}" href="/kasus">
@@ -76,7 +75,7 @@
                         </a>
 
                         <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="/petugas">
-                            <i class="fas fa-file-alt sb-nav-link-icon"></i>
+                            <i class="fas fa-user-tie sb-nav-link-icon"></i>
                             Data Petugas
                         </a>
 
@@ -85,12 +84,11 @@
 
                 </div>
                 <div class="sb-sidenav-footer p-0">
-                    <div class="d-flex align-items-center justify-content-between px-3 py-2"
-                        style="
-            background: rgba(255,255,255,0.05);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(6px);
-        ">
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2" style="
+                            background: rgba(255,255,255,0.05);
+                            border-top: 1px solid rgba(255,255,255,0.1);
+                            backdrop-filter: blur(6px);
+                        ">
 
                         <!-- Kiri: Avatar + Email -->
                         <div class="d-flex align-items-center">
@@ -108,8 +106,7 @@
                         <!-- Kanan: Logout icon -->
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            class="text-white"
-                            style="font-size: 1rem;">
+                            class="text-white" style="font-size: 1rem;">
                             <i class="fas fa-sign-out-alt"></i>
                         </a>
 
@@ -134,6 +131,8 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="{{asset('js/datatables-simple-demo.js')}}"></script>
+
+    
 </body>
 
 </html>

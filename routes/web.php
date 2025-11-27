@@ -10,7 +10,6 @@ use App\Http\Controllers\PelaporController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporController;
-use App\Models\Laporan;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,6 +47,7 @@ Route::get('/login_siswa', function () {
 });
 
 
+
 Route::controller(AuthController::class)->group(function () {
     // Routing halaman login admin
     Route::get('/login', 'index')->name('login');
@@ -70,6 +70,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout_guru', 'logout_guru')->name('logout.guru');
 });
 
+
+
 Route::middleware('auth:siswa')->prefix('siswa')->group(function () {
     Route::get('/lapor', [LaporController::class, 'create'])->name('lapor.siswa.create');
     Route::post('/lapor', [LaporController::class, 'store'])->name('lapor.siswa.store');
@@ -84,6 +86,7 @@ Route::middleware('auth:guru')->prefix('guru')->group(function () {
 
 
 
+
 // milik admin
 Route::get('/login_admin', function () {
     return view('admin.login_admin');
@@ -93,32 +96,67 @@ Route::get('/login_admin', function () {
 
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+
+    Route::get('/pelapor', [PelaporController::class, 'index']);
+
+ 
+
+    // siswa
+    Route::controller(SiswaController::class)->group(function () {
+        Route::get('/siswa', 'index');
+
+        Route::post('/siswa', 'store')->name('siswa.store');
+
+        Route::put('/siswa/{id}', 'update')->name('siswa.update');
+
+        Route::delete('/siswa/{id}', 'destroy')->name('siswa.delete');
     });
+
+
+
+
+
+    Route::controller(KelasController::class)->group(function () {
+        Route::get('/kelas', 'index');
+
+        Route::post('/kelas', 'store')->name('kelas.store');
+
+        Route::put('/kelas/{id}', 'update')->name('kelas.update');
+
+        Route::delete('/kelas/{id}', 'destroy')->name('kelas.delete');
+    });
+
+
+
+
+
+
+    Route::controller(MapelController::class)->group(function () {
+        Route::get('/mapel', 'index');
+
+        Route::post('/mapel', 'store')->name('mapel.store');
+
+        Route::put('/mapel/{id}', 'update')->name('mapel.update');
+
+        Route::delete('/mapel/{id}', 'destroy')->name('mapel.delete');
+    });
+
+
+
 
 
     Route::controller(GuruController::class)->group(function () {
         Route::get('/guru', 'index');
-        Route::post('/guru', 'store'); // tambah
-        Route::post('/guru/{id}', 'update'); // edit
-        Route::delete('/guru/{id}', 'destroy'); // hapus
+
+        Route::post('/guru', 'store')->name('guru.store');
+
+        Route::put('/guru/{id}', 'update')->name('guru.update');
+
+        Route::delete('/guru/{id}', 'destroy')->name('guru.delete');
     });
 
 
-    Route::get('/siswa', function () {
-        return view('admin.siswa');
-    });
 
-    Route::get('/pelapor', [PelaporController::class, 'index']);
-
-    Route::get('/kelas', function () {
-        return view('admin.kelas');
-    });
-
-    Route::get('/mapel', function () {
-        return view('admin.mapel');
-    });
 
 
     Route::controller(KasusController::class)->group(function () {
@@ -136,13 +174,17 @@ Route::middleware('auth:web')->group(function () {
 
 
 
-
     Route::controller(LaporanController::class)->group(function () {
 
         Route::get('/laporan', 'index');
 
         Route::put('/laporan/{id}', 'update')->name('laporan.update');
+
+        Route::get('/dashboard', 'dashboard');
     });
+
+
+
 
 
     Route::controller(UserController::class)->group(function () {

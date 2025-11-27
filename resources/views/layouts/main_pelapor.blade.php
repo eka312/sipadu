@@ -40,7 +40,6 @@
             background-color: #ffffff;
             color: #071F5C;
             border: 1px solid rgb(142, 142, 143);
-            box-shadow: rgba(114, 113, 113, 0.55) 0px 0px 5px;
         }
 
         .dropdown-menu-dark .dropdown-item {
@@ -133,7 +132,7 @@
                             </span>
                         </button>
 
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm dropdown-menu-dark">
                             <li>
                                 <form action="{{ route('logout.siswa') }}" method="POST">
                                     @csrf
@@ -157,7 +156,7 @@
                             </span>
                         </button>
 
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm dropdown-menu-dark">
                             <li>
                                 <form action="{{ route('logout.guru') }}" method="POST">
                                     @csrf
