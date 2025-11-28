@@ -35,7 +35,9 @@ Route::get('/', function () {
     return view('pelapor.index');
 });
 
-
+Route::get('/uji_coba', function () {
+    return view('layouts.uji_coba');
+});
 
 
 Route::get('/login_guru', function () {
@@ -110,6 +112,11 @@ Route::middleware('auth:web')->group(function () {
         Route::put('/siswa/{id}', 'update')->name('siswa.update');
 
         Route::delete('/siswa/{id}', 'destroy')->name('siswa.delete');
+
+        Route::post('/siswa/import_excel', 'import')->name('siswa.import_excel');
+
+        Route::get('/siswa/store_bulk', 'store_bulk')->name('siswa.store_bulk');
+
     });
 
 

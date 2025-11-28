@@ -12,7 +12,9 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+       
+        $kelas = Kelas::all();
+        return view('admin.kelas', compact('kelas'));
     }
 
     /**
@@ -28,13 +30,16 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kelas = Kelas::create([   
+            'nama_kelas' => $request->nama_kelas,
+        ]);
+        return redirect('/kelas');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Kelas $kelas)
+    public function show(string $id)
     {
         //
     }
@@ -42,24 +47,31 @@ class KelasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kelas $kelas)
+    public function edit(string $id)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, string $id)
     {
-        //
+        Kelas::where('id_kelas', $id)
+        ->update([
+            'nama_kelas' => $request->nama_kelas,
+        ]);
+        return redirect('/kelas');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kelas $kelas)
+    public function destroy(string $id)
     {
-        //
+        $delete = Kelas::where('id_kelas', $id)->delete();
+        
+        //setelah terhapus akan dialihkan ke hal data kelas
+        return redirect('/kelas');
     }
 }

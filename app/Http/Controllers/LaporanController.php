@@ -47,7 +47,9 @@ class LaporanController extends Controller
         $laporanTerbaru = Laporan::orderBy('created_at', 'desc')->take(5)->get();
         $laporanDiproses = Laporan::where('status', 'diproses')->orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('admin.dashboard', compact('jumlahLaporan', 'menunggu', 'diproses', 'selesai','laporanTerbaru', 'laporanDiproses'));
-    }
+      
 
+
+        return view('admin.dashboard', compact('jumlahLaporan', 'menunggu', 'diproses', 'selesai', 'laporanTerbaru', 'laporanDiproses'));
+    }
 }

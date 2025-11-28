@@ -5,15 +5,16 @@
 @section('content')
 <div class="container-fluid px-4">
 
-    <!-- Page Title --> 
+    <!-- Page Title -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <h3 class="fw-bold mb-0">Data Laporan</h3>
-            <small class="text-muted">Kelola laporan yang tersedia di dalam sistem SIPADU.</small>
+            <small class="text-muted">Kelola dan pantau laporan yang masuk dalam sistem SIPADU secara real-time.</small>
         </div>
     </div>
 
-    <!-- Card Table --> 
+
+    <!-- Card Table -->
     <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white">
             <i class="fas fa-book me-2"></i> Daftar Laporan
@@ -21,7 +22,7 @@
 
         <div class="card-body">
             <table id="datatablesSimple" class="table table-striped table-bordered">
-                <thead class="table-primary text-center">
+                <thead class=" text-center">
                     <tr>
                         <th width="5%">No</th>
                         <th>Nama Pelapor</th>

@@ -25,6 +25,10 @@
 
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo_kecil.png') }}" />
+
+
     <style>
         .user-name {
             max-width: 120px;

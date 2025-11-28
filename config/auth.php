@@ -97,6 +97,8 @@ return [
             'model' => App\Models\Guru::class,
         ],
 
+        
+
     ],
 
     /*

@@ -8,8 +8,9 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <h3 class="fw-bold mb-0">Data Jenis Kasus</h3>
-            <small class="text-muted">Kelola jenis kasus yang digunakan dalam sistem SIPADU.</small>
+            <small class="text-muted">Kelola dan atur kategori kasus untuk mendukung proses penanganan laporan secara tepat.</small>
         </div>
+
 
         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
             <i class="fas fa-plus"></i> Tambah Jenis Kasus
@@ -24,7 +25,7 @@
 
         <div class="card-body">
             <table id="datatablesSimple" class="table table-striped table-bordered">
-                <thead class="table-primary text-center">
+                <thead class=" text-center">
                     <tr>
                         <th width="5%">No</th>
                         <th>Jenis Kasus</th>

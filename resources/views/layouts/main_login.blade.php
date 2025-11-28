@@ -21,6 +21,10 @@
         href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Poetsen+One&display=swap"
         rel="stylesheet">
 
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo_kecil.png') }}" />
+
+
     <style>
         :root {
             --bs-primary: #071F5C !important;
@@ -74,12 +78,12 @@
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
-                
+
                 <div class="container ">
                     <div class="row d-flex justify-content-center ">
                         <div class="col-lg-5">
                             @yield('content')
-                            
+
                         </div>
                     </div>
                 </div>

@@ -50,9 +50,7 @@ class KasusController extends Controller
      */
     public function edit(string $id)
     {
-         // untuk mengambil data kasus berdasarkan kolom id_kasus
-         $kasus = Kasus::where('id_kasus', $id)->first();
-         return view('admin.kasus',compact('kasus'));
+
     }
 
     /**
