@@ -15,7 +15,7 @@
 
         <div class="mb-3 text-center">
             <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modalSingle">Satu Siswa</button>
-            <button type="button" class="btn btn-success me-1" data-toggle="modal" data-target="#importExcel">Upload Excel/CSV</button>
+            <button type="button" class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#importExcel">Upload Excel/CSV</button>
             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalBulk">Input Banyak</button>
         </div>
 
@@ -213,7 +213,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <label>File Excel/CSV</label>
+                    <label>File Excel / CSV</label>
                     <input type="file" name="file" class="form-control mb-2" required>
 
                     <small class="text-muted">
@@ -234,7 +234,7 @@
 
 
 <div class="modal fade" id="modalBulk" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl ">
         <div class="modal-content">
             <form action="{{ route('siswa.store_bulk') }}" method="post">
                 @csrf
