@@ -15,6 +15,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -71,6 +74,16 @@
             --bs-btn-active-bg: color-mix(in srgb, var(--bs-primary) 80%, black);
             --bs-btn-active-border-color: color-mix(in srgb, var(--bs-primary) 75%, black);
         }
+
+        #togglePassword {
+            background-color: #ffffff;
+            border-left: none;
+        }
+
+        #toggleIcon {
+            color: #000;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 
@@ -82,6 +95,7 @@
                 <div class="container ">
                     <div class="row d-flex justify-content-center ">
                         <div class="col-lg-5">
+
                             @yield('content')
 
                         </div>
@@ -93,6 +107,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="{{asset('js/scripts.js')}}"></script>
+
+
+    <script>
+        document.querySelectorAll('#togglePassword').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.parentNode.querySelector('input');
+                const icon = this.querySelector('i');
+
+                input.type = input.type === "password" ? "text" : "password";
+                icon.classList.toggle("bi-eye");
+                icon.classList.toggle("bi-eye-slash");
+            });
+        });
+    </script>
 </body>
 
 </html>

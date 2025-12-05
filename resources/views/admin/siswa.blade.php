@@ -14,9 +14,8 @@
 
 
         <div class="mb-3 text-center">
-            <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modalSingle">Satu Siswa</button>
-            <button type="button" class="btn btn-success me-1" data-toggle="modal" data-target="#importExcel">Upload Excel/CSV</button>
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalBulk">Input Banyak</button>
+            <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modalSingle"><i class="fas fa-plus"></i>Tambah Siswa</button>
+            <button type="button" class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#importExcel">Upload Excel</button>
         </div>
 
 
@@ -50,7 +49,7 @@
                         <td>{{ $s->nis }}</td>
                         <td>{{ $s->tanggal_lahir }}</td>
 
-                        <td class="text-center">
+                        <td class="d-flex justify-content-center gap-1">
                             <!-- Edit  -->
                             <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalEdit{{ $s->id_siswa }}">
@@ -59,7 +58,7 @@
 
                             <!-- Modal Edit siswa -->
                             <div class="modal fade" id="modalEdit{{ $s->id_siswa }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Edit Siswa</h5>
@@ -69,36 +68,57 @@
                                             <form action="{{route('siswa.update', $s->id_siswa)}}" method="post">
                                                 @csrf
 
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nama Siswa</label>
-                                                    <input name="nama_siswa" class="form-control" type="text" value="{{ $s->nama_siswa }}" required>
+                                                <div class="modal-body">
+                                                    <div class="mb-4 row">
+                                                        <label for="text" class="col-sm-2 col-form-label">Nama Siswa</label>
+                                                        <div class="col-sm-10">
+                                                            <input name="nama_siswa" value="{{ $s->nama_siswa }}" class="form-control " type="text" placeholder="Masukkan Nama Siswa"
+                                                                id="text" aria-label=".form-control-lg example" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row">
+                                                        <label for="text" class="col-sm-2 col-form-label">Kelas</label>
+                                                        <div class="col-sm-10">
+                                                            <select name="id_kelas" class="form-select" required>
+                                                                @foreach($kelas as $k)
+                                                                <option value="{{ $k->id_kelas }}" {{ $s->id_kelas == $k->id_kelas ? 'selected' : '' }}>
+                                                                    {{ $k->nama_kelas }}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row">
+                                                        <label for="text" class="col-sm-2 col-form-label">NIS</label>
+                                                        <div class="col-sm-10">
+                                                            <input name="nis" value="{{ $s->nis }}" class="form-control " type="text" placeholder="Masukkan NIS"
+                                                                id="text" aria-label=".form-control-lg example" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row">
+                                                        <label for="text" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                                                        <div class="col-sm-10">
+                                                            <input name="tanggal_lahir" value="{{ $s->tanggal_lahir }}" type="date" class="form-control " id="text" aria-label=".form-control-lg example" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row">
+                                                        <label for="text" class="col-sm-2 col-form-label">Password</label>
+                                                        <div class="col-sm-10">
+                                                            <div class="input-group">
+                                                                <input name="password" type="password" placeholder="(isi jika ingin ganti)" class="form-control" id="passwordInput" required>
+                                                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                                                    <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
-                                                <div class="mb-3">
-                                                    <label class="form-label">Kelas</label>
-                                                    <select name="id_kelas" class="form-select" required>
-                                                        @foreach($kelas as $k)
-                                                        <option value="{{ $k->id_kelas }}" {{ $s->id_kelas == $k->id_kelas ? 'selected' : '' }}>
-                                                            {{ $k->nama_kelas }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label">NIS</label>
-                                                    <input name="nis" class="form-control" type="text" value="{{ $s->nis }}" required>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label">Tanggal Lahir</label>
-                                                    <input name="tanggal_lahir" class="form-control" type="date" value="{{ $s->tanggal_lahir }}" required>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label">Password (isi jika ingin ganti)</label>
-                                                    <input name="password" class="form-control" type="password">
-                                                </div>
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -171,24 +191,52 @@
                 </div>
 
                 <div class="modal-body">
-                    <label>Nama Siswa</label>
-                    <input name="nama_siswa" class="form-control mb-2" required>
+                    <div class="mb-4 row">
+                        <label for="text" class="col-sm-2 col-form-label">Nama Siswa</label>
+                        <div class="col-sm-10">
+                            <input name="nama_siswa" class="form-control " type="text" placeholder="Masukkan Nama Siswa"
+                                id="text" aria-label=".form-control-lg example" required>
+                        </div>
+                    </div>
 
-                    <label>Kelas</label>
-                    <select name="id_kelas" class="form-select mb-2" required>
-                        @foreach($kelas as $k)
-                        <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }}</option>
-                        @endforeach
-                    </select>
+                    <div class="mb-4 row">
+                        <label for="text" class="col-sm-2 col-form-label">Kelas</label>
+                        <div class="col-sm-10">
+                            <select name="id_kelas" class="form-select mb-2" required>
+                                @foreach($kelas as $k)
+                                <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
-                    <label>NIS</label>
-                    <input name="nis" class="form-control mb-2" required>
+                    <div class="mb-4 row">
+                        <label for="text" class="col-sm-2 col-form-label">NIS</label>
+                        <div class="col-sm-10">
+                            <input name="nis" class="form-control " type="text" placeholder="Masukkan NIS"
+                                id="text" aria-label=".form-control-lg example" required>
+                        </div>
+                    </div>
 
-                    <label>Tanggal Lahir</label>
-                    <input name="tanggal_lahir" type="date" class="form-control mb-2" required>
+                    <div class="mb-4 row">
+                        <label for="text" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                        <div class="col-sm-10">
+                            <input name="tanggal_lahir" type="date" class="form-control " id="text" aria-label=".form-control-lg example" required>
+                        </div>
+                    </div>
 
-                    <label>Password</label>
-                    <input name="password" type="password" class="form-control" required>
+                    <div class="mb-4 row">
+                        <label for="text" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input name="password" type="password" class="form-control" id="passwordInput" required>
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                    <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">
@@ -203,17 +251,17 @@
 
 
 <div class="modal fade" id="importExcel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <form action="{{ route('siswa.import_excel') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Upload Excel / CSV</h5>
+                    <h5 class="modal-title">Upload Excel </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
                 <div class="modal-body">
-                    <label>File Excel/CSV</label>
+                    <label>File Excel</label>
                     <input type="file" name="file" class="form-control mb-2" required>
 
                     <small class="text-muted">
@@ -233,83 +281,8 @@
 
 
 
-<div class="modal fade" id="modalBulk" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <form action="{{ route('siswa.store_bulk') }}" method="post">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Banyak Siswa</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body">
-                    <table class="table" id="bulkTable">
-                        <tr>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>NIS</th>
-                            <th>Tgl Lahir</th>
-                            <th>Password</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td><input name="nama_siswa_bulk[]" class="form-control"></td>
-                            <td>
-                                <select name="id_kelas_bulk[]" class="form-select">
-                                    @foreach($kelas as $k)
-                                    <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td><input name="nis_bulk[]" class="form-control"></td>
-                            <td><input name="tanggal_lahir_bulk[]" type="date" class="form-control"></td>
-                            <td><input name="password_bulk[]" type="password" class="form-control"></td>
-                            <td><button type="button" class="btn btn-danger btn-sm removeRow">X</button></td>
-                        </tr>
-                    </table>
-
-                    <button type="button" class="btn btn-secondary btn-sm" id="addRow">Tambah Baris</button>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-warning">Simpan Semua</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
-
-
-
-
-
-<script src="{{asset('js/scripts.js')}}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const addRowBtn = document.getElementById("addRow");
-        const bulkTable = document.getElementById("bulkTable");
-
-        addRowBtn.addEventListener("click", function() {
-            const lastRow = bulkTable.rows[bulkTable.rows.length - 1];
-            const newRow = lastRow.cloneNode(true);
-
-            newRow.querySelectorAll("input").forEach(input => input.value = "");
-            bulkTable.appendChild(newRow);
-        });
-
-        bulkTable.addEventListener("click", function(e) {
-            if (e.target && e.target.classList.contains("removeRow")) {
-                if (bulkTable.rows.length > 2) {
-                    e.target.closest("tr").remove();
-                }
-            }
-        });
-    });
-</script>
 
 
 

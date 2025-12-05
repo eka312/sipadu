@@ -36,11 +36,19 @@
 
             <div class="mb-3">
                 <label class="form-label text-primary" style="font-weight:700;">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
+                <div class="input-group">
+                    <input name="password" type="password" placeholder="Masukkan Password" class="form-control" id="passwordInput">
+                    <button type="button" class="btn btn-outline-secondary border-0 bg-white" style="opacity: 75%;"  id="togglePassword">
+                        <i class="bi bi-eye-slash" style="color: black;" id="toggleIcon"></i>
+                    </button>
+                </div>
             </div>
 
+
             <div class="form-check mb-3">
-                <input class="form-check-input" id="inputRememberPassword" type="checkbox" />
+                <input class="form-check-input" id="inputRememberPassword" type="checkbox" name="remember"
+                    {{ old('remember') ? 'checked' : '' }} />
+
                 <label class="form-check-label text-primary" for="inputRememberPassword">Remember Password</label>
             </div>
 

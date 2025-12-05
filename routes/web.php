@@ -113,9 +113,7 @@ Route::middleware('auth:web')->group(function () {
 
         Route::delete('/siswa/{id}', 'destroy')->name('siswa.delete');
 
-        Route::post('/siswa/import_excel', 'import')->name('siswa.import_excel');
-
-        Route::get('/siswa/store_bulk', 'store_bulk')->name('siswa.store_bulk');
+        Route::post('/siswa/import_excel', 'import_excel')->name('siswa.import_excel');
 
     });
 

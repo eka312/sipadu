@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nama_siswa');
             $table->date('tanggal_lahir');
             $table->string('password');
+            $table->timestamps();
+
 
 
         });

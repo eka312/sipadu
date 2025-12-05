@@ -28,26 +28,15 @@ class SiswaController extends Controller
 
     public function import_excel(Request $request)
     {
-        // validasi
-        $this->validate($request, [
+        $request->validate([
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
-
-        // menangkap file excel
-        $file = $request->file('file');
-
-        // membuat nama file unik
-        $nama_file = rand() . $file->getClientOriginalName();
-
-        // upload ke folder file_siswa di dalam folder public
-        $file->move('file_siswa', $nama_file);
-
-        // import data
-        Excel::import(new SiswaImport, public_path('/file_siswa/' . $nama_file));
-
-        // alihkan halaman kembali
+    
+        Excel::import(new SiswaImport, $request->file('file'));
+    
         return redirect('/siswa');
     }
+    
 
 
     public function store(Request $request)
@@ -102,20 +91,5 @@ class SiswaController extends Controller
         return redirect('/siswa');
     }
 
-    public function import(Request $request)
-    {
-        // Validasi file yang diupload
-        $request->validate([
-            'file' => 'required|mimes:xlsx,xls,csv'
-        ]);
 
-        try {
-            // Proses import file
-            Excel::import(new    $request->file('file'));
-
-            return redirect()->back()->with('success', 'Data siswa berhasil diimport! 😎🔥');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Import gagal! Pastikan format file sudah benar 🥲');
-        }
-    }
 }

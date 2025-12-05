@@ -3,10 +3,19 @@
 namespace App\Imports;
 
 use App\Models\Siswa;
-use Maatwebsite\Excel\Concerns\ToModel;
 
-class SiswaImport implements ToModel
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+
+
+class SiswaImport implements ToModel,WithStartRow
 {
+
+    public function startRow(): int
+    {
+        return 2;
+    }
     /**
      * @param array $row
      *
@@ -18,8 +27,8 @@ class SiswaImport implements ToModel
             'id_kelas'      => $row[0],
             'nama_siswa'    => $row[1],
             'nis'           => $row[2],
-            'tanggal_lahir' => $row[3],
-            'password'      => $row[4],
+            'tanggal_lahir' => Date::excelToDateTimeObject($row[3])->format('Y-m-d'),
+            'password'      => bcrypt($row[4]),
         ]);
     }
 }

@@ -48,7 +48,7 @@
 
                             <!-- Modal Edit kelas -->
                             <div class="modal fade" id="modalEdit{{ $k->id_kelas }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Edit Kelas</h5>
@@ -83,7 +83,7 @@
 
                             <!-- Modal Hapus -->
                             <div class="modal fade" id="modalHapus{{ $k->id_kelas }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
 
                                         <form action="{{ route('kelas.delete', $k->id_kelas) }}" method="POST">
@@ -131,7 +131,7 @@
 
 <!-- Modal Tambah kelas -->
 <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Kelas</h5>

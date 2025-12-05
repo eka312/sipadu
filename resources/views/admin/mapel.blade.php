@@ -48,19 +48,19 @@
 
                             <!-- Modal Edit mapel -->
                             <div class="modal fade" id="modalEdit{{ $k->id_mapel }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit nama mapel</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Nama Mapel</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form action="{{route('mapel.update', $k->id_mapel)}}" method="post">
                                                 @csrf
                                                 <div class="mb-4 row">
-                                                    <label for="text" class="col-sm-2 col-form-label">nama mapel</label>
+                                                    <label for="text" class="col-sm-2 col-form-label">Nama Mapel</label>
                                                     <div class="col-sm-10">
-                                                        <input name="nama_mapel" value="{{$k->nama_mapel}}" class="form-control " type="text" placeholder="Masukkan nama mapel" id="text" aria-label=".form-control-lg example">
+                                                        <input name="nama_mapel" value="{{$k->nama_mapel}}" class="form-control " type="text" placeholder="Masukkan Nama Mapel" id="text" aria-label=".form-control-lg example">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -83,7 +83,7 @@
 
                             <!-- Modal Hapus -->
                             <div class="modal fade" id="modalHapus{{ $k->id_mapel }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
 
                                         <form action="{{ route('mapel.delete', $k->id_mapel) }}" method="POST">
@@ -128,7 +128,7 @@
 
 <!-- Modal Tambah mapel -->
 <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Data mapel</h5>
@@ -138,9 +138,9 @@
                 <form action="{{route('mapel.store')}}" method="post">
                     @csrf
                     <div class="mb-4 row">
-                        <label for="text" class="col-sm-2 col-form-label">nama mapel</label>
+                        <label for="text" class="col-sm-2 col-form-label">Nama Mapel</label>
                         <div class="col-sm-10">
-                            <input name="nama_mapel" class="form-control " type="text" placeholder="Masukkan nama mapel" id="text" aria-label=".form-control-lg example">
+                            <input name="nama_mapel" class="form-control " type="text" placeholder="Masukkan Nama Mapel" id="text" aria-label=".form-control-lg example">
                         </div>
                     </div>
                     <div class="modal-footer">

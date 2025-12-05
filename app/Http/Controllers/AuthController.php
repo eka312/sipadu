@@ -27,11 +27,12 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $remember = $request->has('remember');
 
+        if (Auth::guard('web')->attempt($credentials, $remember)) {
+            $request->session()->regenerate();
             return redirect('/dashboard');
-        };
+        }
 
         return back()->withErrors([
             'email' => 'Kredensial yang diberikan tidak cocok dengan data kami.',
@@ -55,6 +56,7 @@ class AuthController extends Controller
             'nis' => 'required',
             'password' => 'required',
         ]);
+        $remember = $request->has('remember');
 
         if (Auth::guard('siswa')->attempt([
             'nis' => $request->nis,
@@ -95,9 +97,10 @@ class AuthController extends Controller
             'password' => $request->password,
         ];
 
-        if (Auth::guard('guru')->attempt($credentials)) {
-            return redirect()->route('lapor.guru.create');
+        $remember = $request->has('remember');
 
+        if (Auth::guard('guru')->attempt($credentials, $remember)) {
+            return redirect()->route('lapor.guru.create');
         }
 
         return back()->withErrors([

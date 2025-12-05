@@ -42,7 +42,7 @@
                         <td>{{ $p->email }}</td>
                         <td>{{ $p->nama_petugas }}</td>
                         <td>{{ $p->jabatan }}</td>
-                        <td class="text-center">
+                        <td class="d-flex justify-content-center gap-1">
                             <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalEdit{{ $p->id_user }}">
                                 <i class="fas fa-edit"></i>
@@ -50,7 +50,7 @@
 
                             <!-- Modal Edit Petugas -->
                             <div class="modal fade" id="modalEdit{{ $p->id_user }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Edit Data Petugas</h5>
@@ -66,9 +66,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-4 row">
-                                                    <label for="text" class="col-sm-3 col-form-label">Password </label>
+                                                    <label for="text" class="col-sm-3 col-form-label">Password</label>
                                                     <div class="col-sm-9">
-                                                        <input name="password" class="form-control " type="password" placeholder="(kosongkan jika tidak ingin diubah)"  id="text" aria-label=".form-control-lg example">
+                                                        <div class="input-group">
+                                                            <input name="password" placeholder="(kosongkan jika tidak ingin diubah)" type="password" class="form-control" id="passwordInput" required>
+                                                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                                                <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-4 row">
@@ -104,7 +109,7 @@
 
                             <!-- Modal Hapus -->
                             <div class="modal fade" id="modalHapus{{ $p->id_user }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
 
                                         <form action="{{ route('petugas.delete', $p->id_user) }}" method="POST">
@@ -148,7 +153,7 @@
 
 <!-- Modal Tambah -->
 <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Data Petugas</h5>
@@ -166,7 +171,12 @@
                     <div class="mb-4 row">
                         <label for="text" class="col-sm-3 col-form-label">Password</label>
                         <div class="col-sm-9">
-                            <input name="password" class="form-control " type="password" placeholder="Masukkan Password" id="text" aria-label=".form-control-lg example">
+                            <div class="input-group">
+                                <input name="password"  type="password" class="form-control" id="passwordInput" required>
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                    <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 

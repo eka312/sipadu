@@ -76,7 +76,7 @@
 
                             <!-- Modal Edit laporan -->
                             <div class="modal fade" id="modalEdit{{ $l->id_laporan }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Edit Jenis Kasus</h5>
@@ -122,7 +122,7 @@
 
                             <!-- Modal Preview Bukti -->
                             <div class="modal fade" id="modalBukti{{ $l->id_laporan }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
 
                                         <div class="modal-header">

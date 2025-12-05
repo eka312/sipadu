@@ -46,7 +46,7 @@
                         <td>{{ $g->email }}</td>
                         <td>{{ $g->no_identitas }}</td>
 
-                        <td class="text-center">
+                        <td class="d-flex justify-content-center gap-1">
                             <!-- Edit  -->
                             <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalEdit{{ $g->id_guru }}">
@@ -56,7 +56,7 @@
                             <!-- Modal Edit Kasus -->
                             <div class="modal fade" id="modalEdit{{ $g->id_guru }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
 
                                         <div class="modal-header">
@@ -108,13 +108,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-4 row">
-                                                    <label for="text" class="col-sm-3 col-form-label">Password </label>
+                                                    <label class="col-sm-3 col-form-label">Password</label>
                                                     <div class="col-sm-9">
-                                                        <input name="password" class="form-control " type="password"
-                                                            placeholder="(kosongkan jika tidak ingin diubah)" id="text"
-                                                            aria-label=".form-control-lg example">
+                                                        <div class="input-group">
+                                                            <input name="password" placeholder="(kosongkan jika tidak ingin diubah)" type="password" class="form-control" id="passwordInput">
+                                                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                                                <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Batal</button>
@@ -184,7 +188,7 @@
 
 <!-- modal Tambah  -->
 <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Data Guru</h5>
@@ -226,10 +230,14 @@
                         </div>
                     </div>
                     <div class="mb-4 row">
-                        <label for="text" class="col-sm-2 col-form-label">Password</label>
+                        <label class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                            <input name="password" class="form-control " type="password" placeholder="Masukkan Password"
-                                id="text" aria-label=".form-control-lg example">
+                            <div class="input-group">
+                                <input name="password" placeholder="Masukkan Password" type="password" class="form-control" id="passwordInput">
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                    <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -242,4 +250,5 @@
         </div>
     </div>
 </div>
+
 @endsection

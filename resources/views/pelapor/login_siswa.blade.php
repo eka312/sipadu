@@ -11,7 +11,7 @@
     <div class="card-body">
         <form action="{{ route('login.siswa') }}" method="POST">
             @csrf
-            
+
             <div class="mb-3">
                 <label class="form-label text-primary" style="font-weight:700;">Username</label>
                 <input
@@ -24,19 +24,19 @@
 
             <div class="mb-3">
                 <label class="form-label text-primary" style="font-weight:700;">Password</label>
-                <input
-                    type="password"
-                    class="form-control"
-                    name="password"
-                    placeholder="Masukkan Password (Tanggal Lahir)"
-                    required>
+                <div class="input-group">
+                    <input name="password" type="password" class="form-control" id="passwordInput " placeholder="Masukkan Password (Tanggal Lahir)" required>
+                    <button type="button" class="btn btn-outline-secondary border-0 bg-white" style="opacity: 75%;" id="togglePassword">
+                        <i class="bi bi-eye-slash" style="color: black;" id="toggleIcon"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" id="inputRememberPassword" type="checkbox" />
-                <label class="form-check-label text-primary" for="inputRememberPassword">
-                    Remember Password
-                </label>
+                <input class="form-check-input" id="inputRememberPassword" type="checkbox" name="remember"
+                    {{ old('remember') ? 'checked' : '' }} />
+
+                <label class="form-check-label text-primary" for="inputRememberPassword">Remember Password</label>
             </div>
 
             <button class="btn btn-primary w-100 mt-3" type="submit">

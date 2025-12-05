@@ -27,6 +27,10 @@
     <link href="{{asset('css/admin.css')}}" rel="stylesheet" />
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
+
     <style>
         body {
             font-family: 'poppins', sans-serif !important;
@@ -419,6 +423,21 @@
 
 
 
+    <script src="{{asset('js/scripts.js')}}"></script>
+
+
+    <script>
+        document.querySelectorAll('#togglePassword').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.parentNode.querySelector('input');
+                const icon = this.querySelector('i');
+
+                input.type = input.type === "password" ? "text" : "password";
+                icon.classList.toggle("bi-eye");
+                icon.classList.toggle("bi-eye-slash");
+            });
+        });
+    </script>
 
 
 
