@@ -35,10 +35,6 @@ Route::get('/', function () {
     return view('pelapor.index');
 });
 
-Route::get('/uji_coba', function () {
-    return view('layouts.uji_coba');
-});
-
 
 Route::get('/login_guru', function () {
     return view('pelapor.login_guru');
@@ -79,6 +75,7 @@ Route::middleware('auth:siswa')->prefix('siswa')->group(function () {
     Route::post('/lapor', [LaporController::class, 'store'])->name('lapor.siswa.store');
     Route::get('/status_kasus', [LaporController::class, 'statusSiswa'])->name('status.siswa');
 });
+
 
 Route::middleware('auth:guru')->prefix('guru')->group(function () {
     Route::get('/lapor', [LaporController::class, 'create'])->name('lapor.guru.create');
@@ -129,6 +126,8 @@ Route::middleware('auth:web')->group(function () {
         Route::put('/kelas/{id}', 'update')->name('kelas.update');
 
         Route::delete('/kelas/{id}', 'destroy')->name('kelas.delete');
+
+        Route::post('/kelas/import_excel', 'import_excel')->name('kelas.import_excel');
     });
 
 
@@ -144,6 +143,8 @@ Route::middleware('auth:web')->group(function () {
         Route::put('/mapel/{id}', 'update')->name('mapel.update');
 
         Route::delete('/mapel/{id}', 'destroy')->name('mapel.delete');
+
+        Route::post('/mapel/import_excel', 'import_excel')->name('mapel.import_excel');
     });
 
 
@@ -158,6 +159,8 @@ Route::middleware('auth:web')->group(function () {
         Route::put('/guru/{id}', 'update')->name('guru.update');
 
         Route::delete('/guru/{id}', 'destroy')->name('guru.delete');
+
+        Route::post('/guru/import_excel', 'import_excel')->name('guru.import_excel');
     });
 
 
@@ -173,6 +176,8 @@ Route::middleware('auth:web')->group(function () {
         Route::put('/kasus/{id}', 'update')->name('kasus.update');
 
         Route::delete('/kasus/{id}', 'destroy')->name('kasus.delete');
+
+        Route::post('/kasus/import_excel', 'import_excel')->name('kasus.import_excel');
     });
 
 

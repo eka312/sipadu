@@ -13,9 +13,11 @@
         </div>
 
 
-        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
-            <i class="fas fa-plus"></i> Tambah Guru
-        </button>
+        <div class="mb-3 text-center">
+            <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="fas fa-plus"></i>Tambah Guru</button>
+            <button type="button" class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#importExcel">Upload Excel</button>
+        </div>
+
     </div>
 
     <!-- Card Table -->
@@ -247,6 +249,35 @@
                 </form>
             </div>
 
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="importExcel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form action="{{ route('guru.import_excel') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Excel </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <label>File Excel</label>
+                    <input type="file" name="file" class="form-control mb-2" required>
+
+                    <small class="text-muted">
+                        Format kolom: <b>nama guru, mapel, email, no identitas, password</b>
+                    </small>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button class="btn btn-success">Upload</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

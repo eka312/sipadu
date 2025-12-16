@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\GuruImport;
 use App\Models\Guru;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GuruController extends Controller
 {
@@ -17,7 +19,18 @@ class GuruController extends Controller
         $guru = Guru::all();
         $mapel = Mapel::all();
         return view('admin.guru', compact('guru', 'mapel'));
-;
+
+    }
+
+    public function import_excel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+    
+        Excel::import(new GuruImport, $request->file('file'));
+    
+        return redirect('/guru');
     }
 
     public function store(Request $request)

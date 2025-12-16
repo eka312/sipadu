@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mapel;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\MapelImport;
 
 class MapelController extends Controller
 {
@@ -15,6 +17,17 @@ class MapelController extends Controller
         $mapel = Mapel::All();
 
         return view('admin.mapel', compact('mapel'));
+    }
+
+    public function import_excel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+    
+        Excel::import(new MapelImport, $request->file('file'));
+    
+        return redirect('/siswa');
     }
 
     /**

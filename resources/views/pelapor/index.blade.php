@@ -187,10 +187,10 @@
 
 
         <!-- tentang kami -->
-        <div class="row py-5 d-flex justify-content-center " id="aboutus">
-            <div class="col d-flex justify-content-center">
+        <div class="row py-5  " id="aboutus">
+            <div class="col my-auto">
                 <ul>
-                    <div class="text-warning" style="font-weight: 800;font-size:2.5rem; ">TENTANG KAMI</div>
+                    <div class="text-warning" style="font-weight: 800;font-size:3rem; ">TENTANG KAMI</div>
                     <div class="text-primary fw-bold fs-4 pb-3 " style="font-family: Roboto;">
                         Mengapa SIPADU <br> Dihadirkan?
                     </div>
@@ -215,7 +215,7 @@
                         <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
                             Apa itu SIPADU?
                         </h5>
-                        <div class="text-muted w-75">
+                        <div class="text-muted ">
                             SIPADU (Sistem Pengaduan Terpadu) adalah platform berbasis web yang digunakan untuk mencatat dan
                             menindaklanjuti laporan pelanggaran siswa secara cepat dan terorganisir.
                         </div>
@@ -224,7 +224,7 @@
                         <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
                             Tujuan Utama
                         </h5>
-                        <div class="text-muted w-75">
+                        <div class="text-muted ">
                             Membantu sekolah dalam mengelola laporan pelanggaran dengan transparan, efektif, dan menjaga
                             kerahasiaan identitas pelapor.
                         </div>
@@ -233,7 +233,7 @@
                         <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
                             Kerahasiaan Terjamin
                         </h5>
-                        <div class="text-muted w-75">
+                        <div class="text-muted ">
                             Setiap laporan yang masuk akan disimpan dengan aman. Identitas pelapor tidak akan dipublikasikan
                             atau dibagikan tanpa izin.
                         </div>
@@ -242,7 +242,7 @@
                         <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
                             Proses Terintegrasi
                         </h5>
-                        <div class="text-muted w-75">
+                        <div class="text-muted ">
                             Setiap laporan yang masuk akan disimpan dengan aman. Identitas pelapor tidak akan dipublikasikan
                             atau dibagikan tanpa izin.
                         </div>
@@ -251,7 +251,7 @@
                         <h5 class="text-capitalize" style="color: #333333; font-weight: 700;">
                             Manfaat Sistem
                         </h5>
-                        <div class="text-muted w-75">
+                        <div class="text-muted ">
                             Setiap laporan yang masuk akan disimpan dengan aman. Identitas pelapor tidak akan dipublikasikan
                             atau dibagikan tanpa izin.
                         </div>

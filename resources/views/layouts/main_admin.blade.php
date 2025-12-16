@@ -307,7 +307,7 @@
                         <img src="https://ui-avatars.com/api/?name=ADM&background=0D6EFD&color=fff"
                             class="rounded-circle" style="width: 35px; height: 35px;">
 
-                        <span class="ms-2 text-white link-text" style="font-size: 0.85rem; font-weight: 500;">
+                        <span class="mx-1 text-white link-text" style="font-size: 0.85rem; font-weight: 500;">
                             {{ Auth::user()->email }}
                         </span>
                     </div>

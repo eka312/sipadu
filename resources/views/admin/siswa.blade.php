@@ -14,7 +14,7 @@
 
 
         <div class="mb-3 text-center">
-            <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modalSingle"><i class="fas fa-plus"></i>Tambah Siswa</button>
+            <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="fas fa-plus"></i>Tambah Siswa</button>
             <button type="button" class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#importExcel">Upload Excel</button>
         </div>
 
@@ -180,7 +180,7 @@
 
 </div>
 
-<div class="modal fade" id="modalSingle" tabindex="-1">
+<div class="modal fade" id="modalTambah" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <form action="{{ route('siswa.store') }}" method="post">
@@ -265,7 +265,7 @@
                     <input type="file" name="file" class="form-control mb-2" required>
 
                     <small class="text-muted">
-                        Format kolom: <b>id_kelas, nama_siswa, nis, tanggal_lahir, password</b>
+                        Format kolom: <b>kelas, nama siswa, nis, tanggal lahir, password</b>
                     </small>
                 </div>
 

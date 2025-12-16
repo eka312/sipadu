@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\KelasImport;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KelasController extends Controller
 {
@@ -15,6 +17,17 @@ class KelasController extends Controller
        
         $kelas = Kelas::all();
         return view('admin.kelas', compact('kelas'));
+    }
+
+    public function import_excel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+    
+        Excel::import(new KelasImport, $request->file('file'));
+    
+        return redirect('/kelas');
     }
 
     /**

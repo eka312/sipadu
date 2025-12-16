@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\KasusImport;
 use App\Models\Kasus;
-
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KasusController extends Controller
 {
@@ -13,9 +14,20 @@ class KasusController extends Controller
      */
     public function index()
     {
-       
+
         $kasus = Kasus::all();
         return view('admin.kasus', compact('kasus'));
+    }
+
+    public function import_excel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        Excel::import(new KasusImport, $request->file('file'));
+
+        return redirect('/kasus');
     }
 
     /**
@@ -31,7 +43,7 @@ class KasusController extends Controller
      */
     public function store(Request $request)
     {
-        $kasus = Kasus::create([   
+        $kasus = Kasus::create([
             'jenis_kasus' => $request->jenis_kasus,
         ]);
         return redirect('/kasus');
@@ -48,10 +60,7 @@ class KasusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-
-    }
+    public function edit(string $id) {}
 
     /**
      * Update the specified resource in storage.
@@ -59,9 +68,9 @@ class KasusController extends Controller
     public function update(Request $request, string $id)
     {
         Kasus::where('id_kasus', $id)
-        ->update([
-            'jenis_kasus' => $request->jenis_kasus,
-        ]);
+            ->update([
+                'jenis_kasus' => $request->jenis_kasus,
+            ]);
         return redirect('/kasus');
     }
 
@@ -71,7 +80,7 @@ class KasusController extends Controller
     public function destroy(string $id)
     {
         $delete = Kasus::where('id_kasus', $id)->delete();
-        
+
         //setelah terhapus akan dialihkan ke hal data kasus
         return redirect('/kasus');
     }

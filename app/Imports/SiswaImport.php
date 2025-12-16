@@ -2,20 +2,15 @@
 
 namespace App\Imports;
 
+use App\Models\Kelas;
 use App\Models\Siswa;
-
+use Illuminate\Support\Facades\Hash;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-
-class SiswaImport implements ToModel,WithStartRow
+class SiswaImport implements ToModel, WithHeadingRow
 {
-
-    public function startRow(): int
-    {
-        return 2;
-    }
     /**
      * @param array $row
      *
@@ -23,12 +18,14 @@ class SiswaImport implements ToModel,WithStartRow
      */
     public function model(array $row)
     {
+        $kelas = Kelas::where('nama_kelas', $row['kelas'])->first();
+
         return new Siswa([
-            'id_kelas'      => $row[0],
-            'nama_siswa'    => $row[1],
-            'nis'           => $row[2],
-            'tanggal_lahir' => Date::excelToDateTimeObject($row[3])->format('Y-m-d'),
-            'password'      => bcrypt($row[4]),
+            'id_kelas'     => $kelas ? $kelas->id_kelas : null,
+            'nama_siswa'    => $row['nama_siswa'],
+            'nis'           => $row['nis'],
+            'tanggal_lahir' => Date::excelToDateTimeObject($row['tanggal_lahir'])->format('Y-m-d'),
+            'password'      => Hash::make($row['password']),
         ]);
     }
 }

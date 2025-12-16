@@ -5,19 +5,20 @@
 @section('content')
 <div class="container-fluid px-4">
 
-   
+
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <h3 class="fw-bold mb-0">Data Mata Pelajaran</h3>
             <small class="text-muted">Kelola daftar mata pelajaran yang tersedia.</small>
         </div>
 
-        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
-            <i class="fas fa-plus"></i> Tambah Mapel
-        </button>
+        <div class="mb-3 text-center">
+            <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="fas fa-plus"></i>Tambah Mapel</button>
+            <button type="button" class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#importExcel">Upload Excel</button>
+        </div>
     </div>
 
-    
+
     <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white">
             <i class="fas fa-book me-2"></i> Daftar Mata Pelajaran
@@ -150,6 +151,35 @@
                 </form>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- Import Excel -->
+<div class="modal fade" id="importExcel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form action="{{ route('mapel.import_excel') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Excel </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <label>File Excel</label>
+                    <input type="file" name="file" class="form-control mb-2" required>
+
+                    <small class="text-muted">
+                        Format kolom: <b>Nama Mapel</b>
+                    </small>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button class="btn btn-success">Upload</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
