@@ -28,7 +28,7 @@
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 
 
     <style>
@@ -244,12 +244,12 @@
                 </li>
 
                 <!-- Data Pelapor -->
-                <li class="nav-item mb-1">
+                <!-- <li class="nav-item mb-1">
                     <a href="/pelapor" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('pelapor') ? 'active' : '' }}">
                         <i class="fas fa-users menu-icon me-3"></i>
                         <span class="link-text">Data Pelapor</span>
                     </a>
-                </li>
+                </li> -->
 
                 <!-- Academic Divider -->
                 <li class="mt-3 mb-1 px-2 text-muted link-text" style="font-size: 0.75rem;">DATA AKADEMIK</li>
@@ -277,7 +277,7 @@
                 <li class="nav-item mb-1">
                     <a href="/kasus" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('kasus') ? 'active' : '' }}">
                         <i class="fas fa-exclamation-circle menu-icon me-3"></i>
-                        <span class="link-text">Data Jenis Kasus</span>
+                        <span class="link-text">Data Jenis Aduan</span>
                     </a>
                 </li>
 
@@ -342,7 +342,7 @@
                             </div>
 
                             <div class="modal-body">
-                                Yakin mau keluar dari sistem SIPADU? 😥
+                                Yakin mau keluar dari sistem SIPADU? 
                             </div>
 
                             <div class="modal-footer">
@@ -420,10 +420,9 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-
     <script src="{{asset('js/scripts.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="{{asset('js/datatables-simple-demo.js')}}"></script>
 
 
     <script>

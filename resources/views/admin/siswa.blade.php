@@ -28,8 +28,8 @@
         </div>
 
         <div class="card-body">
-            <table id="datatablesSimple" class="table table-striped table-bordered">
-                <thead class=" text-center">
+            <table id="datatablesSimple" class="table table-hover table-striped ">
+                <thead class="text-center">
                     <tr>
                         <th width="5%">No</th>
                         <th>Nama Siswa</th>
@@ -122,7 +122,7 @@
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="submit" class="btn btn-success">Simpan</button>
                                                 </div>
                                             </form>
 
@@ -241,7 +241,7 @@
 
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Simpan</button>
+                    <button class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

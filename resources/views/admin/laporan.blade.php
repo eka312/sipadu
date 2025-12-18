@@ -21,12 +21,12 @@
         </div>
 
         <div class="card-body">
-            <table id="datatablesSimple" class="table table-striped table-bordered">
+            <table id="datatablesSimple" class="table table-hover table-striped ">
                 <thead class=" text-center">
                     <tr>
                         <th width="5%">No</th>
                         <th>Nama Pelapor</th>
-                        <th>Jenis Kasus</th>
+                        <th>Jenis Aduan</th>
                         <th>Petugas</th>
                         <th>File Bukti</th>
                         <th>Deskripsi</th>
@@ -41,7 +41,11 @@
                     @forelse ($laporan as $l)
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
-                        <td>{{ $l->pelapor->siswa?->nama_siswa ?? $l->pelapor->guru?->nama_guru ?? '-' }}</td>
+                        <td>
+                            {{ $l->siswa?->nama_siswa 
+                            ?? $l->guru?->nama_guru 
+                            ?? '-' }}
+                        </td>
                         <td>{{ $l->kasus->jenis_kasus ?? '-' }}</td>
                         <td>{{ $l->user->nama_petugas ?? '-' }}</td>
                         <td>
@@ -79,7 +83,7 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Jenis Kasus</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Laporan</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -111,7 +115,7 @@
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="submit" class="btn btn-success">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>

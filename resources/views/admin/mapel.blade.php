@@ -25,7 +25,7 @@
         </div>
 
         <div class="card-body">
-            <table id="datatablesSimple" class="table table-striped table-bordered">
+            <table id="datatablesSimple"  class="table table-hover table-striped ">
                 <thead class="text-center">
                     <tr>
                         <th>No</th>
@@ -66,7 +66,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="submit" class="btn btn-success">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -146,7 +146,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
                 </form>
             </div>

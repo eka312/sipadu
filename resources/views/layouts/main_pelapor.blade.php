@@ -129,7 +129,7 @@
 
                     <!-- Jika siswa login  -->
                     @auth('siswa')
-                    <div class="dropdown">
+                    <div class="dropdown ">
                         <button class="btn btn-light text-primary dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="user-name">
                                 {{ explode(' ', Auth::guard('siswa')->user()->nama_siswa)[0] }}

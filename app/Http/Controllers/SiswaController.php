@@ -20,11 +20,17 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswa = Siswa::All();
-        $kelas = Kelas::all();
-
+        $siswa = Siswa::join('kelas', 'siswa.id_kelas', '=', 'kelas.id_kelas')
+            ->orderBy('kelas.nama_kelas', 'asc')   // urut berdasarkan kelas
+            ->orderBy('siswa.nama_siswa', 'asc')   // urut nama siswa
+            ->select('siswa.*')
+            ->get();
+    
+        $kelas = Kelas::orderBy('nama_kelas', 'asc')->get();
+    
         return view('admin.siswa', compact('siswa', 'kelas'));
     }
+    
 
     public function import_excel(Request $request)
     {

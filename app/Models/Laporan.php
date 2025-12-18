@@ -22,8 +22,13 @@ class Laporan extends Model
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
 
-    public function pelapor()
+    public function guru()
     {
-        return $this->belongsTo(Pelapor::class, 'id_pelapor', 'id_pelapor');
+        return $this->belongsTo(Guru::class, 'id_guru', 'id_guru');
+    }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'id_siswa', 'id_siswa');
     }
 }

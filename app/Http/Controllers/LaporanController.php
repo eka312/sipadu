@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Kasus;
 use App\Models\Laporan;
-use App\Models\Pelapor;
+use App\Models\Guru;
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
@@ -18,8 +20,9 @@ class LaporanController extends Controller
         $laporan = Laporan::all();
         $kasus = Kasus::all();
         $petugas = User::all();
-        $pelapor = Pelapor::all();
-        return view('admin.laporan', compact('pelapor', 'laporan', 'kasus', 'petugas'));
+        $guru = Guru::all();
+        $siswa = Siswa::all();
+        return view('admin.laporan', compact('guru','siswa', 'laporan', 'kasus', 'petugas'));
     }
 
     /**
@@ -44,10 +47,16 @@ class LaporanController extends Controller
         $menunggu = Laporan::where('status', 'menunggu')->count();
         $diproses = Laporan::where('status', 'diproses')->count();
         $selesai = Laporan::where('status', 'selesai')->count();
-        $laporanTerbaru = Laporan::orderBy('created_at', 'desc')->take(5)->get();
-        $laporanDiproses = Laporan::where('status', 'diproses')->orderBy('created_at', 'desc')->take(5)->get();
+        $laporanTerbaru = Laporan::whereDate('tanggal_waktu', Carbon::today())
+            ->orderBy('tanggal_waktu', 'desc')
+            ->get();
 
-      
+        $laporanDiproses = Laporan::where('status', 'diproses')
+            ->whereDate('created_at', Carbon::today())
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+
 
 
         return view('admin.dashboard', compact('jumlahLaporan', 'menunggu', 'diproses', 'selesai', 'laporanTerbaru', 'laporanDiproses'));

@@ -19,11 +19,11 @@
 
         <div class="card shadow-sm border-0">
             <div class="card-header bg-primary text-white">
-                <i class="fas fa-list me-2"></i> Daftar Jenis Kasus
+                <i class="fas fa-list me-2"></i> Daftar Pelapor
             </div>
 
             <div class="card-body">
-                <table id="datatablesSimple" class="table table-striped table-bordered">
+                <table id="datatablesSimple"  class="table table-hover table-striped ">
                     <thead class="text-center">
                         <tr>
                             <th>No</th>

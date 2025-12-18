@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Laporan;
 use App\Models\Kasus;
-use App\Models\Pelapor;
 use Illuminate\Http\Request;
 
 class LaporController extends Controller
@@ -14,10 +13,22 @@ class LaporController extends Controller
     public function create()
     {
         $kasus = Kasus::all(); // ambil daftar jenis kasus
-        return view('pelapor.lapor', compact('kasus'));
+
+        // Tentukan nama pelapor dan role sesuai guard yang login
+        if (auth('siswa')->check()) {
+            $nama = auth('siswa')->user()->nama_siswa;
+            $role = 'siswa';
+        } elseif (auth('guru')->check()) {
+            $nama = auth('guru')->user()->nama_guru;
+            $role = 'guru';
+        } else {
+            abort(403);
+        }
+    
+        return view('pelapor.lapor', compact('kasus', 'nama', 'role'));
     }
 
-    // Simpan laporan ke database
+
     public function store(Request $request)
     {
         $request->validate([
@@ -28,34 +39,23 @@ class LaporController extends Controller
             'file_bukti' => 'nullable|mimes:jpg,jpeg,png,pdf,mp4,mov,avi,mkv,wmv,flv,webm|max:20480',
         ]);
 
-        // Tentukan pelapor sesuai guard yang login dan pastikan ada di tabel pelapor
-        if (Auth::guard('siswa')->check()) {
-            $idPelaporUser = Auth::guard('siswa')->user()->id_siswa;
-            $role = 'siswa';
-
-            // Insert/update pelapor di tabel pelapor
-            $pelapor = Pelapor::firstOrCreate(
-                ['id_siswa' => $idPelaporUser]
-            );
-        } elseif (Auth::guard('guru')->check()) {
-            $idPelaporUser = Auth::guard('guru')->user()->id_guru;
-            $role = 'guru';
-
-            // Insert/update pelapor di tabel pelapor
-            $pelapor = Pelapor::firstOrCreate(
-                ['id_guru' => $idPelaporUser]
-            );
-        } else {
-            return redirect('/login')->with('error', 'Anda tidak memiliki akses.');
-        }
-
         // Simpan laporan
         $laporan = new Laporan();
-        $laporan->id_pelapor = $pelapor->id_pelapor;
         $laporan->id_kasus = $request->id_kasus;
         $laporan->deskripsi = $request->deskripsi;
         $laporan->lokasi = $request->lokasi;
         $laporan->tanggal_waktu = $request->waktu_kejadian;
+
+        // Tentukan pelapor berdasarkan guard yang login
+        if (Auth::guard('siswa')->check()) {
+            $laporan->id_siswa = Auth::guard('siswa')->user()->id_siswa;
+            $route = 'status.siswa';
+        } elseif (Auth::guard('guru')->check()) {
+            $laporan->id_guru = Auth::guard('guru')->user()->id_guru;
+            $route = 'status.guru';
+        } else {
+            abort(403);
+        }
 
         if ($request->hasFile('file_bukti')) {
             $laporan->file_bukti = $request->file('file_bukti')->store('bukti', 'public');
@@ -63,22 +63,75 @@ class LaporController extends Controller
 
         $laporan->save();
 
-        return redirect()->back()->with('success', 'Laporan berhasil dikirim!');
+
+        
+
+        return redirect()->route($route);
     }
 
-    public function statusSiswa()
+    public function update(Request $request, string $id)
     {
-        $pelapor = Pelapor::where('id_siswa', auth()->guard('siswa')->user()->id_siswa)->first();
-        $laporan = Laporan::where('id_pelapor', $pelapor->id_pelapor)->get();
+        // Ambil laporan
+        $laporan = Laporan::where('id_laporan', $id)->firstOrFail();
     
-        return view('pelapor.status_kasus', compact('laporan'));
+        // Pastikan laporan milik user yang login
+        if (auth('siswa')->check()) {
+            if ($laporan->id_siswa !== auth('siswa')->user()->id_siswa) {
+                abort(403);
+            }
+        } elseif (auth('guru')->check()) {
+            if ($laporan->id_guru !== auth('guru')->user()->id_guru) {
+                abort(403);
+            }
+        } else {
+            abort(403);
+        }
+    
+        // Hanya boleh edit jika status MENUNGGU
+        if ($laporan->status !== 'menunggu') {
+            return back()->with('error', 'Laporan tidak dapat diedit karena sedang diproses.');
+        }
+    
+        //  Validasi
+        $request->validate([
+            'lokasi' => 'required|string',
+            'deskripsi' => 'required|string',
+            'file_bukti' => 'nullable|mimes:jpg,jpeg,png,pdf,mp4,mov,avi,mkv,wmv,flv,webm|max:20480',
+        ]);
+    
+        // Update data
+        $laporan->lokasi = $request->lokasi;
+        $laporan->deskripsi = $request->deskripsi;
+    
+        // Jika upload file baru
+        if ($request->hasFile('file_bukti')) {
+            $laporan->file_bukti = $request->file('file_bukti')->store('bukti', 'public');
+        }
+    
+        $laporan->save();
+    
+        return redirect()->back()->with('success', 'Laporan berhasil diperbarui.');
     }
     
-    public function statusGuru()
+
+    public function status()
     {
-        $pelapor = Pelapor::where('id_guru', auth()->guard('guru')->user()->id_guru)->first();
-        $laporan = Laporan::where('id_pelapor', $pelapor->id_pelapor)->get();
-    
-        return view('pelapor.status_kasus', compact('laporan'));
+        if (auth('siswa')->check()) {
+            $laporan = Laporan::where('id_siswa', auth('siswa')->user()->id_siswa)
+                ->orderBy('tanggal_waktu', 'desc') 
+                ->get();
+                $nama = auth('siswa')->user()->nama_siswa;
+        } elseif (auth('guru')->check()) {
+            $laporan = Laporan::where('id_guru', auth('guru')->user()->id_guru)
+            ->orderBy('tanggal_waktu', 'desc') 
+            ->get();
+            $nama = auth('guru')->user()->nama_guru;
+        } else {
+            abort(403);
+        }
+
+
+
+        return view('pelapor.status_kasus', compact('laporan','nama'));
     }
 }

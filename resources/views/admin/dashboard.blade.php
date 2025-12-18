@@ -12,10 +12,10 @@
     </div>
 
 
-    <div class="row g-3">
+    <div class="row row-cols-1 row-cols-md-4 g-3">
 
         <!-- Jumlah Laporan -->
-        <div class="col-xl-3 col-md-6">
+        <div class="col">
             <div class="card stat-card">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div>
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Menunggu Respon -->
-        <div class="col-xl-3 col-md-6">
+        <div class="col">
             <div class="card stat-card">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div>
@@ -45,7 +45,7 @@
         </div>
 
         <!-- Sedang Diproses -->
-        <div class="col-xl-3 col-md-6">
+        <div class="col">
             <div class="card stat-card">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div>
@@ -60,7 +60,7 @@
         </div>
 
         <!-- Selesai -->
-        <div class="col-xl-3 col-md-6">
+        <div class="col">
             <div class="card stat-card">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div>
@@ -102,11 +102,11 @@
                 </div>
 
                 <div class="card-body">
-                    <table id="datatablesSimple" class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered">
                         <thead class=" text-center">
                             <tr>
                                 <th>No</th>
-                                <th>Jenis Kasus</th>
+                                <th>Jenis Aduan</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -145,11 +145,11 @@
                 </div>
 
                 <div class="card-body">
-                    <table id="datatablesSimple" class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered">
                         <thead class=" text-center">
                             <tr>
                                 <th>No</th>
-                                <th>Jenis Kasus</th>
+                                <th>Jenis Aduan</th>
                                 <th>Status</th>
                             </tr>
                         </thead>

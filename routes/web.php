@@ -6,7 +6,6 @@ use App\Http\Controllers\KasusController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MapelController;
-use App\Http\Controllers\PelaporController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporController;
@@ -73,17 +72,19 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware('auth:siswa')->prefix('siswa')->group(function () {
     Route::get('/lapor', [LaporController::class, 'create'])->name('lapor.siswa.create');
     Route::post('/lapor', [LaporController::class, 'store'])->name('lapor.siswa.store');
-    Route::get('/status_kasus', [LaporController::class, 'statusSiswa'])->name('status.siswa');
+    Route::get('/status_kasus', [LaporController::class, 'status'])->name('status.siswa');;
 });
 
 
 Route::middleware('auth:guru')->prefix('guru')->group(function () {
     Route::get('/lapor', [LaporController::class, 'create'])->name('lapor.guru.create');
     Route::post('/lapor', [LaporController::class, 'store'])->name('lapor.guru.store');
-    Route::get('/status_kasus', [LaporController::class, 'statusGuru'])->name('status.guru');
+    Route::get('/status_kasus', [LaporController::class, 'status'])->name('status.guru');
 });
 
-
+Route::middleware(['auth:siswa,guru'])->group(function () {
+    Route::put('/lapor/{id}', [LaporController::class, 'update'])->name('lapor.update');
+});
 
 
 // milik admin
@@ -96,7 +97,7 @@ Route::get('/login_admin', function () {
 
 Route::middleware('auth:web')->group(function () {
 
-    Route::get('/pelapor', [PelaporController::class, 'index']);
+    
 
  
 

@@ -27,7 +27,7 @@
         </div>
 
         <div class="card-body">
-            <table id="datatablesSimple" class="table table-striped table-bordered">
+            <table id="datatablesSimple"  class="table table-hover table-striped ">
                 <thead class=" text-center">
                     <tr>
                         <th width="5%">No</th>
@@ -55,7 +55,7 @@
                                 <i class="fas fa-edit"></i>
                             </button>
 
-                            <!-- Modal Edit Kasus -->
+                            <!-- Modal Edit guru -->
                             <div class="modal fade" id="modalEdit{{ $g->id_guru }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -124,7 +124,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="submit" class="btn btn-success">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -146,10 +146,10 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
 
-                                        <form action="{{ route('kasus.delete', $g->id_guru) }}" method="POST">
+                                        <form action="{{ route('guru.delete', $g->id_guru) }}" method="POST">
                                             @csrf
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Hapus Kasus</h5>
+                                                <h5 class="modal-title">Hapus Data Guru</h5>
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="modal"></button>
                                             </div>
@@ -244,7 +244,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
                 </form>
             </div>
