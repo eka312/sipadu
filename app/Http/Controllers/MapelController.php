@@ -14,7 +14,7 @@ class MapelController extends Controller
      */
     public function index()
     {
-        $mapel = Mapel::All();
+        $mapel = Mapel::orderBy('created_at', 'asc')->get();
 
         return view('admin.mapel', compact('mapel'));
     }

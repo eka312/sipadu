@@ -17,7 +17,7 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporan = Laporan::all();
+        $laporan = Laporan::orderBy('created_at', 'desc')->get();
         $kasus = Kasus::all();
         $petugas = User::all();
         $guru = Guru::all();

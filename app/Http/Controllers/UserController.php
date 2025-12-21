@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $petugas = User::all();
+        $petugas = User::orderBy('created_at', 'asc')->get();
         return view('admin.petugas', compact('petugas'));
     }
 

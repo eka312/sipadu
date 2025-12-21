@@ -15,7 +15,7 @@ class KasusController extends Controller
     public function index()
     {
 
-        $kasus = Kasus::all();
+        $kasus = Kasus::orderBy('created_at', 'asc')->get();;
         return view('admin.kasus', compact('kasus'));
     }
 

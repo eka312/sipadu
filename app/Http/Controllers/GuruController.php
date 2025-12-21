@@ -16,7 +16,7 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $guru = Guru::all();
+        $guru = Guru::orderBy('created_at', 'asc')->get();
         $mapel = Mapel::all();
         return view('admin.guru', compact('guru', 'mapel'));
 
