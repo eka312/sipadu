@@ -36,6 +36,7 @@
                         <th>Kelas</th>
                         <th>NIS</th>
                         <th>Tanggal Lahir</th>
+                        <th>Status</th>
                         <th width="15%">Aksi</th>
                     </tr>
                 </thead>
@@ -45,120 +46,130 @@
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td>{{ $s->nama_siswa }}</td>
-                        <td>{{ $s->kelas->nama_kelas ?? '-' }}</td>
+                        <td>{{ $s->kelas }}</td>
                         <td>{{ $s->nis }}</td>
                         <td>{{ $s->tanggal_lahir }}</td>
+                        <td class="text-center">
+                            <span class="badge bg-{{ $s->status == 'aktif' ? 'success' : 'secondary' }}">
+                                {{ strtoupper($s->status) }}
+                            </span>
+                        </td>
 
-                        <td class="d-flex justify-content-center gap-1">
-                            <!-- Edit  -->
-                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalEdit{{ $s->id_siswa }}">
-                                <i class="fas fa-edit"></i>
-                            </button>
 
-                            <!-- Modal Edit siswa -->
-                            <div class="modal fade" id="modalEdit{{ $s->id_siswa }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Siswa</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{route('siswa.update', $s->id_siswa)}}" method="post">
-                                                @csrf
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-2">
+                                <!-- Edit  -->
+                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#modalEdit{{ $s->id_siswa }}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
 
-                                                <div class="modal-body">
-                                                    <div class="mb-4 row">
-                                                        <label for="text" class="col-sm-2 col-form-label">Nama Siswa</label>
-                                                        <div class="col-sm-10">
-                                                            <input name="nama_siswa" value="{{ $s->nama_siswa }}" class="form-control " type="text" placeholder="Masukkan Nama Siswa"
-                                                                id="text" aria-label=".form-control-lg example" required>
-                                                        </div>
-                                                    </div>
+                                <!-- Modal Edit siswa -->
+                                <div class="modal fade" id="modalEdit{{ $s->id_siswa }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Siswa</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
 
-                                                    <div class="mb-4 row">
-                                                        <label for="text" class="col-sm-2 col-form-label">Kelas</label>
-                                                        <div class="col-sm-10">
-                                                            <select name="id_kelas" class="form-select" required>
-                                                                @foreach($kelas as $k)
-                                                                <option value="{{ $k->id_kelas }}" {{ $s->id_kelas == $k->id_kelas ? 'selected' : '' }}>
-                                                                    {{ $k->nama_kelas }}
-                                                                </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="mb-4 row">
-                                                        <label for="text" class="col-sm-2 col-form-label">NIS</label>
-                                                        <div class="col-sm-10">
-                                                            <input name="nis" value="{{ $s->nis }}" class="form-control " type="text" placeholder="Masukkan NIS"
-                                                                id="text" aria-label=".form-control-lg example" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-4 row">
-                                                        <label for="text" class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                                                        <div class="col-sm-10">
-                                                            <input name="tanggal_lahir" value="{{ $s->tanggal_lahir }}" type="date" class="form-control " id="text" aria-label=".form-control-lg example" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-4 row">
-                                                        <label for="text" class="col-sm-2 col-form-label">Password</label>
-                                                        <div class="col-sm-10">
-                                                            <div class="input-group">
-                                                                <input name="password" type="password" placeholder="(isi jika ingin ganti)" class="form-control" id="passwordInput" required>
-                                                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
-                                                                    <i class="bi bi-eye-slash" id="toggleIcon"></i>
-                                                                </button>
+                                                <form action="{{route('siswa.update', $s->id_siswa)}}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="modal-body">
+                                                        <div class="mb-4 row">
+                                                            <label for="text" class="col-sm-2 col-form-label">Nama Siswa</label>
+                                                            <div class="col-sm-10">
+                                                                <input name="nama_siswa" value="{{ $s->nama_siswa }}" class="form-control " type="text" placeholder="Masukkan Nama Siswa"
+                                                                    id="text" aria-label=".form-control-lg example" required>
                                                             </div>
                                                         </div>
+
+                                                        <div class="mb-4 row">
+                                                            <label for="text" class="col-sm-2 col-form-label">Kelas</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text"
+                                                                    name="kelas"
+                                                                    value="{{ $s->kelas }}"
+                                                                    class="form-control"
+                                                                    placeholder="Contoh: X RPL 1"
+                                                                    required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-4 row">
+                                                            <label for="text" class="col-sm-2 col-form-label">NIS</label>
+                                                            <div class="col-sm-10">
+                                                                <input name="nis" value="{{ $s->nis }}" class="form-control " type="text" placeholder="Masukkan NIS"
+                                                                    id="text" aria-label=".form-control-lg example" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-4 row">
+                                                            <label for="text" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                                                            <div class="col-sm-10">
+                                                                <input name="tanggal_lahir" value="{{ $s->tanggal_lahir }}" type="date" class="form-control " id="text" aria-label=".form-control-lg example" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-4 row">
+                                                            <label for="text" class="col-sm-2 col-form-label">Password</label>
+                                                            <div class="col-sm-10">
+                                                                <div class="input-group">
+                                                                    <input name="password" type="password" placeholder="(kosongkan jika tidak ingin diubah)" class="form-control password-input">
+                                                                    <button type="button" class="btn btn-outline-secondary toggle-password">
+                                                                        <i class="bi bi-eye-slash"></i>
+                                                                    </button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
 
-                                                </div>
 
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                                    </div>
+                                                </form>
 
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-success">Simpan</button>
-                                                </div>
-                                            </form>
+                                            </div>
 
                                         </div>
-
                                     </div>
                                 </div>
+
+
+
+                                <form action="{{ route('siswa.toggle-status', $s->id_siswa) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+
+                                    @php
+                                    $status = strtolower(trim($s->status));
+                                    @endphp
+
+                                    @if ($status === 'aktif')
+                                    <button type="submit"
+                                        class="btn btn-sm btn-success"
+                                        title="Aktifkan">
+                                        <i class="fas fa-user-check"></i>
+                                    </button>
+
+                                    @else
+
+                                    <button type="submit"
+                                        class="btn btn-sm btn-secondary"
+                                        title="Nonaktifkan">
+                                        <i class="fas fa-user-slash"></i>
+                                    </button>
+                                    @endif
+                                </form>
                             </div>
 
-
-
-                            <!-- Tombol Delete -->
-                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $s->id_siswa }}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-
-                            <!-- Modal Hapus -->
-                            <div class="modal fade" id="modalHapus{{ $s->id_siswa }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-
-                                        <form action="{{ route('siswa.delete', $s->id_siswa) }}" method="POST">
-                                            @csrf
-                                            <div class="modal-body">
-                                                Yakin mau hapus <strong>{{ $s->nama_siswa }}</strong>? Aksi ini tidak bisa dibatalkan.
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-danger">Hapus</button>
-                                            </div>
-                                        </form>
-
-
-                                    </div>
-                                </div>
-                            </div>
 
                         </td>
                     </tr>
@@ -202,11 +213,11 @@
                     <div class="mb-4 row">
                         <label for="text" class="col-sm-2 col-form-label">Kelas</label>
                         <div class="col-sm-10">
-                            <select name="id_kelas" class="form-select mb-2" required>
-                                @foreach($kelas as $k)
-                                <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text"
+                                name="kelas"
+                                class="form-control"
+                                placeholder="Contoh: XI RPL 2"
+                                required>
                         </div>
                     </div>
 
@@ -229,10 +240,11 @@
                         <label for="text" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input name="password" type="password" class="form-control" id="passwordInput" required>
-                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
-                                    <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                                <input name="password" type="password" placeholder="Masukkan Password" class="form-control password-input">
+                                <button type="button" class="btn btn-outline-secondary toggle-password">
+                                    <i class="bi bi-eye-slash"></i>
                                 </button>
+
                             </div>
                         </div>
                     </div>
@@ -265,7 +277,7 @@
                     <input type="file" name="file" class="form-control mb-2" required>
 
                     <small class="text-muted">
-                        Format kolom: <b>kelas, nama siswa, nis, tanggal lahir, password</b>
+                        Format kolom: <b>nama siswa, kelas, nis, tanggal lahir, password</b>
                     </small>
                 </div>
 

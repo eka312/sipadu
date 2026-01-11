@@ -22,10 +22,27 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-        ]);
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]); 
+        
+        $petugas = \App\Models\User::where('email', $request->email)->first();
+
+        if ($petugas && $petugas->status === 'nonaktif') {
+            return back()->withErrors([
+                'login' => 'Akun Anda telah nonaktif. Hubungi admin untuk mengaktifkannya.',
+            ]);
+        }
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'status'   => 'aktif',
+
+
+        ];
 
         $remember = $request->has('remember');
 
@@ -33,6 +50,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect('/dashboard');
         }
+
 
         return back()->withErrors([
             'email' => 'Kredensial yang diberikan tidak cocok dengan data kami.',
@@ -56,17 +74,37 @@ class AuthController extends Controller
             'nis' => 'required',
             'password' => 'required',
         ]);
-        $remember = $request->has('remember');
 
-        if (Auth::guard('siswa')->attempt([
+        
+        $siswa = \App\Models\Siswa::where('nis', $request->nis)->first();
+
+        if ($siswa && $siswa->status === 'nonaktif') {
+            return back()->withErrors([
+                'login' => 'Akun Anda telah nonaktif. Hubungi admin untuk mengaktifkannya.',
+            ]);
+        }
+
+        $credentials = [
             'nis' => $request->nis,
             'password' => $request->password,
-        ])) {
-            $request->session()->regenerate();
+            'status'   => 'aktif',
+
+
+        ];
+
+        $remember = $request->has('remember');
+
+        if (Auth::guard('siswa')->attempt($credentials, $remember)) {
             return redirect()->route('lapor.siswa.create');
         }
 
+
+
         return back()->withErrors(['nis' => 'NIS atau password salah!']);
+
+        
+
+        
     }
 
 
@@ -92,9 +130,20 @@ class AuthController extends Controller
             ? 'email'
             : 'no_identitas';
 
+        $guru = \App\Models\Guru::where($loginField, $request->login)->first();
+
+        if ($guru && $guru->status === 'nonaktif') {
+            return back()->withErrors([
+                'login' => 'Akun Anda telah nonaktif. Hubungi admin untuk mengaktifkannya.',
+            ]);
+        }
+
         $credentials = [
             $loginField => $request->login,
             'password' => $request->password,
+            'status'   => 'aktif',
+
+
         ];
 
         $remember = $request->has('remember');

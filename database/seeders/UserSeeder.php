@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password123'), // ganti sesuai kebutuhan
                 'nama_petugas' => 'Administrator',
                 'jabatan' => 'Admin',
+                'status' => 'aktif',
                 'remember_token' => null,
                 'created_at' => now(),
                 'updated_at' => now(),

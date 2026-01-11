@@ -34,6 +34,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'nama_petugas' => $request->nama_petugas,
             'jabatan' => $request->jabatan,
+            'status'       => 'nonaktif',
         ]);
         return redirect('/petugas');
     }
@@ -79,11 +80,24 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $delete = User::where('id_user', $id)->delete();
+    // public function destroy(string $id)
+    // {
+    //     $delete = User::where('id_user', $id)->delete();
         
-        //setelah terhapus akan dialihkan ke hal data petugas
-        return redirect('/petugas');
+    //     //setelah terhapus akan dialihkan ke hal data petugas
+    //     return redirect('/petugas');
+    // }
+
+    public function toggleStatus($id)
+    {
+        $petugas = User::findOrFail($id);
+
+        $petugas->status = $petugas->status === 'aktif'
+            ? 'nonaktif'
+            : 'aktif';
+
+        $petugas->save();
+
+        return redirect()->back();
     }
 }

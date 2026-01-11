@@ -15,15 +15,37 @@ class LaporanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $laporan = Laporan::orderBy('created_at', 'desc')->get();
+        $query = Laporan::with(['siswa', 'guru', 'kasus', 'user'])
+            ->orderBy('tanggal_waktu', 'desc');
+
+        // filter jenis aduan
+        if ($request->id_kasus) {
+            $query->where('id_kasus', $request->id_kasus);
+        }
+
+        // filter tanggal (tanggal saja, tanpa jam)
+        if ($request->tanggal) {
+            $query->whereDate('tanggal_waktu', $request->tanggal);
+        }
+
+        $laporan = $query->get();
+
         $kasus = Kasus::all();
         $petugas = User::all();
         $guru = Guru::all();
         $siswa = Siswa::all();
-        return view('admin.laporan', compact('guru','siswa', 'laporan', 'kasus', 'petugas'));
+
+        return view('admin.laporan', compact(
+            'guru',
+            'siswa',
+            'laporan',
+            'kasus',
+            'petugas'
+        ));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -61,4 +83,22 @@ class LaporanController extends Controller
 
         return view('admin.dashboard', compact('jumlahLaporan', 'menunggu', 'diproses', 'selesai', 'laporanTerbaru', 'laporanDiproses'));
     }
+
+    public function cetak(Request $request)
+{
+    $query = Laporan::with(['siswa', 'guru', 'kasus', 'user']);
+
+    if ($request->id_kasus) {
+        $query->where('id_kasus', $request->id_kasus);
+    }
+
+    if ($request->tanggal) {
+        $query->whereDate('tanggal_waktu', $request->tanggal);
+    }
+
+    $laporan = $query->orderBy('tanggal_waktu', 'desc')->get();
+
+    return view('admin.laporan_cetak', compact('laporan'));
+}
+
 }

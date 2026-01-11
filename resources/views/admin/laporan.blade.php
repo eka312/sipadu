@@ -13,11 +13,51 @@
         </div>
     </div>
 
+    <form method="GET" action="{{ route('laporan.index') }}" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <label class="form-label fw-semibold">Jenis Aduan</label>
+            <select name="id_kasus" class="form-select">
+                <option value="">-- Semua Aduan --</option>
+                @foreach($kasus as $k)
+                <option value="{{ $k->id_kasus }}"
+                    {{ request('id_kasus') == $k->id_kasus ? 'selected' : '' }}>
+                    {{ $k->jenis_kasus }}
+                </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label fw-semibold">Tanggal Kejadian</label>
+            <input type="date" name="tanggal"
+                value="{{ request('tanggal') }}"
+                class="form-control">
+        </div>
+
+        <div class="col-md-5 d-flex justify-content-end align-items-end gap-2">
+            <button class="btn btn-primary">
+                <i class="fas fa-filter me-1"></i> Filter
+            </button>
+
+            <a href="{{ route('laporan.index') }}" class="btn btn-secondary">
+                Reset
+            </a>
+
+            <a href="{{ route('laporan.cetak', request()->query()) }}"
+                target="_blank"
+                class="btn btn-success">
+                <i class="fas fa-print me-1"></i> Cetak
+            </a>
+        </div>
+    </form>
+
+
 
     <!-- Card Table -->
     <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white">
             <i class="fas fa-book me-2"></i> Daftar Laporan
+
         </div>
 
         <div class="card-body">
@@ -42,10 +82,19 @@
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td>
-                            {{ $l->siswa?->nama_siswa 
-                            ?? $l->guru?->nama_guru 
-                            ?? '-' }}
+                            @if($l->siswa)
+                            
+                            {{ $l->siswa->nama_siswa }}
+                            <span class="badge bg-primary">Siswa</span>
+                            @elseif($l->guru)
+                            
+                            {{ $l->guru->nama_guru }}
+                            <span class="badge bg-success">Guru</span>
+                            @else
+                            <span class="badge bg-secondary">-</span>
+                            @endif
                         </td>
+
                         <td>{{ $l->kasus->jenis_kasus ?? '-' }}</td>
                         <td>{{ $l->user->nama_petugas ?? '-' }}</td>
                         <td>
@@ -61,7 +110,8 @@
                         </td>
                         <td>{{ $l->deskripsi }}</td>
                         <td>{{ $l->lokasi }}</td>
-                        <td>{{ $l->tanggal_waktu }}</td>
+                        <td>{{ \Carbon\Carbon::parse($l->tanggal_waktu)->format('d-m-Y H:i') }}</td>
+
                         <td>
                             @if($l->status == 'menunggu')
                             <span class="badge bg-secondary">{{ $l->status }}</span>

@@ -3,9 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KasusController;
-use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporController;
@@ -47,10 +45,10 @@ Route::get('/login_siswa', function () {
 
 Route::controller(AuthController::class)->group(function () {
     // Routing halaman login admin
-    Route::get('/login', 'index')->name('login');
+    Route::get('/login_admin', 'index')->name('login.admin');
 
     // Routing proses login admin
-    Route::post('/login', 'login')->name('login.process');
+    Route::post('/login_admin', 'login')->name('login.process');
 
     // Routing proses logout
     Route::get('/logout', 'logout')->name('logout');
@@ -87,19 +85,17 @@ Route::middleware(['auth:siswa,guru'])->group(function () {
 });
 
 
-// milik admin
-Route::get('/login_admin', function () {
-    return view('admin.login_admin');
-});
+
+
 
 
 
 
 Route::middleware('auth:web')->group(function () {
 
-    
 
- 
+
+
 
     // siswa
     Route::controller(SiswaController::class)->group(function () {
@@ -109,45 +105,12 @@ Route::middleware('auth:web')->group(function () {
 
         Route::put('/siswa/{id}', 'update')->name('siswa.update');
 
-        Route::delete('/siswa/{id}', 'destroy')->name('siswa.delete');
+        // Route::delete('/siswa/{id}', 'destroy')->name('siswa.delete');
 
         Route::post('/siswa/import_excel', 'import_excel')->name('siswa.import_excel');
 
+        Route::patch('/siswa/{id}/toggle-status', 'toggleStatus')->name('siswa.toggle-status');
     });
-
-
-
-
-
-    Route::controller(KelasController::class)->group(function () {
-        Route::get('/kelas', 'index');
-
-        Route::post('/kelas', 'store')->name('kelas.store');
-
-        Route::put('/kelas/{id}', 'update')->name('kelas.update');
-
-        Route::delete('/kelas/{id}', 'destroy')->name('kelas.delete');
-
-        Route::post('/kelas/import_excel', 'import_excel')->name('kelas.import_excel');
-    });
-
-
-
-
-
-
-    Route::controller(MapelController::class)->group(function () {
-        Route::get('/mapel', 'index');
-
-        Route::post('/mapel', 'store')->name('mapel.store');
-
-        Route::put('/mapel/{id}', 'update')->name('mapel.update');
-
-        Route::delete('/mapel/{id}', 'destroy')->name('mapel.delete');
-
-        Route::post('/mapel/import_excel', 'import_excel')->name('mapel.import_excel');
-    });
-
 
 
 
@@ -159,9 +122,11 @@ Route::middleware('auth:web')->group(function () {
 
         Route::put('/guru/{id}', 'update')->name('guru.update');
 
-        Route::delete('/guru/{id}', 'destroy')->name('guru.delete');
+        // Route::delete('/guru/{id}', 'destroy')->name('guru.delete');
 
         Route::post('/guru/import_excel', 'import_excel')->name('guru.import_excel');
+
+        Route::patch('/guru/{id}/toggle-status', 'toggleStatus')->name('guru.toggle-status');
     });
 
 
@@ -177,8 +142,6 @@ Route::middleware('auth:web')->group(function () {
         Route::put('/kasus/{id}', 'update')->name('kasus.update');
 
         Route::delete('/kasus/{id}', 'destroy')->name('kasus.delete');
-
-        Route::post('/kasus/import_excel', 'import_excel')->name('kasus.import_excel');
     });
 
 
@@ -187,11 +150,17 @@ Route::middleware('auth:web')->group(function () {
 
     Route::controller(LaporanController::class)->group(function () {
 
-        Route::get('/laporan', 'index');
+        // halaman data laporan + filter
+        Route::get('/laporan', 'index')->name('laporan.index');
 
+        // update status & petugas
         Route::put('/laporan/{id}', 'update')->name('laporan.update');
 
-        Route::get('/dashboard', 'dashboard');
+        // cetak laporan berdasarkan filter
+        Route::get('/laporan/cetak', 'cetak')->name('laporan.cetak');
+
+        // dashboard
+        Route::get('/dashboard', 'dashboard')->name('dashboard');
     });
 
 
@@ -206,9 +175,11 @@ Route::middleware('auth:web')->group(function () {
         Route::post('/petugas', 'store')->name('petugas.store');
 
         // Routing ubah petugas
-        Route::post('/petugas/{id}', 'update')->name('petugas.update');
+        Route::put('/petugas/{id}', 'update')->name('petugas.update');
 
         // Routing hapus petugas
-        Route::delete('/petugas/{id}', 'destroy')->name('petugas.delete');
+        // Route::delete('/petugas/{id}', 'destroy')->name('petugas.delete');
+
+        Route::patch('/petugas/{id}/toggle-status', 'toggleStatus')->name('petugas.toggle-status');
     });
 });

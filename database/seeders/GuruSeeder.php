@@ -16,20 +16,22 @@ class GuruSeeder extends Seeder
     {
         DB::table('guru')->insert([
             [
-                'id_mapel' => 1,
+                
                 'nama_guru' => 'Pak Andi Wijaya',
                 'email' => 'andi@guru.com',
                 'password' => Hash::make('password123'),
                 'no_identitas' => 'G-2023-001',
+                'status' => 'aktif',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'id_mapel' => 2,
+                
                 'nama_guru' => 'Bu Siti Rahma',
                 'email' => 'siti@guru.com',
                 'password' => Hash::make('password123'),
                 'no_identitas' => 'G-2023-002',
+                'status' => 'aktif',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

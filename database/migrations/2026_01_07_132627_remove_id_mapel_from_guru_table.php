@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mapel', function (Blueprint $table) {
-            $table->increments('id_mapel');
-            $table->string('nama_mapel');
-            $table->timestamps();
+        Schema::table('guru', function (Blueprint $table) {
+            //
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mapel');
+        Schema::table('guru', function (Blueprint $table) {
+            //
+        });
     }
 };

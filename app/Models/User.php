@@ -26,6 +26,7 @@ class User extends Authenticatable
         'jabatan',
         'email',
         'password',
+        'status',
     ];
 
     /**

@@ -27,14 +27,14 @@
         </div>
 
         <div class="card-body">
-            <table id="datatablesSimple"  class="table table-hover table-striped ">
+            <table id="datatablesSimple" class="table table-hover table-striped ">
                 <thead class=" text-center">
                     <tr>
                         <th width="5%">No</th>
                         <th>Nama Guru</th>
-                        <th>Mapel</th>
                         <th>Email</th>
                         <th>No Identitas</th>
+                        <th>Status</th>
                         <th width="15%">Aksi</th>
                     </tr>
                 </thead>
@@ -44,134 +44,130 @@
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td>{{ $g->nama_guru }}</td>
-                        <td>{{ $g->mapel->nama_mapel ?? '-' }}</td>
                         <td>{{ $g->email }}</td>
                         <td>{{ $g->no_identitas }}</td>
+                        <td class="text-center">
+                            <span class="badge bg-{{ $g->status == 'aktif' ? 'success' : 'secondary' }}">
+                                {{ strtoupper($g->status) }}
+                            </span>
+                        </td>
 
-                        <td class="d-flex justify-content-center gap-1">
-                            <!-- Edit  -->
-                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalEdit{{ $g->id_guru }}">
-                                <i class="fas fa-edit"></i>
-                            </button>
 
-                            <!-- Modal Edit guru -->
-                            <div class="modal fade" id="modalEdit{{ $g->id_guru }}" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                    <div class="modal-content">
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-2">
 
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Data Guru</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{route('guru.update', $g->id_guru)}}" method="post">
-                                                @csrf
-                                                <div class="mb-4 row">
-                                                    <label for="text" class="col-sm-3 col-form-label">Nama Guru</label>
-                                                    <div class="col-sm-9">
-                                                        <input name="nama_guru" value="{{$g->nama_guru}}"
-                                                            class="form-control " type="text"
-                                                            placeholder="Masukkan Nama Guru" id="text"
-                                                            aria-label=".form-control-lg example">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-4 row">
-                                                    <label class="col-sm-3 col-form-label">Mapel</label>
-                                                    <div class="col-sm-9">
-                                                        <select name="id_mapel" class="form-select" required>
-                                                            <option disabled>Pilih Mata Pelajaran</option>
-                                                            @foreach ($mapel as $m)
-                                                            <option value="{{ $m->id_mapel }}" {{ $g->id_mapel == $m->id_mapel ? 'selected' : '' }}>
-                                                                {{ $m->nama_mapel }}
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-4 row">
-                                                    <label for="text" class="col-sm-3 col-form-label">No
-                                                        Identitas</label>
-                                                    <div class="col-sm-9">
-                                                        <input name="no_identitas" value="{{$g->no_identitas}}"
-                                                            class="form-control " type="text"
-                                                            placeholder="Masukkan No Identitas" id="text"
-                                                            aria-label=".form-control-lg example">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-4 row">
-                                                    <label for="text" class="col-sm-3 col-form-label">Email</label>
-                                                    <div class="col-sm-9">
-                                                        <input name="email" value="{{$g->email}}" class="form-control "
-                                                            type="email" placeholder="Masukkan Email" id="text"
-                                                            aria-label=".form-control-lg example">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-4 row">
-                                                    <label class="col-sm-3 col-form-label">Password</label>
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group">
-                                                            <input name="password" placeholder="(kosongkan jika tidak ingin diubah)" type="password" class="form-control" id="passwordInput">
-                                                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">
-                                                                <i class="bi bi-eye-slash" id="toggleIcon"></i>
-                                                            </button>
+                                <!-- Edit -->
+                                <button class="btn btn-warning btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalEdit{{ $g->id_guru }}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+
+                                <!-- Modal Edit guru -->
+                                <div class="modal fade" id="modalEdit{{ $g->id_guru }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Data Guru</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('guru.update', $g->id_guru)}}" method="post">
+                                                    @csrf
+                                                    <div class="mb-4 row">
+                                                        <label for="text" class="col-sm-3 col-form-label">Nama Guru</label>
+                                                        <div class="col-sm-9">
+                                                            <input name="nama_guru" value="{{$g->nama_guru}}"
+                                                                class="form-control " type="text"
+                                                                placeholder="Masukkan Nama Guru" id="text"
+                                                                aria-label=".form-control-lg example">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                    <div class="mb-4 row">
+                                                        <label for="text" class="col-sm-3 col-form-label">No
+                                                            Identitas</label>
+                                                        <div class="col-sm-9">
+                                                            <input name="no_identitas" value="{{$g->no_identitas}}"
+                                                                class="form-control " type="text"
+                                                                placeholder="Masukkan No Identitas" id="text"
+                                                                aria-label=".form-control-lg example">
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-4 row">
+                                                        <label for="text" class="col-sm-3 col-form-label">Email</label>
+                                                        <div class="col-sm-9">
+                                                            <input name="email" value="{{$g->email}}" class="form-control "
+                                                                type="email" placeholder="Masukkan Email" id="text"
+                                                                aria-label=".form-control-lg example">
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-4 row">
+                                                        <label class="col-sm-3 col-form-label">Password</label>
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group">
+                                                                <input name="password"
+                                                                    type="password"
+                                                                    class="form-control password-input"
+                                                                    placeholder="(kosongkan jika tidak ingin diubah)">
 
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-success">Simpan</button>
-                                                </div>
-                                            </form>
+                                                                <button type="button"
+                                                                    class="btn btn-outline-secondary toggle-password">
+                                                                    <i class="bi bi-eye-slash"></i>
+                                                                </button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </div>
-
                                     </div>
                                 </div>
+
+                                <form action="{{ route('guru.toggle-status', $g->id_guru) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+
+                                    @php
+                                    $status = strtolower(trim($g->status));
+                                    @endphp
+
+                                    @if ($status === 'aktif')
+                                    <button type="submit"
+                                        class="btn btn-sm btn-success"
+                                        title="Aktifkan">
+                                        <i class="fas fa-user-check"></i>
+                                    </button>
+
+                                    @else
+
+                                    <button type="submit"
+                                        class="btn btn-sm btn-secondary"
+                                        title="Nonaktifkan">
+                                        <i class="fas fa-user-slash"></i>
+                                    </button>
+                                    @endif
+                                </form>
+
+
+
                             </div>
 
 
 
-                            <!-- Tombol Delete -->
-                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalHapus{{ $g->id_guru }}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-
-                            <!-- Modal Hapus -->
-                            <div class="modal fade" id="modalHapus{{ $g->id_guru }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-
-                                        <form action="{{ route('guru.delete', $g->id_guru) }}" method="POST">
-                                            @csrf
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Hapus Data Guru</h5>
-                                                <button type="button" class="btn-close"
-                                                    data-bs-dismiss="modal"></button>
-                                            </div>
-
-                                            <div class="modal-body">
-                                                Yakin mau hapus <strong>{{ $g->nama_guru }}</strong>?
-                                                Aksi ini tidak dapat dibatalkan.
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary btn-sm"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                            </div>
-
-                                        </form>
-
-                                    </div>
-                                </div>
-                            </div>
 
                         </td>
+
                     </tr>
                     @empty
                     <tr>
@@ -207,17 +203,6 @@
                         </div>
                     </div>
                     <div class="mb-4 row">
-                        <label for="text" class="col-sm-2 col-form-label">Pilih Mapel</label>
-                        <div class="col-sm-10">
-                            <select name="id_mapel" class="form-select" required>
-                                <option selected disabled>Pilih Mata Pelajaran</option>
-                                @foreach($mapel as $m)
-                                <option value="{{ $m->id_mapel }}">{{ $m->nama_mapel }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-4 row">
                         <label for="text" class="col-sm-2 col-form-label">No Identitas</label>
                         <div class="col-sm-10">
                             <input name="no_identitas" class="form-control " type="text"
@@ -235,9 +220,10 @@
                         <label class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input name="password" placeholder="Masukkan Password" type="password" class="form-control" id="passwordInput">
-                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
-                                    <i class="bi bi-eye-slash" id="toggleIcon"></i>
+
+                                <input name="password" type="password" placeholder="Masukkan Password" class="form-control password-input">
+                                <button type="button" class="btn btn-outline-secondary toggle-password">
+                                    <i class="bi bi-eye-slash"></i>
                                 </button>
                             </div>
                         </div>
@@ -269,7 +255,7 @@
                     <input type="file" name="file" class="form-control mb-2" required>
 
                     <small class="text-muted">
-                        Format kolom: <b>nama guru, mapel, email, no identitas, password</b>
+                        Format kolom: <b>nama guru, email, no identitas, password</b>
                     </small>
                 </div>
 

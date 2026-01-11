@@ -12,69 +12,63 @@
     </div>
 
 
-    <div class="row row-cols-1 row-cols-md-4 g-3">
-
-        <!-- Jumlah Laporan -->
-        <div class="col">
-            <div class="card stat-card">
-                <div class="card-body d-flex align-items-center justify-content-between">
-                    <div>
-                        <h6 class="text-muted mb-1">Jumlah Laporan</h6>
-                        <h3 class="fw-bold mb-0">{{ $jumlahLaporan }}</h3>
-                    </div>
-                    <div class="icon-wrapper bg-primary-soft">
-                        <i class="fas fa-file-alt text-primary"></i>
-                    </div>
+    <div class="row g-3"> <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center justify-content-between p-4">
+                <div>
+                    <h6 class="text-muted small uppercase mb-2">Jumlah Laporan</h6>
+                    <h3 class="fw-bold mb-0">{{ $jumlahLaporan }}</h3>
+                </div>
+                <div class="icon-wrapper bg-primary-soft">
+                    <i class="fas fa-file-alt text-primary fs-4"></i>
                 </div>
             </div>
         </div>
-
-        <!-- Menunggu Respon -->
-        <div class="col">
-            <div class="card stat-card">
-                <div class="card-body d-flex align-items-center justify-content-between">
-                    <div>
-                        <h6 class="text-muted mb-1">Menunggu Respon</h6>
-                        <h3 class="fw-bold mb-0">{{ $menunggu }}</h3>
-                    </div>
-                    <div class="icon-wrapper bg-warning-soft">
-                        <i class="fas fa-hourglass-half text-warning"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sedang Diproses -->
-        <div class="col">
-            <div class="card stat-card">
-                <div class="card-body d-flex align-items-center justify-content-between">
-                    <div>
-                        <h6 class="text-muted mb-1">Sedang Diproses</h6>
-                        <h3 class="fw-bold mb-0">{{ $diproses }}</h3>
-                    </div>
-                    <div class="icon-wrapper bg-info-soft">
-                        <i class="fas fa-sync-alt text-info"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Selesai -->
-        <div class="col">
-            <div class="card stat-card">
-                <div class="card-body d-flex align-items-center justify-content-between">
-                    <div>
-                        <h6 class="text-muted mb-1">Selesai</h6>
-                        <h3 class="fw-bold mb-0">{{ $selesai }}</h3>
-                    </div>
-                    <div class="icon-wrapper bg-success-soft">
-                        <i class="fas fa-check-circle text-success"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center justify-content-between p-4">
+                <div>
+                    <h6 class="text-muted small uppercase mb-2">Menunggu Respon</h6>
+                    <h3 class="fw-bold mb-0">{{ $menunggu }}</h3>
+                </div>
+                <div class="icon-wrapper bg-warning-soft">
+                    <i class="fas fa-hourglass-half text-warning fs-4"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center justify-content-between p-4">
+                <div>
+                    <h6 class="text-muted small uppercase mb-2">Sedang Diproses</h6>
+                    <h3 class="fw-bold mb-0">{{ $diproses }}</h3>
+                </div>
+                <div class="icon-wrapper bg-info-soft">
+                    <i class="fas fa-sync-alt text-info fs-4"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center justify-content-between p-4">
+                <div>
+                    <h6 class="text-muted small uppercase mb-2">Selesai</h6>
+                    <h3 class="fw-bold mb-0">{{ $selesai }}</h3>
+                </div>
+                <div class="icon-wrapper bg-success-soft">
+                    <i class="fas fa-check-circle text-success fs-4"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
     <!-- CHART -->
     <div class="my-4">

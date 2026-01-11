@@ -12,10 +12,6 @@ class Guru extends Authenticatable
     protected $primaryKey = 'id_guru';
     protected $guarded = [];
 
-    public function mapel()
-    {
-        return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');
-    }
 
     
     

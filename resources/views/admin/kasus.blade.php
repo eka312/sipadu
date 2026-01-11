@@ -14,7 +14,7 @@
 
         <div class="mb-3 text-center">
             <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="fas fa-plus"></i>Tambah Jenis Aduan</button>
-            <button type="button" class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#importExcel">Upload Excel</button>
+            
         </div>
     </div>
 
@@ -58,6 +58,7 @@
                                         <div class="modal-body">
                                             <form action="{{route('kasus.update', $k->id_kasus)}}" method="post">
                                                 @csrf
+                                                @method('PUT')
                                                 <div class="mb-4 row">
                                                     <label for="text" class="col-sm-2 col-form-label">Jenis Aduan</label>
                                                     <div class="col-sm-10">
@@ -89,6 +90,7 @@
 
                                         <form action="{{ route('kasus.delete', $k->id_kasus) }}" method="POST">
                                             @csrf
+                                            @method('DELETE')
                                             <div class="modal-header">
                                                 <h5 class="modal-title">Hapus Jenis Aduan</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -159,33 +161,7 @@
 </div>
 
 
-<div class="modal fade" id="importExcel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <form action="{{ route('kasus.import_excel') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title">Upload Excel </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
 
-                <div class="modal-body">
-                    <label>File Excel</label>
-                    <input type="file" name="file" class="form-control mb-2" required>
-
-                    <small class="text-muted">
-                        Format kolom: <b>jenis Aduan</b>
-                    </small>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-success">Upload</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 @endsection

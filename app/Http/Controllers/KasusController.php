@@ -19,16 +19,7 @@ class KasusController extends Controller
         return view('admin.kasus', compact('kasus'));
     }
 
-    public function import_excel(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
-
-        Excel::import(new KasusImport, $request->file('file'));
-
-        return redirect('/kasus');
-    }
+    
 
     /**
      * Show the form for creating a new resource.

@@ -12,19 +12,29 @@
         <p class="text-muted">
             Selamat datang, <strong>{{ $nama }}.</strong><br>
             @if (auth('siswa')->check())
-                Laporkan kejadian yang kamu alami atau saksikan di lingkungan sekolah.
-                Identitas dan laporanmu akan diproses secara rahasia.
+            Laporkan kejadian yang kamu alami atau saksikan di lingkungan sekolah.
+            Identitas dan laporanmu akan diproses secara rahasia.
             @elseif (auth('guru')->check())
-                Laporkan kejadian yang Anda ketahui di lingkungan sekolah.
-                Setiap laporan akan ditindaklanjuti sesuai prosedur yang berlaku.
+            Laporkan kejadian yang Anda ketahui di lingkungan sekolah.
+            Setiap laporan akan ditindaklanjuti sesuai prosedur yang berlaku.
             @endif
 
         </p>
     </div>
     <div class="card bg-white shadow-sm">
         <div class="card-body">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Form belum lengkap ⚠️</strong>
+                <ul class="mb-0 mt-2">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form action="{{ auth('siswa')->check() ? route('lapor.siswa.store') : route('lapor.guru.store') }}"
-                method="POST" enctype="multipart/form-data">
+                method="POST" enctype="multipart/form-data" novalidate>
                 @csrf
 
                 <div class="mb-3 row">

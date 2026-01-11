@@ -32,10 +32,10 @@
 
 
     <style>
+        /* ===== GLOBAL ===== */
         body {
-            font-family: 'poppins', sans-serif !important;
+            font-family: 'Poppins', sans-serif !important;
             background-color: #f8f9fa;
-            /* Light background for main content */
         }
 
         :root {
@@ -43,15 +43,13 @@
             --bs-primary-rgb: 7, 31, 92 !important;
             --bs-warning: #F7CD54 !important;
             --bs-warning-rgb: 247, 205, 84 !important;
-            /* Untuk text-warning (Bootstrap 5.3 ke atas) */
-            --bs-warning-text: #664d03 !important;
 
-            /* Untuk bg-warning-subtle dan border-subtle */
+            --bs-warning-text: #664d03 !important;
             --bs-warning-bg-subtle: #fff3cd !important;
             --bs-warning-border-subtle: #ffeeba !important;
-
         }
 
+        /* ===== BUTTON PRIMARY ===== */
         .btn-primary {
             --bs-btn-bg: var(--bs-primary);
             --bs-btn-border-color: var(--bs-primary);
@@ -61,101 +59,173 @@
             --bs-btn-active-border-color: color-mix(in srgb, var(--bs-primary) 75%, black);
         }
 
-        /* Sidebar - Menggunakan utility BS: bg-primary, d-flex, flex-column, min-vh-100 */
+        /* ===== SIDEBAR ===== */
         #sidebar {
+            position: fixed;
+            /* 🔥 PENTING */
+            top: 0;
+            left: 0;
+            height: 100vh;
             width: 260px;
-            min-height: 100vh;
-            position: relative;
-            transition: width 0.3s ease-in-out;
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s ease;
+            z-index: 1000;
         }
 
+
+        /* Text muted di sidebar */
         #sidebar .text-muted {
             color: #c9d1d9 !important;
-            /* abu2 terang */
         }
 
-        /* Tombol Toggle - Posisi tetap membutuhkan CSS kustom */
+        /* ===== TOGGLE BUTTON ===== */
         #sidebar-toggle {
             position: absolute;
             top: 1.5rem;
-            right: -12px;
-            width: 25px;
-            height: 25px;
+            right: -13px;
+            width: 26px;
+            height: 26px;
             background-color: var(--bs-primary);
-            /* Same as bg-primary */
-            color: white;
+            color: #fff;
             border: 2px solid #f8f9fa;
             border-radius: 50%;
             cursor: pointer;
             z-index: 10;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s ease;
+
+            transition:
+                background-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
-        /* Menu Link - Dikecilkan padding vertikalnya (0.3rem) */
-        .nav-link {
-            transition: background-color 0.2s ease, color 0.2s ease;
-            white-space: nowrap;
-            padding: 0.3rem 0.75rem;
-            /* DIUBAH: Dikecilkan dari 0.5rem menjadi 0.3rem */
+        /* Hover effect */
+        #sidebar-toggle:hover {
+            background-color: #0a2b7a;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Nav Link Active/Hover - Menggunakan warna Bootstrap */
-        .nav-link:hover,
-        .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            /* Light hover effect */
+        /* Icon animasi */
+        #sidebar-toggle i {
+            font-size: 0.9rem;
+            transition: transform 0.25s ease;
+        }
+
+        /* Saat sidebar collapse */
+        #sidebar.collapsed #sidebar-toggle i {
+            transform: translateX(1px);
+        }
+
+
+        /* ===== SIDEBAR HEADER ===== */
+        .sidebar-header {
+            min-height: 90px;
+        }
+
+        /* Logo */
+        .logo-small {
+            display: none;
+            height: 45px;
+        }
+
+        .logo-big {
+            display: block;
+            height: 65px;
+        }
+
+        /* ===== SIDEBAR MENU ===== */
+        .sidebar-menu .nav-item {
+            margin-bottom: 6px;
+        }
+
+        #sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            transition: all 0.25s ease;
+        }
+
+        /* Hover */
+        #sidebar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
             color: #fff !important;
         }
 
-        /* KRITIS UNTUK ALIGNMENT IKON: Slot ikon harus punya lebar tetap */
-        .menu-icon {
-            width: 24px;
-            text-align: center;
-            line-height: 1;
-            font-size: 1.1rem;
+        /* Active */
+        #sidebar .nav-link.active {
+            background-color: #ffffff;
+            color: var(--bs-primary) !important;
+            font-weight: 600;
         }
 
+        #sidebar .nav-link.active .menu-icon {
+            color: var(--bs-primary);
+        }
+
+        /* Icon */
+        .menu-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+
+        /* Text menu */
         .link-text {
             font-size: 0.9rem;
-            opacity: 1;
             transition: opacity 0.2s ease-in-out;
         }
 
-        /*
-         * STATE TERTUTUP (COLLAPSED)
-        */
+        /* ===== COLLAPSED STATE ===== */
         #sidebar.collapsed {
-            width: 80px;
-            /* Lebar minimum */
+            width: 90px;
         }
 
-        #sidebar.collapsed #sidebar-toggle {
-            transform: rotate(180deg);
-        }
 
-        /* Sembunyikan teks saat collapsed */
+
+        /* Hide text */
         #sidebar.collapsed .link-text,
-        #sidebar.collapsed .sidebar-header-text,
-        #sidebar.collapsed .logo-clear {
-            opacity: 0;
-            pointer-events: none;
-            width: 0;
+        #sidebar.collapsed .sidebar-header-text {
             display: none;
         }
 
-        /* Pusatkan ikon saat tertutup */
+        /* Center icon */
         #sidebar.collapsed .nav-link {
             justify-content: center;
-            padding: 0.5rem;
-            /* Padding lebih simetris */
+            padding: 10px;
         }
 
         #sidebar.collapsed .menu-icon {
+            font-size: 1.2rem;
             width: auto;
+        }
+
+        /* Logo switch */
+        #sidebar.collapsed .logo-small {
+            display: block;
+        }
+
+        #sidebar.collapsed .logo-big {
+            display: none;
+        }
+
+        /* ===== FOOTER ===== */
+        .sidebar-footer {
+            font-size: 0.85rem;
+        }
+
+        #footer-expanded {
+            display: flex;
+        }
+
+        #footer-collapsed {
+            display: none;
         }
 
         /* Footer saat collapsed */
@@ -167,256 +237,194 @@
             display: block !important;
         }
 
-        /* Footer saat expanded (default) */
-        .sidebar-footer #footer-collapsed {
-            display: none;
+        /* ===== OPTIONAL DIVIDER ===== */
+        .sidebar-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            margin: 12px 0;
         }
 
-        /* Default Sidebar Expanded */
-        .logo-small {
-            display: none;
+        #main-content {
+            margin-left: 260px;
+            transition: margin-left 0.3s ease;
         }
 
-        .logo-big {
-            display: block;
+        #sidebar.collapsed~#main-content {
+            margin-left: 90px;
         }
-
-        /* Saat Sidebar Collapse */
-        #sidebar.collapsed .logo-small {
-            display: block;
-        }
-
-        #sidebar.collapsed .logo-big {
-            display: none;
-        }
-
-
-
-
-        /* Tambahan: Tambahkan jarak antara menu dan footer. */
-        /* Menggunakan mt-auto pada elemen footer di HTML lebih disarankan */
     </style>
 </head>
 
 <body>
 
-    <div class="d-flex ">
-
-        <!-- ===== Sidebar ===== -->
-
-        <nav id="sidebar" class="bg-primary d-flex flex-column text-light">
-            <!-- Tombol Toggle -->
-            <div id="sidebar-toggle" role="button" aria-label="Toggle sidebar">
-                <i class="bi bi-chevron-left" id="toggle-icon"></i>
-            </div>
-
-            <!-- Header Sidebar (Logo SIPADU) -->
-            <div class="sidebar-header px-3 pt-4 pb-2 d-flex align-items-center">
-                <img src="{{asset('assets/img/logo_kecil.png')}}" class="logo-small" alt="Logo" style="height:45px;">
-                <img src="{{asset('assets/img/logo_sipadu.png')}}" class="logo-big " alt="Logo" style="height:65px;">
-            </div>
 
 
-            <ul class="nav nav-pills flex-column px-3 mt-3 flex-grow-1">
+    <!-- ===== Sidebar ===== -->
 
-                <!-- Dashboard -->
-                <li class="nav-item mb-1">
-                    <a href="/dashboard" class="nav-link  d-flex align-items-center text-white rounded-3 {{ Request::is('dashboard') ? 'active' : '' }}">
-                        <i class="fas fa-home menu-icon me-3"></i>
-                        <span class="link-text">Dashboard</span>
-                    </a>
-                </li>
+    <nav id="sidebar" class="bg-primary d-flex flex-column text-light">
+        <!-- Tombol Toggle -->
+        <div id="sidebar-toggle" role="button" aria-label="Toggle sidebar">
+            <i class="bi bi-chevron-left" id="toggle-icon"></i>
+        </div>
 
-                <!-- Data Guru -->
-                <li class="nav-item mb-1">
-                    <a href="/guru" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('guru') ? 'active' : '' }}">
-                        <i class="fas fa-user-tie menu-icon me-3"></i>
-                        <span class="link-text">Data Guru</span>
-                    </a>
-                </li>
-
-                <!-- Data Siswa -->
-                <li class="nav-item mb-1">
-                    <a href="/siswa" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('siswa') ? 'active' : '' }}">
-                        <i class="fas fa-user-graduate menu-icon me-3"></i>
-                        <span class="link-text">Data Siswa</span>
-                    </a>
-                </li>
-
-                <!-- Data Pelapor -->
-                <!-- <li class="nav-item mb-1">
-                    <a href="/pelapor" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('pelapor') ? 'active' : '' }}">
-                        <i class="fas fa-users menu-icon me-3"></i>
-                        <span class="link-text">Data Pelapor</span>
-                    </a>
-                </li> -->
-
-                <!-- Academic Divider -->
-                <li class="mt-3 mb-1 px-2 text-muted link-text" style="font-size: 0.75rem;">DATA AKADEMIK</li>
-
-                <!-- Data Kelas -->
-                <li class="nav-item mb-1">
-                    <a href="/kelas" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('kelas') ? 'active' : '' }}">
-                        <i class="fas fa-school menu-icon me-3"></i>
-                        <span class="link-text">Data Kelas</span>
-                    </a>
-                </li>
-
-                <!-- Data Mapel -->
-                <li class="nav-item mb-1">
-                    <a href="/mapel" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('mapel') ? 'active' : '' }}">
-                        <i class="fas fa-book menu-icon me-3"></i>
-                        <span class="link-text">Data Mapel</span>
-                    </a>
-                </li>
-
-                <!-- Core App Divider -->
-                <li class="mt-3 mb-1 px-2 text-muted link-text" style="font-size: 0.75rem;">INTI APLIKASI</li>
-
-                <!-- Data Jenis Kasus -->
-                <li class="nav-item mb-1">
-                    <a href="/kasus" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('kasus') ? 'active' : '' }}">
-                        <i class="fas fa-exclamation-circle menu-icon me-3"></i>
-                        <span class="link-text">Data Jenis Aduan</span>
-                    </a>
-                </li>
-
-                <!-- Data Laporan -->
-                <li class="nav-item mb-1">
-                    <a href="/laporan" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('laporan') ? 'active' : '' }}">
-                        <i class="fas fa-file-alt menu-icon me-3"></i>
-                        <span class="link-text">Data Laporan</span>
-                    </a>
-                </li>
-
-                <!-- Data Petugas -->
-                <li class="nav-item mb-1">
-                    <a href="/petugas" class="nav-link d-flex align-items-center text-light rounded-3 {{ Request::is('petugas') ? 'active' : '' }}">
-                        <i class="fas fa-user-tie menu-icon me-3"></i>
-                        <span class="link-text">Data Petugas</span>
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Bagian Bawah Sidebar (Footer) -->
-            <div class="sidebar-footer mt-auto">
-                <div id="footer-expanded"
-                    class="d-flex align-items-center justify-content-between p-3 border-top border-secondary bg-primary">
-                    <!-- Kiri: Avatar + Email -->
-                    <div class="d-flex align-items-center">
-                        <img src="https://ui-avatars.com/api/?name=ADM&background=0D6EFD&color=fff"
-                            class="rounded-circle" style="width: 35px; height: 35px;">
-
-                        <span class="mx-1 text-white link-text" style="font-size: 0.85rem; font-weight: 500;">
-                            {{ Auth::user()->email }}
-                        </span>
-                    </div>
-
-                    <!-- Kanan: Logout icon -->
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"
-                        class="text-white " style="font-size: 1rem;">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="GET" class="d-none"></form>
-                </div>
-                <!-- Konten Footer Saat SIDEBAR TERTUTUP (Collapsed - Hanya Icon Logout) -->
-                <div id="footer-collapsed" class="text-center p-3 border-top border-secondary bg-primary">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"
-                        class="text-white" style="font-size: 1rem;">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
+        <!-- Header Sidebar (Logo SIPADU) -->
+        <div class="sidebar-header px-3 pt-4 pb-2 d-flex align-items-center">
+            <img src="{{asset('assets/img/logo_kecil.png')}}" class="logo-small" alt="Logo" style="height:45px;">
+            <img src="{{asset('assets/img/logo_sipadu.png')}}" class="logo-big " alt="Logo" style="height:65px;">
+        </div>
 
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="GET" class="d-none"></form>
+        <ul class="nav nav-pills flex-column px-3 mt-3 flex-grow-1 sidebar-menu">
+
+            <li class="nav-item">
+                <a href="/dashboard"
+                    class="nav-link sidebar-link {{ Request::is('dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-home sidebar-icon"></i>
+                    <span class="link-text">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/guru"
+                    class="nav-link sidebar-link {{ Request::is('guru') ? 'active' : '' }}">
+                    <i class="fas fa-user-tie sidebar-icon"></i>
+                    <span class="link-text">Data Guru</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/siswa"
+                    class="nav-link sidebar-link {{ Request::is('siswa') ? 'active' : '' }}">
+                    <i class="fas fa-user-graduate sidebar-icon"></i>
+                    <span class="link-text">Data Siswa</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/kasus"
+                    class="nav-link sidebar-link {{ Request::is('kasus') ? 'active' : '' }}">
+                    <i class="fas fa-exclamation-circle sidebar-icon"></i>
+                    <span class="link-text">Jenis Aduan</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/laporan"
+                    class="nav-link sidebar-link {{ Request::is('laporan') ? 'active' : '' }}">
+                    <i class="fas fa-file-alt sidebar-icon"></i>
+                    <span class="link-text">Data Laporan</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/petugas"
+                    class="nav-link sidebar-link {{ Request::is('petugas') ? 'active' : '' }}">
+                    <i class="fas fa-user-shield sidebar-icon"></i>
+                    <span class="link-text">Data Petugas</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <!-- Bagian Bawah Sidebar (Footer) -->
+        <div class="sidebar-footer mt-auto">
+            <div id="footer-expanded"
+                class="d-flex align-items-center justify-content-between p-3 border-top border-secondary bg-primary">
+                <!-- Kiri: Avatar + Email -->
+                <div class="d-flex align-items-center">
+                    <img src="https://ui-avatars.com/api/?name=ADM&background=0D6EFD&color=fff"
+                        class="rounded-circle" style="width: 35px; height: 35px;">
+
+                    <span class="mx-1 text-white link-text" style="font-size: 0.85rem; font-weight: 500;">
+                        {{ Auth::user()->email }}
+                    </span>
                 </div>
 
-                <!-- Modal Konfirmasi Logout -->
-                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content text-dark">
+                <!-- Kanan: Logout icon -->
+                <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"
+                    class="text-white " style="font-size: 1rem;">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
 
-                            <div class="modal-header">
-                                <h5 class="modal-title fw-bold  " id="logoutModalLabel">Konfirmasi Logout</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="GET" class="d-none"></form>
+            </div>
+            <!-- Konten Footer Saat SIDEBAR TERTUTUP (Collapsed - Hanya Icon Logout) -->
+            <div id="footer-collapsed" class="text-center p-3 border-top border-secondary bg-primary">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"
+                    class="text-white" style="font-size: 1rem;">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
 
-                            <div class="modal-body">
-                                Yakin mau keluar dari sistem SIPADU? 
-                            </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                <button class="btn btn-danger"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </button>
-                            </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="GET" class="d-none"></form>
+            </div>
+
+            <!-- Modal Konfirmasi Logout -->
+            <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content text-dark">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold  " id="logoutModalLabel">Konfirmasi Logout</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            Yakin mau keluar dari sistem SIPADU?
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </button>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-        </nav>
 
-        <!-- ===== Konten Utama ===== -->
-        <main id="main-content" class="flex-grow-1 p-4">
-            <div class="container-fluid">
-                @yield('content')
-                <!-- <div class="card p-4 rounded-3 border-0 shadow-sm">
+
+        </div>
+    </nav>
+
+    <!-- ===== Konten Utama ===== -->
+    <main id="main-content" class="flex-grow-1 p-4">
+        <div class="container-fluid">
+            @yield('content')
+            <!-- <div class="card p-4 rounded-3 border-0 shadow-sm">
                     <h1>Halaman Dashboard Sipadu</h1>
                     <p>Selamat datang di halaman dashboard Anda. Sidebar ini kini didesain dengan "Full Bootstrap 5.3" *utility classes*.</p>
                     <p>Semua item menu sudah sejajar sempurna secara vertikal karena slot ikon (`.menu-icon`) memiliki lebar yang tetap.</p>
                 </div> -->
-            </div>
-        </main>
-    </div>
+        </div>
+    </main>
+
 
     <!-- Bootstrap JS Bundle (FIXED INTEGRITY) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
-    <!-- JavaScript Kustom -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const sidebar = document.getElementById('sidebar');
-            const toggleBtn = document.getElementById('sidebar-toggle');
-            const toggleIcon = document.getElementById('toggle-icon');
-            const footerExpanded = document.getElementById('footer-expanded');
-            const footerCollapsed = document.getElementById('footer-collapsed');
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        const toggleIcon = document.getElementById('toggle-icon');
 
-            // 1. Fungsi Toggle Sidebar
-            toggleBtn.addEventListener('click', function() {
-                sidebar.classList.toggle('collapsed');
+        toggleBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('collapsed');
 
-                if (sidebar.classList.contains('collapsed')) {
-                    toggleIcon.classList.replace('bi-chevron-left', 'bi-chevron-right');
-
-                    // Kontrol Footer
-                    footerExpanded.style.display = 'none';
-                    footerCollapsed.style.display = 'block';
-
-                } else {
-                    toggleIcon.classList.replace('bi-chevron-right', 'bi-chevron-left');
-
-                    // Kontrol Footer
-                    footerExpanded.style.display = 'flex';
-                    footerCollapsed.style.display = 'none';
-                }
-            });
-
-            // Initial check to set correct footer state (optional, for safety)
             if (sidebar.classList.contains('collapsed')) {
-                footerExpanded.style.display = 'none';
-                footerCollapsed.style.display = 'block';
+                toggleIcon.classList.remove('bi-chevron-left');
+                toggleIcon.classList.add('bi-chevron-right');
             } else {
-                footerExpanded.style.display = 'flex';
-                footerCollapsed.style.display = 'none';
+                toggleIcon.classList.remove('bi-chevron-right');
+                toggleIcon.classList.add('bi-chevron-left');
             }
         });
     </script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -426,17 +434,25 @@
 
 
     <script>
-        document.querySelectorAll('#togglePassword').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const input = this.parentNode.querySelector('input');
-                const icon = this.querySelector('i');
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.toggle-password')) {
+                const button = e.target.closest('.toggle-password');
+                const input = button.parentElement.querySelector('.password-input');
+                const icon = button.querySelector('i');
 
-                input.type = input.type === "password" ? "text" : "password";
-                icon.classList.toggle("bi-eye");
-                icon.classList.toggle("bi-eye-slash");
-            });
+                if (input.type === "password") {
+                    input.type = "text";
+                    icon.classList.remove("bi-eye-slash");
+                    icon.classList.add("bi-eye");
+                } else {
+                    input.type = "password";
+                    icon.classList.remove("bi-eye");
+                    icon.classList.add("bi-eye-slash");
+                }
+            }
         });
     </script>
+
 
 
 

@@ -13,10 +13,5 @@ class Siswa extends Authenticatable
     protected $primaryKey = 'id_siswa';
     protected $guarded = [];
 
-    
 
-    public function kelas()
-    {
-        return $this->belongsTo(Kelas::class, 'id_kelas', 'id_kelas');
-    }
 }
