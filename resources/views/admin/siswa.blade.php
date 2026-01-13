@@ -48,7 +48,7 @@
                         <td>{{ $s->nama_siswa }}</td>
                         <td>{{ $s->kelas }}</td>
                         <td>{{ $s->nis }}</td>
-                        <td>{{ $s->tanggal_lahir }}</td>
+                        <td>{{ \Carbon\Carbon::parse($s->tanggal_lahir)->format('d-m-Y') }}</td>
                         <td class="text-center">
                             <span class="badge bg-{{ $s->status == 'aktif' ? 'success' : 'secondary' }}">
                                 {{ strtoupper($s->status) }}

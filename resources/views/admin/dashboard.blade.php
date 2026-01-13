@@ -179,6 +179,7 @@
 
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const menunggu = JSON.parse(`{!! json_encode($menunggu) !!}`);
@@ -235,7 +236,6 @@
         }
     });
 </script>
-
 
 
 
