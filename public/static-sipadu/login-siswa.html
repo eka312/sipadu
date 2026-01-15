@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Siswa | SIPADU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #E9F0F7;
+            /* Warna background abu-abu kebiruan lembut */
+            font-family: 'Inter', sans-serif;
+        }
+
+        .login-card {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+</head>
+
+<body class="flex items-center justify-center min-h-screen p-6">
+
+    <div class="w-full max-w-[420px] bg-white rounded-[20px] login-card overflow-hidden">
+
+        <div class="bg-[#071F5C] pt-10 pb-8 px-8 text-center text-white relative overflow-hidden">
+            <div class="absolute -top-6 -right-6 w-24 h-24 bg-white/10 rounded-full"></div>
+            <div class="absolute top-12 -left-8 w-20 h-20 bg-white/10 rounded-full"></div>
+
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="">
+                    <img src="../assets/img/logo_sipadu.png" alt="Logo SIPADU" class="w-[160px] object-contain">
+
+                </div>
+                <p class="text-[16px] font-light opacity-80">Sistem Pengaduan Terpadu</p>
+            </div>
+        </div>
+
+        <div class="px-10 py-10">
+            <div class="text-center mb-8">
+                <h2 class="text-[20px] font-bold text-gray-800">Login Siswa</h2>
+                <p class="text-sm text-gray-400 mt-1">Silakan masuk menggunakan NIS Anda</p>
+            </div>
+
+
+
+            <form onsubmit="fakeLoginSiswa(event)">
+                <div class="mb-5">
+                    <label class="block text-[13px] font-medium text-gray-600 mb-2">
+                        NIS
+                    </label>
+                    <input type="text" id="nis"
+                        class="w-full pl-4 pr-4 py-3 bg-[#F0F5FF] rounded-xl text-sm outline-none" placeholder="12124">
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-[13px] font-medium text-gray-600 mb-2">
+                        Kata Sandi
+                    </label>
+                    <input type="password" id="password"
+                        class="w-full pl-4 pr-4 py-3 bg-[#F0F5FF] rounded-xl text-sm outline-none"
+                        placeholder="Masukkan kata sandi">
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-[#071F5C] hover:bg-[#0A2A7A] text-white font-semibold py-3 rounded-xl">
+                    Login
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        togglePassword.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+
+            passwordInput.type = isPassword ? 'text' : 'password';
+            eyeIcon.classList.toggle('fa-eye');
+            eyeIcon.classList.toggle('fa-eye-slash');
+        });
+    </script>
+    <script>
+        function fakeLoginSiswa(e) {
+            e.preventDefault();
+
+            const nis = document.getElementById('nis').value;
+            const pass = document.getElementById('password').value;
+
+            if (nis && pass) {
+                alert("Login siswa berhasil!");
+                window.location.href = "../static-sipadu/lapor.html";
+            } else {
+                alert("NIS dan password wajib diisi!");
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
