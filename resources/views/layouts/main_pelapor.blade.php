@@ -97,27 +97,31 @@
                     </li>
 
                     @auth('siswa')
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('siswa/lapor') ? 'active' : '' }}" href="{{ route('lapor.siswa.create') }}">Lapor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('siswa/status_kasus') ? 'active' : '' }}" href="{{ route('status.siswa') }}">Status Kasus</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('siswa/lapor') ? 'active' : '' }}"
+                                href="{{ route('lapor.siswa.create') }}">Lapor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('siswa/status_kasus') ? 'active' : '' }}"
+                                href="{{ route('status.siswa') }}">Status Kasus</a>
+                        </li>
                     @endauth
 
                     @auth('guru')
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('guru/lapor') ? 'active' : '' }}" href="{{ route('lapor.guru.create') }}">Lapor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('guru/status_kasus') ? 'active' : '' }}" href="{{ route('status.guru') }}">Status Kasus</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('guru/lapor') ? 'active' : '' }}"
+                                href="{{ route('lapor.guru.create') }}">Lapor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('guru/status_kasus') ? 'active' : '' }}"
+                                href="{{ route('status.guru') }}">Status Kasus</a>
+                        </li>
                     @endauth
 
                     @if(!Auth::guard('siswa')->check() && !Auth::guard('guru')->check())
-                    <li class="nav-item">
-                        <a class="nav-link" href="#login-pelapor">Lapor</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#login-pelapor">Lapor</a>
+                        </li>
                     @endif
 
                 </ul>
@@ -129,57 +133,57 @@
 
                     <!-- Jika siswa login  -->
                     @auth('siswa')
-                    <div class="dropdown ">
-                        <button class="btn btn-light text-primary dropdown-toggle" data-bs-toggle="dropdown">
-                            <span class="user-name">
-                                {{ explode(' ', Auth::guard('siswa')->user()->nama_siswa)[0] }}
-                            </span>
-                        </button>
+                        <div class="dropdown ">
+                            <button class="btn btn-light text-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="user-name">
+                                    {{ explode(' ', Auth::guard('siswa')->user()->nama_siswa)[0] }}
+                                </span>
+                            </button>
 
-                        <ul class="dropdown-menu dropdown-menu-end shadow-sm dropdown-menu-dark">
-                            <li>
-                                <form action="{{ route('logout.siswa') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        Logout
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm dropdown-menu-dark">
+                                <li>
+                                    <form action="{{ route('logout.siswa') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     @endauth
 
 
 
                     <!-- Jika guru login  -->
                     @auth('guru')
-                    <div class="dropdown">
-                        <button class="btn btn-light text-primary dropdown-toggle" data-bs-toggle="dropdown">
-                            <span class="user-name">
-                                {{ explode(' ', Auth::guard('guru')->user()->nama_guru)[0] }}
-                            </span>
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-light text-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="user-name">
+                                    {{ explode(' ', Auth::guard('guru')->user()->nama_guru)[0] }}
+                                </span>
+                            </button>
 
-                        <ul class="dropdown-menu dropdown-menu-end shadow-sm dropdown-menu-dark">
-                            <li>
-                                <form action="{{ route('logout.guru') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        Logout
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm dropdown-menu-dark">
+                                <li>
+                                    <form action="{{ route('logout.guru') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     @endauth
 
 
 
                     <!-- Jika belum login  -->
                     @if(!Auth::guard('siswa')->check() && !Auth::guard('guru')->check())
-                    <a class="btn btn-light text-primary px-3" href="/login_admin">
-                        Login Admin
-                    </a>
+                        <a class="btn btn-light text-primary px-3" href="/login_admin">
+                            Login Admin
+                        </a>
                     @endif
 
                 </div>
@@ -205,12 +209,12 @@
                         <img src="{{ asset('assets/img/logo_sipadu.png')}}" alt="Logo" width="240" height="180"
                             style="object-fit: contain;">
                         <h4>SIPADU (Sistem Pengaduan Terpadu)</h4>
-                        <p>
+                        <small>
                             Platform pelaporan siswa
                             berbasis web yang membantu
                             sekolah menjaga kedisiplinan
                             dan keterbukaan.
-                        </p>
+                        </small>
                     </div>
                     <div class="col d-flex align-items-center">
                         <ul class="footer-menu">
@@ -265,29 +269,35 @@
 
                             <div class="col">
                                 @auth('siswa')
-                                <a class="col" href="{{ route('lapor.siswa.create') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                        <path fill="#F7CD54" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                        <path fill="#F7CD54" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                    </svg>
-                                    Lapor
-                                </a>
+                                    <a class="col" href="{{ route('lapor.siswa.create') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                            <path fill="#F7CD54"
+                                                d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                            <path fill="#F7CD54"
+                                                d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                        </svg>
+                                        Lapor
+                                    </a>
                                 @elseif(Auth::guard('guru')->check())
-                                <a class="col" href="{{ route('lapor.guru.create') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                        <path fill="#F7CD54" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                        <path fill="#F7CD54" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                    </svg>
-                                    Lapor
-                                </a>
+                                    <a class="col" href="{{ route('lapor.guru.create') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                            <path fill="#F7CD54"
+                                                d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                            <path fill="#F7CD54"
+                                                d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                        </svg>
+                                        Lapor
+                                    </a>
                                 @else
-                                <a class="col" href="#login-pelapor">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                        <path fill="#F7CD54" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                        <path fill="#F7CD54" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                    </svg>
-                                    Lapor
-                                </a>
+                                    <a class="col" href="#login-pelapor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                            <path fill="#F7CD54"
+                                                d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                            <path fill="#F7CD54"
+                                                d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                        </svg>
+                                        Lapor
+                                    </a>
                                 @endauth
                             </div>
 
@@ -295,25 +305,25 @@
 
                             <div class="col">
                                 @auth('siswa')
-                                <a class="col" href="{{ route('status.siswa') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                        <path fill="#F7CD54"
-                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                        <path fill="#F7CD54"
-                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                    </svg>
-                                    Status Kasus
-                                </a>
+                                    <a class="col" href="{{ route('status.siswa') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                            <path fill="#F7CD54"
+                                                d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                            <path fill="#F7CD54"
+                                                d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                        </svg>
+                                        Status Kasus
+                                    </a>
                                 @elseif(Auth::guard('guru')->check())
-                                <a class="col" href="{{ route('status.guru') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
-                                        <path fill="#F7CD54"
-                                            d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
-                                        <path fill="#F7CD54"
-                                            d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
-                                    </svg>
-                                    Status Kasus
-                                </a>
+                                    <a class="col" href="{{ route('status.guru') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 16 9">
+                                            <path fill="#F7CD54"
+                                                d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
+                                            <path fill="#F7CD54"
+                                                d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z" />
+                                        </svg>
+                                        Status Kasus
+                                    </a>
                                 @endauth
                             </div>
 
@@ -321,27 +331,61 @@
                         </ul>
 
                     </div>
+                    
+                    <!-- Tim Developer -->
+                    <div class="col d-flex align-items-center">
+                        <ul class="list-unstyled">
+                            <h4>Tim Developer</h4>
+
+                            <li class="mb-2 d-flex justify-content-between gap-3">
+                                <span>Silvia Eka.W</span>
+                                <small>Frontend & Backend</small>
+                            </li>
+
+                            <li class="mb-2 d-flex justify-content-between gap-3">
+                                <span>Tegar Kesatria.P.H</span>
+                                <small>UI/UX</small>
+                            </li>
+
+                            <li class="mb-2 d-flex justify-content-between gap-3">
+                                <span>Fikri Firnanda</span>
+                                <small>UI/UX</small>
+                            </li>
+
+                            <li class="mb-2 d-flex justify-content-between gap-3">
+                                <span>Febri Herlina</span>
+                                <small>Dokumentasi</small>
+                            </li>
+
+                            <li class="d-flex justify-content-between gap-3">
+                                <span>Rassya Eva.M</span>
+                                <small>Dokumentasi</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Tim Developer -->
+
                     <div class="col d-flex align-items-center">
                         <ul>
                             <h4>SMK PGRI WLINGI</h4>
                             <div class="col mb-2">
                                 <i class="fa-solid fa-location-dot fa-lg" style="color: #ffffff;"></i>
-                                Jl. Jendral Sudirman No. 86 Beru, Wlingi, Blitar, Jawa Timur
+                                <small>Jl. Jendral Sudirman No. 86 Beru, Wlingi, Blitar, Jawa Timur</small>
                             </div>
                             <div class="col mb-2">
                                 <i class="fa-solid fa-phone fa-lg" style="color: #ffffff;"></i>
-                                (0342) 691224
+                                <small>(0342) 691224</small>
                             </div>
                             <div class="col">
                                 <i class="fa-solid fa-envelope fa-lg" style="color: #ffffff;"></i>
-                                smkpgri_wlg@yahoo.co.id
+                                <small>smkpgri_wlg@yahoo.co.id</small>
                             </div>
                         </ul>
                     </div>
                 </div>
                 <hr class="text-white" style="width: 100%;">
                 <span class="navbar-text d-flex justify-content-center text-white">
-                    2025 &copy; SIPADU - dikelola oleh SMK PGRI WLINGI
+                    2025 &copy; SIPADU - Dikembangkan oleh Tim Developer SIPADU
                 </span>
             </ul>
         </div>
@@ -400,9 +444,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="{{asset('js/scripts.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
     <script src="{{asset('js/datatables-simple-demo.js')}}"></script>
 </body>
 
